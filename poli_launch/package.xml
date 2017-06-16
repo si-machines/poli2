@@ -17,6 +17,8 @@
   <run_depend>segway_bringup</run_depend>
   <run_depend>segway_navigation_apps</run_depend>
   <run_depend>segway_description</run_depend>
+  <run_depend>kinova_bringup</run_depend>
+  <run_depend>kinova_description</run_depend>
 
 
   <export>
