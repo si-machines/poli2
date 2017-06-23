@@ -1,9 +1,6 @@
 sudo: required
 dist: trusty
-# Force travis to use its minimal image with default Python settings
 language: generic
-compiler:
-  - gcc
 env:
   global:
     - CATKIN_WS=~/catkin_ws
@@ -13,6 +10,7 @@ env:
 before_install:
   - git clone https://github.com/StanleyInnovation/segway_v3_robot.git
   - git clone https://github.com/StanleyInnovation/segway_v3
+  - git clone https://github.com/Kinovarobotics/kinova-ros.git
 install:
   - sudo sh -c 'echo "deb http://packages.ros.org/ros-shadow-fixed/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
@@ -33,4 +31,4 @@ script:
     catkin_make_isolated --install --cmake-args -DCMAKE_BUILD_TYPE=Release --catkin-make-args tests &&
     catkin_make_isolated --install --cmake-args -DCMAKE_BUILD_TYPE=Release --catkin-make-args run_tests
   # Check results
-- catkin_test_results ./build_isolated
+  - catkin_test_results ./build_isolated
