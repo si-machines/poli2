@@ -1,7 +1,10 @@
 <launch>
+    <arg name="sim" default="false"/>
+    <arg name="balancing_enabled" default="false"/>
 
-    <!-- Start the base driver -->
+    <!-- Start the base driver 
     <include file="$(find poli_launch)/launch/rmp_base.launch"/>
+    -->
 
     <!-- Run segway_move_base action client for tracking status -->
     <node pkg="segway_ros" name="segway_move_base" type="segway_move_base" output="screen">
