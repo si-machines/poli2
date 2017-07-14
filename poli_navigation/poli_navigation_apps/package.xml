@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <name>poli_navigation_apps</name>
+  <version>0.0.0</version>
+  <description>The poli_navigation_apps package</description>
+
+  <maintainer email="maxwell@cs.utexas.edu">Maxwell Svetlik</maintainer>
+
+  <license>BSD</license>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>joy</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>joy</run_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <export>
+  </export>
+</package>
