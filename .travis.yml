@@ -9,7 +9,6 @@ env:
     - CI_ROS_DISTRO="indigo"
 before_install:
   - git clone https://github.com/StanleyInnovation/segway_v3
-  - git clone https://github.com/ros-planning/moveit.git
   - git clone https://github.com/Kinovarobotics/kinova-ros.git
 install:
   - sudo sh -c 'echo "deb http://packages.ros.org/ros-shadow-fixed/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -18,6 +17,7 @@ install:
   - sudo apt-get install -qq -y python-rosdep
   - sudo rosdep init
   - rosdep update
+  - sudo apt-get install ros-indigo-moveit
   # Use rosdep to install all dependencies (including ROS itself)
   - rosdep install --from-paths .. --ignore-src --rosdistro $CI_ROS_DISTRO
 script:
