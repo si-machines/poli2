@@ -8,7 +8,6 @@ env:
   matrix:
     - CI_ROS_DISTRO="indigo"
 before_install:
-  - git clone https://github.com/StanleyInnovation/segway_v3_robot.git
   - git clone https://github.com/StanleyInnovation/segway_v3
   - git clone https://github.com/Kinovarobotics/kinova-ros.git
 install:
