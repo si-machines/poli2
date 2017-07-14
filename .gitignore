@@ -40,6 +40,8 @@ qtcreator-*
 
 *~
 
+*.swp
+
 # Emacs
 .#*
 
