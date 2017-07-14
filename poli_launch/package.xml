@@ -14,8 +14,6 @@
   <run_depend>roscpp</run_depend>
   <run_depend>rospy</run_depend>
   <run_depend>segway_ros</run_depend>
-  <run_depend>kinova_bringup</run_depend>
-  <run_depend>kinova_description</run_depend>
 
 
   <export>
