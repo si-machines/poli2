@@ -17,6 +17,7 @@ install:
   - sudo apt-get install -qq -y python-rosdep
   - sudo rosdep init
   - rosdep update
+  - sudo apt-get install ros-indigo-moveit-*
   # Use rosdep to install all dependencies (including ROS itself)
   - rosdep install --from-paths .. --ignore-src --rosdistro $CI_ROS_DISTRO
 script:
