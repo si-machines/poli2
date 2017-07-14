@@ -3,7 +3,6 @@ import rospy
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
 from std_msgs.msg import Float64
-from vector_msgs.msg import *
 
 """
 Teleop node for a playstation 3 controller.
@@ -55,15 +54,6 @@ def callback(data):
             pan = (-data.axes[11] + data.axes[9])
             tilt_pub.publish(tilt)
             pan_pub.publish(pan)
-        elif mode is "gripper":
-            gripper_cmd = GripperCmd()
-            gripper_val = (data.axes[10] - data.axes[8]) + last_gripper
-            if gripper_val != 0.0:
-                gripper_cmd.position = gripper_val * 0.05
-                last_gripper = (data.axes[10] - data.axes[8])
-                gripper_cmd.speed = 0.02
-                gripper_cmd.force = 100.0
-                gripper_pub.publish(gripper_cmd)
 
 def start():
     global base_pub, pan_pub, tilt_pub, gripper_pub, mode, last_gripper
@@ -73,8 +63,6 @@ def start():
     base_pub = rospy.Publisher('/segway/cmd_vel', Twist, queue_size=5)
     pan_pub = rospy.Publisher('/pan_controller/command', Float64, queue_size=1)
     tilt_pub = rospy.Publisher('/tilt_controller/command', Float64, queue_size=1)
-    gripper_pub = rospy.Publisher('/vector/right_gripper/cmd', GripperCmd, queue_size=10)
-    last_gripper = 0.0
 
     rospy.Subscriber('/ps/joy', Joy, callback)
     while not rospy.is_shutdown():

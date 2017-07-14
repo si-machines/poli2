@@ -1,0 +1,17 @@
+<launch>
+  <arg name="urdf_file" default="$(find poli_description)/robots/poli.urdf.xacro" />
+  <arg name="robot_name" default="RMP_110"/>
+
+  <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro.py '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
+
+  <!-- launch the tf tree -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+  </node>
+
+  <!-- launch the joint state publisher to default values -->
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
+
+</launch>
