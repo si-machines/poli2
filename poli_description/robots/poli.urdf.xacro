@@ -131,6 +131,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <origin xyz="0.2315586 0 0.0075" rpy="0 -${HALF_PI} 0"/>
         </xacro:pillar>
 
+        <xacro:pillar_plate parent="pillar_telescope_link">
+            <origin xyz="-0.14899868 0.17604938 -0.14899868" rpy="0 0 0"/>
+        </xacro:pillar_plate>
+
+
+
     </xacro:macro>
 
 </robot>
