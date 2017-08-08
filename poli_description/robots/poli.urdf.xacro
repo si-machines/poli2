@@ -31,7 +31,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli_description)/urdf/segway_components/powerbase_110.urdf.xacro" />
     <xacro:include filename="$(find poli_description)/urdf/segway_components/hmi_box_110.urdf.xacro" />
     <xacro:include filename="$(find poli_description)/urdf/segway_components/hmi_plate_110.urdf.xacro" />
-    <xacro:include filename="$(find poli_description)/urdf/accessories.urdf.xacro" />
+    <xacro:include filename="$(find poli_description)/urdf/sensors/hokuyo_ust10lx.urdf.xacro"/>
+    <xacro:include filename="$(find poli_description)/urdf/sensors/hokuyo_ust30lx.urdf.xacro"/>
 
     <xacro:include filename="$(find poli_description)/urdf/poli_components/base_plate.urdf.xacro"/>
     <xacro:include filename="$(find poli_description)/urdf/poli_components/rmp_plate2.urdf.xacro"/>
@@ -41,6 +42,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <property name="M_PI" value="3.14159"/>
     <property name="HALF_PI" value="1.57079"/>
+    <property name="FRONT_LASER_PREFIX" value="front_laser"/>
+    <property name="REAR_LASER_PREFIX" value="rear_laser"/>
 
     <!-- Wheel Mounting Positions -->
     <xacro:property name="track" value="0.48122440" />
@@ -131,7 +134,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </xacro:base_plate>
         
         <xacro:rmp_plate2 parent="base_plate_link">
-            <origin xyz="-0.079 0 0.075" rpy="0 0 0"/>
+            <origin xyz="-0.079 -0.016 0.075" rpy="0 0 0"/>
         </xacro:rmp_plate2>
         
         <xacro:rmp_plate3 parent="base_plate_link">
@@ -146,6 +149,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <origin xyz="-0.14899868 0.17604938 -0.14899868" rpy="0 0 0"/>
         </xacro:pillar_plate>
 
+
+        <!-- Poli Sensors -->
+        <xacro:hokuyo_ust30lx laser_prefix="${FRONT_LASER_PREFIX}" parent="rmp_plate2_link">
+            <origin xyz="0.242 0.075 0.33" rpy="-${HALF_PI} -${HALF_PI} 0" />
+        </xacro:hokuyo_ust30lx>
+
+        <xacro:hokuyo_ust10lx laser_prefix="${REAR_LASER_PREFIX}" parent="rmp_plate3_link">
+            <origin xyz="0.242 -0.015 0.33" rpy="${HALF_PI} -${HALF_PI} 0" />
+        </xacro:hokuyo_ust10lx>
 
 
     </xacro:macro>
