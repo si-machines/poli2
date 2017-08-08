@@ -34,8 +34,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli_description)/urdf/accessories.urdf.xacro" />
 
     <xacro:include filename="$(find poli_description)/urdf/poli_components/base_plate.urdf.xacro"/>
+    <xacro:include filename="$(find poli_description)/urdf/poli_components/rmp_plate2.urdf.xacro"/>
+    <xacro:include filename="$(find poli_description)/urdf/poli_components/rmp_plate3.urdf.xacro"/>
     <xacro:include filename="$(find poli_description)/urdf/poli_components/pillar.urdf.xacro"/>
     <xacro:include filename="$(find poli_description)/urdf/poli_components/pillar_plate.urdf.xacro"/>
+
     <property name="M_PI" value="3.14159"/>
     <property name="HALF_PI" value="1.57079"/>
 
@@ -126,7 +129,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:base_plate parent="base_chassis_link">
             <origin xyz="0.0762 0.16355 0.076" rpy="${HALF_PI} 0 -${HALF_PI}"/>
         </xacro:base_plate>
-
+        
+        <xacro:rmp_plate2 parent="base_plate_link">
+            <origin xyz="-0.079 0 0.075" rpy="0 0 0"/>
+        </xacro:rmp_plate2>
+        
+        <xacro:rmp_plate3 parent="base_plate_link">
+            <origin xyz="-0.079 0.048 0.075" rpy="${M_PI} 0 0"/>
+        </xacro:rmp_plate3>
+        
         <xacro:pillar parent="base_plate_link">
             <origin xyz="0.2315586 0 0.0075" rpy="0 -${HALF_PI} 0"/>
         </xacro:pillar>
