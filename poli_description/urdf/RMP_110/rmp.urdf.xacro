@@ -109,17 +109,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </xacro:i2_wheel>
         
         <!-- Segway Caster Assembly-->
-        <xacro:if value="$(optenv SEGWAY_HAS_REAR_CASTER false)">
-            <xacro:caster_assembly_110 caster_prefix="rear" parent="base_chassis_link">
-                <origin xyz="-0.32784550 0 0.03326933" rpy="0 0 ${M_PI}" />
-            </xacro:caster_assembly_110>
-        </xacro:if>
+        <xacro:caster_assembly_110 caster_prefix="rear" parent="base_chassis_link">
+            <origin xyz="-0.32784550 0 0.03326933" rpy="0 0 ${M_PI}" />
+        </xacro:caster_assembly_110>
 
-        <xacro:if value="$(optenv SEGWAY_HAS_FRONT_CASTER false)">
-            <xacro:caster_assembly_110 caster_prefix="front" parent="base_chassis_link">
-                <origin xyz="0.32784550 0 0.03326933" rpy="0 0 0" />
-            </xacro:caster_assembly_110>
-        </xacro:if>
+        <xacro:caster_assembly_110 caster_prefix="front" parent="base_chassis_link">
+            <origin xyz="0.32784550 0 0.03326933" rpy="0 0 0" />
+        </xacro:caster_assembly_110>
 
         <!-- Setup any accessories defined in the environment -->
         <xacro:segway_accessories />
