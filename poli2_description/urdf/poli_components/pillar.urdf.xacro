@@ -43,8 +43,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
                 </geometry>
             </collision>
         </link>
-        
-        <joint name="pillar_telescope_joint" type="prismatic">
+               
+        <joint name="pillar_telescope_joint" type="fixed">
             <origin xyz="0.2175586 0.1 0.02" rpy="0 -1.570796 0"/>
             <parent link="${parent}" />
             <child link="pillar_telescope_link" />

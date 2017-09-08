@@ -57,7 +57,18 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <gazebo> 
           <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"> 
               <robotNamespace>/</robotNamespace>
-          </plugin> 
+          </plugin>
+            <plugin name="object_controller" filename="libgazebo_ros_force_based_move.so">
+                <commandTopic>/cmd_vel</commandTopic>
+                <odometryTopic>/odom</odometryTopic>
+                <odometryFrame>odom</odometryFrame>
+                <odometryRate>30.0</odometryRate>
+                <robotBaseFrame>base_link</robotBaseFrame>
+                <publishOdometryTf>1</publishOdometryTf>
+                <yaw_velocity_p_gain>100.0</yaw_velocity_p_gain>
+                <x_velocity_p_gain>10000.0</x_velocity_p_gain>
+                <y_velocity_p_gain>10000.0</y_velocity_p_gain>
+          </plugin>
         </gazebo>
 
         <!-- Base link is the center of the robot's chassis between the motors projected on the ground -->
