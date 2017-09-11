@@ -9,6 +9,7 @@
   <!-- launch the tf tree -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="10.0" />
+    <param name="use_tf_static" value="false"/>
   </node>
 
   <!-- launch the joint state publisher to default values -->
