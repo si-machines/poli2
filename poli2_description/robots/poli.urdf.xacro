@@ -42,8 +42,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <property name="M_PI" value="3.14159"/>
     <property name="HALF_PI" value="1.57079"/>
-    <property name="FRONT_LASER_PREFIX" value="front_laser"/>
-    <property name="REAR_LASER_PREFIX" value="rear_laser"/>
+    <property name="FRONT_LASER_PREFIX" value="front"/>
+    <property name="REAR_LASER_PREFIX" value="rear"/>
 
     <!-- Wheel Mounting Positions -->
     <xacro:property name="track" value="0.48122440" />

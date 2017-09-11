@@ -3,7 +3,7 @@
   <!-- Front hokuyo laser -->
   <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
     <param name="ip_address" value="10.66.171.11"/>
-    <param name="frame_id" value="laser_front"/>
+    <param name="frame_id" value="front_laser_link"/>
     <param name="calibrate_time" value="true"/>
     <param name="publish_intensity" value="false"/>
     <param name="publish_multiecho" value="false"/>
@@ -16,7 +16,7 @@
   <!-- Rear hokuyo laser 
   <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
     <param name="ip_address" value="10.66.171.12"/>
-    <param name="frame_id" value="laser_rear"/>
+    <param name="frame_id" value="rear_laser_link"/>
     <param name="calibrate_time" value="true"/>
     <param name="publish_intensity" value="false"/>
     <param name="publish_multiecho" value="false"/>
