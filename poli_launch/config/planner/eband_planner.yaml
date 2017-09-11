@@ -1,0 +1,23 @@
+GlobalPlanner:
+  lethal_cost:                  253   #default: 253
+  neutral_cost:                 50    #default: 50
+  orientation_mode:             1     #default: 1-Forward
+  publish_potential:            false #default: false
+
+EBandPlannerROS:
+  differential_drive: true
+  #footprint: [[0.35,0.275809],[0.62,0.0],[0.35,-0.275809],[-0.365164,-0.275809],[-0.365164,0.275809]]
+  # velocity limits
+  max_vel_lin: 0.2 
+  max_vel_th: 0.3 
+  min_vel_lin: -0.2
+  min_in_place_vel_th: 0.0 
+  max_acceleration: 0.2 
+
+  # goal tolerance
+  xy_goal_tolerance: 0.08
+  yaw_goal_tolerance: 0.15 
+
+  #eband parameters
+  eband_disallow_hysteresis: true
+
