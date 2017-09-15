@@ -76,7 +76,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         
         <!--Chassis -->
         <xacro:powerbase_110 chassis_prefix="base" parent="base_link">
-            <origin xyz="0 0 ${-wheel_vertical_offset + wheel_radius}" rpy="0 0 ${M_PI}" />
+            <origin xyz="0 0 ${-wheel_vertical_offset + wheel_radius}" rpy="0 0 0" />
         </xacro:powerbase_110>
         
         <link name="inertial_collision_link">
