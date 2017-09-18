@@ -6,7 +6,7 @@
 dist: trusty
 sudo: required
 # Use depreciated env due to python conflicts
-group: deprecated-2017Q3
+group: deprecated-2017Q2
 language:
   - generic
 cache:
