@@ -47,7 +47,8 @@ void stopIfFault()
   
   //convert from meters to mm (which is expected by the controller)
   des_pos = cmd_msg.data * 1000;
-  if (des_pos == -1.0){ //Homing condition
+
+  if (des_pos < 0.0){ //Homing condition
    md.setM1Speed(400);
    delay(5000);
   }
