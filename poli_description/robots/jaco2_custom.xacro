@@ -20,7 +20,7 @@
     <xacro:include filename="$(find kinova_description)/urdf/kinova_finger_set.xacro" />
 
     <xacro:include filename="$(find poli_description)/urdf/poli_components/weiss_mount.urdf.xacro"/>
-    <xacro:include filename="$(find wsg_50_simulation)/urdf/wsg_50.urdf.xacro"/>
+    <xacro:include filename="$(find wsg_32_description)/robots/wsg_32_description.urdf.xacro"/>
 
     <!-- Import all Gazebo-customization elements -->
     <xacro:include filename="$(find kinova_description)/urdf/kinova.gazebo" />
@@ -148,12 +148,13 @@
             <origin xyz="${joint_7_origin_xyz}" rpy="-${J_PI/2} 0 0"/>
         </xacro:weiss_mount>
 
-        <xacro:wsg_50_xacro name="gripper" parent="${prefix}_link_7">
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-        </xacro:wsg_50_xacro>
+        <xacro:wsg_32_xacro name="gripper" parent="${prefix}_link_7">
+            <origin xyz="0.0001 0 0.085" rpy="0 0 -${J_PI/2}"/>
+        </xacro:wsg_32_xacro>
 
+        <!--
         <xacro:kinova_armjoint joint_name="${prefix}_joint_7" type="${joint_7_type}" parent="${prefix}_link_6" child="${prefix}_link_7" joint_axis_xyz="${joint_7_axis_xyz}" joint_origin_xyz="${joint_7_origin_xyz}" joint_origin_rpy="${joint_7_origin_rpy}" joint_lower_limit="${joint_7_lower_limit}" joint_upper_limit="${joint_7_upper_limit}"/>    
-
+        -->
         <!--
         <xacro:kinova_virtual_link link_name="${prefix}_end_effector"/>
         <xacro:kinova_virtual_joint joint_name="${prefix}_joint_end_effector" type="${joint_end_effector_type}" parent="${prefix}_link_7" child="${prefix}_end_effector" joint_axis_xyz="${joint_end_effector_axis_xyz}" joint_origin_xyz="${joint_end_effector_origin_xyz}" joint_origin_rpy="${joint_end_effector_origin_rpy}" joint_lower_limit="0" joint_upper_limit="0"/>    
