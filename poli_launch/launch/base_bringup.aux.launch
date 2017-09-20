@@ -1,5 +1,5 @@
 <launch>
-  <arg name="urdf_file" default="$(find poli_description)/robots/poli.urdf.xacro" />
+  <arg name="urdf_file" default="$(find poli2_description)/robots/poli.urdf.xacro" />
   <arg name="robot_name" default="RMP_110"/>
 
   <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->

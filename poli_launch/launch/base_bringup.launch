@@ -3,7 +3,7 @@
   <!-- set the tf prefix as necessary -->
   <arg name="tf_prefix" default="" />
   <param name="tf_prefix" value="$(arg tf_prefix)" />
-  <arg name="urdf_file" default="$(find poli_description)/robots/poli.urdf.xacro" />
+  <arg name="urdf_file" default="$(find poli2_description)/robots/poli.urdf.xacro" />
   
 
   <!-- Segway Base platform ROS Driver -->
