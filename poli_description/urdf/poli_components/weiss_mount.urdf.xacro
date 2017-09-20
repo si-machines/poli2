@@ -24,9 +24,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="weiss_mount">
   
-    <xacro:macro name="weiss_mount" params="parent link_name *origin">
+    <xacro:macro name="weiss_mount" params="parent joint_name link_name *origin">
         
-        <joint name="weiss_mount_joint" type="continuous">
+        <joint name="${joint_name}" type="continuous">
             <xacro:insert_block name="origin" />
             <parent link="${parent}" />
             <child link="${link_name}" />
