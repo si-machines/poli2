@@ -2,10 +2,15 @@
 
    <arg name="use_arm_urdf" default="true"/>
 
+  <!-- the version of kinova_robot.launch run must be edited s.t. no code under the urdf groups are run -->
   <include file="$(find kinova_bringup)/launch/kinova_robot.launch">
     <arg name="kinova_robotType" value="j2s7s300"/>
     <arg name="use_urdf" value="false"/>
   </include>
+
+  <!-- run the gripper -->
+  <include file="$(find wsg_50_driver)/launch/wsg_50_tcp_script.launch"/>
+
   
    <node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node>
 
