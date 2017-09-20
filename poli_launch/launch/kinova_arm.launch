@@ -20,7 +20,7 @@
 
   <!-- runs the arm in standalone form -->
   <group if="$(arg use_arm_urdf)">
-    <param name="robot_description" command="$(find xacro)/xacro.py '$(find poli_description)/robots/jaco2_custom_wrapper.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find poli2_description)/robots/jaco2_custom_wrapper.xacro'" />
   </group>
 
 </launch>

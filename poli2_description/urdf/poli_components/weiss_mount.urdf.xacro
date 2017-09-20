@@ -37,7 +37,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <link name="${link_name}">
             <visual>
                 <geometry>
-                    <mesh filename="package://poli_description/meshes/components/weiss_mount.STL" />
+                    <mesh filename="package://poli2_description/meshes/components/weiss_mount.STL" />
                 </geometry>
             </visual>
             <collision>

@@ -19,7 +19,7 @@
     <xacro:include filename="$(find kinova_description)/urdf/kinova_common.xacro" />
     <xacro:include filename="$(find kinova_description)/urdf/kinova_finger_set.xacro" />
 
-    <xacro:include filename="$(find poli_description)/urdf/poli_components/weiss_mount.urdf.xacro"/>
+    <xacro:include filename="$(find poli2_description)/urdf/poli_components/weiss_mount.urdf.xacro"/>
     <xacro:include filename="$(find wsg_32_description)/robots/wsg_32_description.urdf.xacro"/>
 
     <!-- Import all Gazebo-customization elements -->
