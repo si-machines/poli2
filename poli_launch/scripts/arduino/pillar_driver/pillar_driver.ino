@@ -17,7 +17,10 @@
  */
 #include "string.h"
 #include <ros.h>
+#include <ros/time.h>
 #include <std_msgs/Float32.h>
+#include <std_msgs/Float64.h>
+#include <sensor_msgs/JointState.h>
 #include "DualMC33926MotorShield.h"
 
 DualMC33926MotorShield md;
@@ -32,7 +35,12 @@ void stopIfFault()
   }
 }
  float act_pos =0.0,des_pos=0.0,err = 40.0, gain= 0.0;
- int val; 
+ int val;
+ float pos[1];
+ float effort[1] = {0.0};
+ float vel[1] = {0.0};
+ char *names[] = {"pillar_telescope_joint"};
+ sensor_msgs::JointState cur_state; 
  int inputPinA = 10;
  int inputPinB = 9;
  int encoder0PinA = 5;
@@ -41,6 +49,20 @@ void stopIfFault()
  int encoder0PinALast = LOW;
  int n = LOW,a =LOW,b=LOW;
  char junk = ' ';
+ 
+ std_msgs::Float32 enc_data; 
+ //Publish the encoder data
+ ros::Publisher p("/pillar/joint_states", &cur_state);
+
+
+ void update_state(){
+  // convert from mm to meters
+  pos[0] = act_pos / 1000;
+  cur_state.position = pos;
+  cur_state.header.stamp = nh.now();
+  p.publish(&cur_state);
+ }
+
 
 //Get desired input position while generating the actual position of the pillar in mm
  void pillar_cb( const std_msgs::Float32& cmd_msg){
@@ -64,6 +86,7 @@ void stopIfFault()
          encoder0Pos++;
        }
        act_pos = (encoder0Pos*9.0)/14.0;
+       update_state();
      } 
      encoder0PinALast = n;
   
@@ -85,12 +108,9 @@ void stopIfFault()
     }
   } 
 }
- std_msgs::Float32 enc_data; 
  //Subscribe to the node that provides desired position
- ros::Subscriber<std_msgs::Float32> s("/pillar/request", &pillar_cb);
- //Publish the encoder data
- ros::Publisher p("/pillar/current", &enc_data);
- 
+ ros::Subscriber<std_msgs::Float32> s("/pillar/command", &pillar_cb);
+
  void setup() { 
    pinMode (encoder0PinA,INPUT);
    pinMode (encoder0PinB,INPUT);
@@ -99,6 +119,19 @@ void stopIfFault()
    //Serial.println("Initializing Pillar...");
    //Enforce Baud rate in ROS  
    nh.getHardware()->setBaud(115200);
+   
+   //Initialize joint states
+   cur_state.name_length = 1;
+   cur_state.velocity_length = 1;
+   cur_state.position_length = 1; /// here used for arduino time
+   cur_state.effort_length = 1;
+   pos[0] = 1.0;
+   cur_state.header.frame_id = "pillar_telescope_link";
+   cur_state.name = names;
+   cur_state.position = pos;
+   cur_state.velocity = vel;
+   cur_state.effort = effort;
+   
    //Setup the ROS nodes
    nh.initNode();
    nh.advertise(p);
@@ -109,9 +142,7 @@ void stopIfFault()
  } 
 
  void loop() {
-  // convert from mm to meters
-  enc_data.data = act_pos / 1000;
-  p.publish(&enc_data);
+  update_state();
   nh.spinOnce();
   delay(10);
   }

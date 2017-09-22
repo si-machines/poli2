@@ -5,4 +5,9 @@
         <param name="baud" value="115200"/>
   </node>
 
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="pillar_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+    <remap from="joint_states" to="pillar/joint_state"/>
+  </node>
+
 </launch>
