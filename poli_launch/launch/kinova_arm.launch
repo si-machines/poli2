@@ -9,7 +9,9 @@
   </include>
 
   <!-- run the gripper -->
-  <include file="$(find wsg_50_driver)/launch/wsg_50_tcp_script.launch"/>
+  <include file="$(find wsg_50_driver)/launch/wsg_50_tcp_script.launch">
+    <arg name="com_mode" value="auto_update"/>
+  </include>
 
   
    <node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node>
