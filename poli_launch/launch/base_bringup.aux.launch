@@ -6,10 +6,16 @@
   <param name="robot_description"
     command="$(find xacro)/xacro.py '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
 
-  <!-- launch the tf tree -->
+  <!-- launch the tf tree for base -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="10.0" />
     <param name="use_tf_static" value="false"/>
+  </node>
+
+  <!-- tf tree for pillar actuator -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="pillar_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+    <remap from="joint_states" to="pillar/joint_state"/>
   </node>
 
   <!-- launch the joint state publisher to default values -->
