@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+Copyright (c) 2017, University of Texas Austin
+Author Maxwell Svetlik
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Stanley Innovation, Inc. nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="neck_mount">
+  
+    <xacro:macro name="neck_mount" params="parent *origin">
+    
+    <joint name="neck_base_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}" />
+            <child link="neck_base_link" />
+            <limit effort="50" velocity="50"/>
+    </joint>
+        
+
+    <link name="neck_base_link">
+    <inertial>
+      <origin
+        xyz="0.0148515762658108 -0.00184105590397508 -0.000758781648758649"
+        rpy="0 0 0" />
+      <mass
+        value="0.557568366166049" />
+      <inertia
+        ixx="0.000397280277578404"
+        ixy="-1.20167051949868E-05"
+        ixz="-1.63630013884179E-05"
+        iyy="0.000682280271694407"
+        iyz="7.78900389369296E-07"
+        izz="0.000735555743930346" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="pan_link">
+    <inertial>
+      <origin
+        xyz="0.0864835918741103 0.000240681934725141 -0.00112944538944813"
+        rpy="0 0 0" />
+      <mass
+        value="0.661811908284221" />
+      <inertia
+        ixx="0.000586217271198065"
+        ixy="-2.32821859823434E-06"
+        ixz="1.20338819263342E-05"
+        iyy="0.000978190133235562"
+        iyz="3.81415623052038E-06"
+        izz="0.000579159076299907" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/pan_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/pan_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pan_joint"
+    type="continuous">
+    <origin
+      xyz="0.0179 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="neck_base_link" />
+    <child
+      link="pan_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="tilt_link">
+    <inertial>
+      <origin
+        xyz="-0.0466008886423734 -0.00905441755654412 -0.000748921866620636"
+        rpy="0 0 0" />
+      <mass
+        value="0.0557850572590686" />
+      <inertia
+        ixx="7.04408522869088E-05"
+        ixy="-1.418314255844E-06"
+        ixz="-5.5662147711043E-07"
+        iyy="4.66839851062126E-05"
+        iyz="-2.27936975213634E-08"
+        izz="0.000115169958191947" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/tilt_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/tilt_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="tilt_joint"
+    type="continuous">
+    <origin
+      xyz="0.1011 0 -0.00960000000000004"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="pan_link" />
+    <child
+      link="tilt_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+    </xacro:macro>
+</robot>

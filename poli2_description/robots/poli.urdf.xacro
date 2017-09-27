@@ -39,6 +39,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/rmp_plate3.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/pillar.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/pillar_plate.urdf.xacro"/>
+    <xacro:include filename="$(find poli2_description)/urdf/poli_components/neck_mount.urdf.xacro"/>
 
     <property name="M_PI" value="3.14159"/>
     <property name="HALF_PI" value="1.57079"/>
@@ -148,6 +149,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:pillar_plate parent="pillar_telescope_link">
             <origin xyz="-0.14899868 0.17604938 -0.14899868" rpy="0 0 0"/>
         </xacro:pillar_plate>
+
+        <xacro:neck_mount parent="pillar_plate_link">
+            <origin xyz="0.22 0.385 0.19" rpy="0 0 ${HALF_PI}"/>
+        </xacro:neck_mount>
 
 
         <!-- Poli Sensors -->
