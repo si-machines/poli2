@@ -1,0 +1,12 @@
+- git:
+    local-name: segway_v3
+    uri: https://github.com/StanleyInnovation/segway_v3.git
+    version: master
+- git:
+    local-name: wsg_32_description
+    uri: https://github.com/si-machines/wsg_32_description.git
+    version: master
+- git:
+    local-name: kinova_ros
+    uri: https://github.com/Kinovarobotics/kinova-ros.git
+    version: master
