@@ -9,6 +9,9 @@ tilt_joint_motor:
 
   sensor:
     type: 1
+    incremental_encoder:
+      resolution: 1024
+      inverted_polarity: false
 
   safety:
     max_following_error: 20000
