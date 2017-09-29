@@ -15,6 +15,7 @@
   <run_depend>rospy</run_depend>
   <run_depend>segway_ros</run_depend>
   <run_depend>ros_upstart</run_depend>
+  <run_depend>yocs_cmd_vel_mux</run_depend>
 
 
   <export>

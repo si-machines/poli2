@@ -184,7 +184,7 @@ class Controller():
             twist = Twist()
             twist.linear.x = linear_vel
             twist.angular.z = angular_vel
-            self.cmd_pub.publish(twist)
+            #self.cmd_pub.publish(twist)
             rate.sleep()
 
         # Shutdown base and switch to standby

@@ -22,4 +22,12 @@
   <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
       <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states"]</rosparam>
   </node>
+
+  <!-- velocity command multiplexer -->
+  <group ns="poli">
+        <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager"/>
+        <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet nodelet_manager">
+            <param name="yaml_cfg_file" value="$(find poli_launch)/config/cmd_vel_mux.yaml"/>
+	</node>
+  </group>
 </launch>

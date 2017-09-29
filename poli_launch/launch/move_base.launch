@@ -2,19 +2,10 @@
     <arg name="sim" default="false"/>
     <arg name="no_static_map" default="true"/>
 
-    <!-- Launch segway move-base client status tracker  
-    <node pkg="segway_ros" type="segway_move_base" name="segway_move_base" clear_params="true">
-        <param name="sim" value="$(arg sim)"/>
-        <param name="using_amcl" value="false"/>
-        <param name="base_frame" value="base_link"/>
-        <param name="global_frame" value="/odom"/>
-        <param name="goal_timeout_sec" value="300"/>
-    </node>
-    -->
-
     <!-- Launch move base action server -->
     <node pkg="move_base" type="move_base" name="move_base" clear_params="true">
-        
+        <remap from="cmd_vel" to="/poli/navigation/cmd_vel" />
+
         <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
         <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS" />
         
