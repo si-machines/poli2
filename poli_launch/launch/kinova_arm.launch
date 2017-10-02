@@ -8,12 +8,14 @@
   </include>
 
   <!-- run the gripper -->
-  <!--include file="$(find wsg_50_driver)/launch/wsg_50_tcp_script.launch">
+  <include file="$(find wsg_50_driver)/launch/wsg_50_tcp_script.launch">
     <arg name="com_mode" value="auto_update"/>
-  </include-->
+    <arg name="ip" value="10.66.171.21"/>
+    <arg name="js_prefix" value="wsg"/>
+  </include>
 
   
-   <node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node>
+  <node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node>
 
   <node name="arm_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     <remap from="joint_states" to="/j2s7s300_driver/out/joint_state"/>
