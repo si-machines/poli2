@@ -118,7 +118,7 @@
     <property name="joint_end_effector_origin_rpy" value="${J_PI} 0 0" />
 
 
-    <xacro:macro name="jaco2_custom" params="base_origin_parent base_xyz base_origin_rpy prefix:=j2s7s300">
+    <xacro:macro name="jaco2_custom" params="base_parent base_origin_xyz base_origin_rpy prefix:=j2s7s300">
 
         <xacro:gazebo_config robot_namespace="${prefix}"/>
     
