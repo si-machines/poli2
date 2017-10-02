@@ -1,5 +1,6 @@
 <launch>
 
+  <!--arg name="model" default="$(find poli_description)/robots/jaco2_custom_wrapper.xacro"/ -->
   <arg name="model" default="$(find poli2_description)/robots/poli_wrapper.urdf.xacro"/>
   <arg name="gui" default="false" />
   <arg name="rvizconfig" default="$(find poli2_description)/rviz.rviz" />
