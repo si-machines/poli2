@@ -14,15 +14,17 @@
     <param name="js_prefix" value="wsg"/>
   </include>
 
-  <node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node>
-
-  <node name="arm_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-    <remap from="joint_states" to="/j2s7s300_driver/out/joint_state"/>
-  </node>
-
+  
   <!-- runs the arm in standalone form -->
   <group if="$(arg use_arm_urdf)">
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find poli2_description)/robots/jaco2_custom_wrapper.xacro'" />
+  
+    <node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node>
+
+    <node name="arm_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+      <remap from="joint_states" to="/j2s7s300_driver/out/joint_state"/>
+    </node>
+
   </group>
 
 </launch>
