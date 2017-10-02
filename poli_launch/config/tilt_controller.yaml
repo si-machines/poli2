@@ -3,9 +3,14 @@ tilt_joint_motor:
   serial_number: '602084008801'
   operation_mode: 'profile_position'
   clear_faults: true
-  
+
   motor:
     type: 10
+    ec_motor:
+      nominal_current: 1.410
+      max_output_current: 2.820
+      thermal_time_constant: 11.8
+      number_of_pole_pairs: 8
 
   sensor:
     type: 1
@@ -14,5 +19,15 @@ tilt_joint_motor:
       inverted_polarity: false
 
   safety:
-    max_following_error: 20000
-    max_acceleration: 15000
+    max_following_error: 200000
+    max_profile_velocity: 3125
+    max_acceleration: 4294967
+
+  position_regulator:
+    p: 354
+    i: 781
+    d: 796
+    feed_forward:
+      velocity: 4832
+      acceleration: 440
+
