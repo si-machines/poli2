@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+rostopic pub /pillar/command std_msgs/Float32 "data: -1.0" -1

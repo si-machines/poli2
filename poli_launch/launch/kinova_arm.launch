@@ -1,4 +1,7 @@
 <launch>
+<!--include file="$(find kinova_bringup)/launch/arm.launch">
+  <arg name="sim" value="false"/>
+</include-->
 
    <arg name="use_arm_urdf" default="true"/>
 

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+rosrun robot_upstart install poli_launch/launch/poli1_upstart/pillar.launch --symlink

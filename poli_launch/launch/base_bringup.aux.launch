@@ -6,12 +6,28 @@
   <param name="robot_description"
     command="$(find xacro)/xacro.py '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
 
-  <!-- launch the tf tree -->
+  <!-- launch the tf tree for base -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="10.0" />
+    <param name="use_tf_static" value="false"/>
+  </node>
+
+  <!-- tf tree for pillar actuator -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="pillar_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+    <remap from="joint_states" to="pillar/joint_state"/>
   </node>
 
   <!-- launch the joint state publisher to default values -->
-  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+      <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states"]</rosparam>
+  </node>
 
+  <!-- velocity command multiplexer -->
+  <group ns="poli">
+        <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager"/>
+        <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet nodelet_manager">
+            <param name="yaml_cfg_file" value="$(find poli_launch)/config/cmd_vel_mux.yaml"/>
+	</node>
+  </group>
 </launch>

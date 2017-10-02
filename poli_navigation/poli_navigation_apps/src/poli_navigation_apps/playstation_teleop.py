@@ -58,9 +58,8 @@ def callback(data):
 def start():
     global base_pub, pan_pub, tilt_pub, gripper_pub, mode, last_gripper
     mode = "base"
-    robot_name = "vector"
     rospy.init_node('ps_teleop_node', anonymous=True)
-    base_pub = rospy.Publisher('/segway/cmd_vel', Twist, queue_size=5)
+    base_pub = rospy.Publisher('/poli/teleop/cmd_vel', Twist, queue_size=5)
     pan_pub = rospy.Publisher('/pan_controller/command', Float64, queue_size=1)
     tilt_pub = rospy.Publisher('/tilt_controller/command', Float64, queue_size=1)
 

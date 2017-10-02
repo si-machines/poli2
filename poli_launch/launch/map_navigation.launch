@@ -1,0 +1,18 @@
+<launch>
+    <arg name="map_file" default="lab"/>
+
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find poli_navigation_apps)/maps/$(arg map_file).yaml" />
+
+    <include file="$(find poli_launch)/launch/move_base.launch"/>
+
+    <!-- Bringup lidar and AMCL -->
+    <include file="$(find poli_launch)/launch/lidar.launch"/>
+    
+    <!--- Run amcl -->
+    <node pkg="amcl" type="amcl" name="amcl" output="screen" clear_params="true">
+        <rosparam command="load" file="$(find poli_launch)/config/amcl.yaml"/>
+        <remap from="scan" to="/scan_front" />
+    </node>
+
+</launch>
