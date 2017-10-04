@@ -9,11 +9,11 @@ tilt_joint_motor:
     ec_motor:
       nominal_current: 1.410
       max_output_current: 2.820
-      thermal_time_constant: 11.8
+      thermal_time_constant: 17.7
       number_of_pole_pairs: 8
 
   sensor:
-    type: 1
+    type: 2
     incremental_encoder:
       resolution: 1024
       inverted_polarity: false
@@ -25,9 +25,9 @@ tilt_joint_motor:
 
   position_regulator:
     p: 354
-    i: 781
-    d: 796
+    i: 774
+    d: 807
     feed_forward:
-      velocity: 4832
-      acceleration: 440
+      velocity: 4591
+      acceleration: 448
 
