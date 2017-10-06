@@ -112,7 +112,6 @@
     <disable_collisions link1="front_caster_plate_link" link2="j2s7s300_link_1" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="j2s7s300_link_2" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="j2s7s300_link_3" reason="Never" />
-    <disable_collisions link1="front_caster_plate_link" link2="j2s7s300_link_4" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="mcu_1_battery_link" reason="Never" />
@@ -156,7 +155,6 @@
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_2" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_3" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_4" reason="Never" />
-    <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_5" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="mcu_1_battery_link" reason="Never" />
@@ -316,7 +314,6 @@
     <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />
     <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_7" link2="rear_caster_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_base_link" reason="Adjacent" />
     <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_base_link_gripper_left" reason="Never" />
     <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />

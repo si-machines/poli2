@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-   <arg name="use_arm_urdf" default="true"/>
+   <arg name="use_arm_urdf" default="false"/>
 
   <!-- the version of kinova_robot.launch run must be edited s.t. no code under the urdf groups are run -->
   <include file="$(find kinova_bringup)/launch/arm.launch">
