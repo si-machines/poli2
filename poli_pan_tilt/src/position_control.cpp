@@ -206,8 +206,8 @@ bool PositionControl::dynamixelStatePublish()
   dynamixel_workbench_msgs::DynamixelStateList dynamixel_state_list;
   
   sensor_msgs::JointState js;
-  js.header.frame_id = "pan_link";
-  js.name.push_back("pan_link");
+  js.header.frame_id = "pan_joint";
+  js.name.push_back("pan_joint");
 
   for (std::vector<dynamixel_tool::DynamixelTool *>::size_type num = 0; num < multi_driver_->multi_dynamixel_.size(); ++num)
   {
