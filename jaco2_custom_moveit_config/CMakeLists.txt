@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(poli2_moveit_config)
+project(jaco2_custom_moveit)
 
 find_package(catkin REQUIRED)
 
