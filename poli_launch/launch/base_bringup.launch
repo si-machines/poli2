@@ -21,6 +21,7 @@
     <param name="odom_frame_id" value="$(arg tf_prefix)/odom" />
   </node>
   
+  
   <include file="$(find poli_launch)/launch/base_bringup.aux.launch">
     <arg name="urdf_file" value="$(arg urdf_file)"/>
   </include>

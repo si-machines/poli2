@@ -42,7 +42,6 @@ Note this is code used from the BWI segbot repository: https://github.com/utexas
 
 import math
 import rospy
-#import signal
 import tf
 import time
 
@@ -92,8 +91,6 @@ class Controller():
         self.angular_pos_accel_limit /= self.frame_rate
         self.angular_neg_accel_limit /= self.frame_rate
 
-        # signal.signal(signal.SIGINT, self.sigint_handler)
-
     def status_callback(self, msg):
         if msg.operational_state == 3:
             cfg_cmd = ConfigCmd()
@@ -107,18 +104,16 @@ class Controller():
         msg.child_frame_id = self.robot_frame_id
 
         # Modify position appropriately.
-        msg.pose.pose.position.x = msg.pose.pose.position.x # reverse x
-        msg.pose.pose.position.y = msg.pose.pose.position.y # reverse y
+        msg.pose.pose.position.x = msg.pose.pose.position.x 
+        msg.pose.pose.position.y = msg.pose.pose.position.y 
         quaternion = (msg.pose.pose.orientation.x,
                       msg.pose.pose.orientation.y,
                       msg.pose.pose.orientation.z,
                       msg.pose.pose.orientation.w)
         euler = tf.transformations.euler_from_quaternion(quaternion)
-        quaternion = tf.transformations.quaternion_from_euler(euler[0], euler[1], euler[2] + math.pi)
+        quaternion = tf.transformations.quaternion_from_euler(euler[0], euler[1], euler[2])
         msg.pose.pose.orientation = Quaternion(*quaternion)
 
-        # Modify velocity appropriately.
-        msg.twist.twist.linear.x = -msg.twist.twist.linear.x
 
         if self.publish_tf:
             br = tf.TransformBroadcaster()
@@ -134,7 +129,7 @@ class Controller():
         self.target_angular_vel = 0
 
     def cmd_callback(self, msg):
-        self.target_linear_vel = -msg.linear.x
+        self.target_linear_vel = msg.linear.x
         self.target_angular_vel = msg.angular.z
         if self.stop_timer is not None:
            self.stop_timer.shutdown()
@@ -189,7 +184,7 @@ class Controller():
             twist = Twist()
             twist.linear.x = linear_vel
             twist.angular.z = angular_vel
-            self.cmd_pub.publish(twist)
+            #self.cmd_pub.publish(twist)
             rate.sleep()
 
         # Shutdown base and switch to standby

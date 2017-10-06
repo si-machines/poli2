@@ -132,10 +132,9 @@
   <transmission name="j2s7s300_joint_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_1">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_1_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -175,10 +174,9 @@
   <transmission name="j2s7s300_joint_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_2">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_2_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -218,10 +216,9 @@
   <transmission name="j2s7s300_joint_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_3">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_3_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -261,10 +258,9 @@
   <transmission name="j2s7s300_joint_4_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_4">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_4_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -304,10 +300,9 @@
   <transmission name="j2s7s300_joint_5_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_5">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_5_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -347,10 +342,9 @@
   <transmission name="j2s7s300_joint_6_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_6">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_6_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
@@ -514,4 +508,3 @@
     <child link="wsg_50_gripper_left_universal_finger_link"/>
   </joint>
 </robot>
-
