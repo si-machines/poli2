@@ -15,14 +15,10 @@
   <run_depend>rospy</run_depend>
   <run_depend>epos_hardware</run_depend>
   <run_depend>segway_ros</run_depend>
-<<<<<<< HEAD
   <run_depend>ros_controllers</run_depend>
   <run_depend>ros_control</run_depend>
-=======
   <run_depend>ros_upstart</run_depend>
   <run_depend>yocs_cmd_vel_mux</run_depend>
-
->>>>>>> master
 
   <export>
   </export>
