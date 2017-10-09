@@ -20,7 +20,7 @@
 
   <!-- launch the joint state publisher to default values -->
   <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
-      <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states"]</rosparam>
+      <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states", "/wsg_50_driver/wsg/joint_states", "/j2s7s300_driver/out/joint_state"]</rosparam>
   </node>
 
   <!-- velocity command multiplexer -->

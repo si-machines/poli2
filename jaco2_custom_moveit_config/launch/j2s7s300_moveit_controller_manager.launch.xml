@@ -7,6 +7,6 @@
          value="$(arg moveit_controller_manager)"/>  
 
  <!-- The rest of the params are specific to this plugin -->
-  <rosparam file="$(find poli2_moveit_config)/config/controllers.yaml"/>
+  <rosparam file="$(find jaco2_custom_moveit)/config/controllers.yaml"/>
 
 </launch>

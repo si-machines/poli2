@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: poli2_description
+    relative_path: robots/poli.urdf
+  SRDF:
+    relative_path: config/segway_robot.srdf
+  CONFIG:
+    author_name: Max Svetlik
+    author_email: maxsvetlik@utexas.edu
+    generated_timestamp: 1507323930
