@@ -9,6 +9,3 @@ int16 command
 ---
 #result definition
 int16 success
----
-#feedback
-int16 voltage
