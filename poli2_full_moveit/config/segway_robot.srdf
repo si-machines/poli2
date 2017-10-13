@@ -401,8 +401,10 @@
     <disable_collisions link1="wsg_50_gripper_base_link" link2="wsg_50_gripper_base_link_gripper_right" reason="Adjacent" />
     <disable_collisions link1="wsg_50_gripper_base_link" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
     <disable_collisions link1="wsg_50_gripper_base_link" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
+    <disable_collisions link1="wsg_50_gripper_base_link_gripper_left" link2="wsg_50_gripper_base_link_gripper_right" reason="User" />
     <disable_collisions link1="wsg_50_gripper_base_link_gripper_left" link2="wsg_50_gripper_left_universal_finger_link" reason="Adjacent" />
     <disable_collisions link1="wsg_50_gripper_base_link_gripper_left" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
+    <disable_collisions link1="wsg_50_gripper_base_link_gripper_right" link2="wsg_50_gripper_left_universal_finger_link" reason="User" />
     <disable_collisions link1="wsg_50_gripper_base_link_gripper_right" link2="wsg_50_gripper_right_universal_finger_link" reason="Adjacent" />
     <disable_collisions link1="wsg_50_gripper_left_universal_finger_link" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
 </robot>
