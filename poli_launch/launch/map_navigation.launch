@@ -6,13 +6,20 @@
 
     <include file="$(find poli_launch)/launch/move_base.launch"/>
 
-    <!-- Bringup lidar and AMCL -->
-    <include file="$(find poli_launch)/launch/lidar.launch"/>
-    
+    <!-- Bringup lidar scan merger -->
+    <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+        <param name="destination_frame" value="base_link"/>
+        <param name="cloud_destination_topic" value="/cloud_merged"/>
+        <param name="scan_destination_topic" value="/scan_merged"/>
+        <param name="laserscan_topics" value ="/scan_front /scan_rear"/>
+        <param name="angle_min" value="-3.14"/>
+	<param name="angle_max" value="3.14"/> 
+   </node>
+
     <!--- Run amcl -->
     <node pkg="amcl" type="amcl" name="amcl" output="screen" clear_params="true">
         <rosparam command="load" file="$(find poli_launch)/config/amcl.yaml"/>
-        <remap from="scan" to="/scan_front" />
+        <remap from="scan" to="/scan_merged" />
     </node>
 
 </launch>

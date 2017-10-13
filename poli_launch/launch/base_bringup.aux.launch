@@ -30,4 +30,7 @@
             <param name="yaml_cfg_file" value="$(find poli_launch)/config/cmd_vel_mux.yaml"/>
 	</node>
   </group>
+
+  <include file="$(find poli_launch)/launch/lidar.launch"/>
+
 </launch>
