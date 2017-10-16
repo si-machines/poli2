@@ -167,8 +167,7 @@ bool PositionControl::initDynamixelStatePublisher()
 
 bool PositionControl::initDynamixelInfoServer()
 {
-  joint_command_server = node_handle_.advertiseService("/poli/pan_tilt/pan_joint_command", &PositionControl::jointCommandMsgCallback, this);
-
+  joint_command_sub = node_handle_.subscribe("/pan_motor/position_controller/command",1, &PositionControl::jointCommandSubCallback, this);
 }
 
 bool PositionControl::readDynamixelState()
@@ -301,27 +300,9 @@ bool PositionControl::controlLoop()
   dynamixelStatePublish();
 }
 
-bool PositionControl::jointCommandMsgCallback(dynamixel_workbench_msgs::JointCommand::Request &req,
-                                              dynamixel_workbench_msgs::JointCommand::Response &res)
-{
-  uint32_t pan_pos = 0;
-
-  if (req.unit == "rad")
-  {
-    pan_pos = convertRadian2Value(req.pan_pos);
-  }
-  else if (req.unit == "raw")
-  {
-    pan_pos = req.pan_pos;
-  }
-  else
-  {
-    pan_pos = convertRadian2Value(req.pan_pos);
-  }
-
-  setPosition(pan_pos);
-
-  res.pan_pos = pan_pos;
+void PositionControl::jointCommandSubCallback(const std_msgs::Float64::ConstPtr& msg){
+  //Assume radian input. Convert to motor units
+  setPosition(convertRadian2Value(msg->data));
 }
 
 int main(int argc, char **argv)

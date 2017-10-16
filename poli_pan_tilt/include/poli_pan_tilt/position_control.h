@@ -25,6 +25,7 @@
 
 #include <dynamixel_workbench_msgs/DynamixelStateList.h>
 #include <dynamixel_workbench_msgs/JointCommand.h>
+#include <std_msgs/Float64.h>
 
 namespace position_control
 {
@@ -53,7 +54,7 @@ class PositionControl
   // ROS Topic Publisher
   ros::Publisher dynamixel_state_list_pub_;
   // ROS Topic Subscriber
-
+  ros::Subscriber joint_command_sub;
   // ROS Service Server
   ros::ServiceServer joint_command_server;
   // ROS Service Client
@@ -83,13 +84,13 @@ class PositionControl
   bool setProfileValue(uint32_t prof_vel, uint32_t prof_acc);
   bool setPosition(uint32_t pan_pos);
 
+  void jointCommandSubCallback(const std_msgs::Float64::ConstPtr& msg);
+
   bool readDynamixelState();
   bool dynamixelStatePublish();
 
   uint32_t convertRadian2Value(float radian);
   float convertValue2Radian(int32_t value);
-  bool jointCommandMsgCallback(dynamixel_workbench_msgs::JointCommand::Request &req,
-                               dynamixel_workbench_msgs::JointCommand::Response &res);
 };
 }
 
