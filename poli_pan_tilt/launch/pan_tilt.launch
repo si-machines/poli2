@@ -1,6 +1,6 @@
 <launch>
   <node name="epos_hardware" pkg="epos_hardware" type="epos_hardware_node" args="tilt_joint_motor">
-    <rosparam command="load" file="$(find poli_launch)/config/tilt_controller.yaml" />
+    <rosparam command="load" file="$(find poli_pan_tilt)/config/tilt_controller.yaml" />
   </node>
   
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
@@ -13,4 +13,6 @@
   <param name="position_controller/joint" value="tilt_joint" />
   <param name="joint_state_controller/type" value="joint_state_controller/JointStateController" />
   <param name="joint_state_controller/publish_rate" value="20" />
+
+  <include file="$(find poli_pan_tilt)/launch/pan_control.launch"/>
 </launch>
