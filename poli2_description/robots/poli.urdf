@@ -460,6 +460,9 @@
       <geometry>
         <mesh filename="package://poli2_description/meshes/components/base_plate.STL"/>
       </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
     </visual>
     <collision>
       <geometry>
@@ -477,6 +480,9 @@
       <geometry>
         <mesh filename="package://poli2_description/meshes/components/rmp_plate2.STL"/>
       </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
     </visual>
     <collision>
       <geometry>
@@ -494,6 +500,9 @@
       <geometry>
         <mesh filename="package://poli2_description/meshes/components/rmp_plate3.STL"/>
       </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
     </visual>
     <collision>
       <geometry>
@@ -511,6 +520,9 @@
       <geometry>
         <mesh filename="package://poli2_description/meshes/components/pillar_exterior.STL"/>
       </geometry>
+      <material name="">
+        <color rgba="0.75 0.75 0.75 1"/>
+      </material>
     </visual>
     <collision>
       <geometry>
@@ -530,6 +542,9 @@
       <geometry>
         <mesh filename="package://poli2_description/meshes/components/pillar_telescope.STL"/>
       </geometry>
+      <material name="">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
     </visual>
     <collision>
       <geometry>
@@ -547,6 +562,9 @@
       <geometry>
         <mesh filename="package://poli2_description/meshes/components/pillar_plate.STL"/>
       </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
     </visual>
     <collision>
       <geometry>
@@ -554,6 +572,101 @@
       </geometry>
     </collision>
   </link>
+  <joint name="neck_base_joint" type="fixed">
+    <origin rpy="0 0 1.57079" xyz="0.22 0.385 0.19"/>
+    <parent link="pillar_plate_link"/>
+    <child link="neck_base_link"/>
+    <limit effort="50" velocity="50"/>
+  </joint>
+  <link name="neck_base_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0148515762658108 -0.00184105590397508 -0.000758781648758649"/>
+      <mass value="0.557568366166049"/>
+      <inertia ixx="0.000397280277578404" ixy="-1.20167051949868E-05" ixz="-1.63630013884179E-05" iyy="0.000682280271694407" iyz="7.78900389369296E-07" izz="0.000735555743930346"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://poli2_description/meshes/components/neck/base_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.776470588235294 0.756862745098039 0.737254901960784 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://poli2_description/meshes/components/neck/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="pan_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0864835918741103 0.000240681934725141 -0.00112944538944813"/>
+      <mass value="0.661811908284221"/>
+      <inertia ixx="0.000586217271198065" ixy="-2.32821859823434E-06" ixz="1.20338819263342E-05" iyy="0.000978190133235562" iyz="3.81415623052038E-06" izz="0.000579159076299907"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://poli2_description/meshes/components/neck/pan_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://poli2_description/meshes/components/neck/pan_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="pan_joint" type="revolute">
+    <limit effort="30" lower="-1.54" upper="1.54" velocity="1.0"/>
+    <origin rpy="0 0 0" xyz="0.0179 0 0"/>
+    <parent link="neck_base_link"/>
+    <child link="pan_link"/>
+    <axis xyz="1 0 0"/>
+  </joint>
+  <link name="tilt_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.0466008886423734 -0.00905441755654412 -0.000748921866620636"/>
+      <mass value="0.0557850572590686"/>
+      <inertia ixx="7.04408522869088E-05" ixy="-1.418314255844E-06" ixz="-5.5662147711043E-07" iyy="4.66839851062126E-05" iyz="-2.27936975213634E-08" izz="0.000115169958191947"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://poli2_description/meshes/components/neck/tilt_link.STL"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://poli2_description/meshes/components/neck/tilt_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="tilt_joint" type="revolute">
+    <limit effort="1.0" lower="-0.7" upper="0.8" velocity="1.0"/>
+    <origin rpy="-1.5707963267949 0 -1.5707963267949" xyz="0.1011 0 -0.00960000000000004"/>
+    <parent link="pan_link"/>
+    <child link="tilt_link"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <transmission name="tilt_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="tilt_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="tilt_joint_actuator">
+      <mechanicalReduction>29768</mechanicalReduction>
+    </actuator>
+  </transmission>
   <!-- ros_control plugin -->
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">

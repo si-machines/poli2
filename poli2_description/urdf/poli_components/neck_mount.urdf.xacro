@@ -115,7 +115,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   </link>
   <joint
     name="pan_joint"
-    type="continuous">
+    type="revolute">
+    <limit lower="-1.54" upper="1.54" velocity="1.0" effort="30"/>
     <origin
       xyz="0.0179 0 0"
       rpy="0 0 0" />
