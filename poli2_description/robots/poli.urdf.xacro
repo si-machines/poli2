@@ -33,6 +33,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/urdf/segway_components/hmi_plate_110.urdf.xacro" />
     <xacro:include filename="$(find poli2_description)/urdf/sensors/hokuyo_ust10lx.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/sensors/hokuyo_ust30lx.urdf.xacro"/>
+    <xacro:include filename="$(find poli2_description)/urdf/sensors/astra.urdf.xacro"/>
 
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/base_plate.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/rmp_plate2.urdf.xacro"/>
@@ -161,10 +162,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </xacro:pillar_plate>
 	
         <xacro:neck_mount parent="pillar_plate_link">
-            <origin xyz="0.22 0.385 0.19" rpy="0 0 ${HALF_PI}"/>
+            <origin xyz="0.1785 0.385 0.205" rpy="0 0 ${HALF_PI}"/>
         </xacro:neck_mount>
 
-	<xacro:jaco2_custom base_parent="pillar_plate_link" base_origin_xyz="0 0 0" base_origin_rpy="-${HALF_PI} -${HALF_PI} 0">
+	<xacro:jaco2_custom base_parent="pillar_plate_link" base_origin_xyz="0 0.05 0.0575" base_origin_rpy="-${HALF_PI} -${HALF_PI} 0">
 	</xacro:jaco2_custom>
 
         <!-- Poli Sensors -->
@@ -176,7 +177,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <origin xyz="0.242 -0.015 0.33" rpy="${HALF_PI} -${HALF_PI} 0" />
         </xacro:hokuyo_ust10lx>
 
-
+        <xacro:sensor_astra parent="tilt_link">
+	    <origin xyz="-0.08 -0.0035 0.05" rpy="0 0 ${M_PI}"/>
+        </xacro:sensor_astra>
     </xacro:macro>
 
 </robot>

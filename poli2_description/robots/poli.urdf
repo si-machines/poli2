@@ -573,7 +573,7 @@
     </collision>
   </link>
   <joint name="neck_base_joint" type="fixed">
-    <origin rpy="0 0 1.57079" xyz="0.22 0.385 0.19"/>
+    <origin rpy="0 0 1.57079" xyz="0.1785 0.385 0.205"/>
     <parent link="pillar_plate_link"/>
     <child link="neck_base_link"/>
     <limit effort="50" velocity="50"/>
@@ -699,7 +699,7 @@
     <child link="j2s7s300_link_base"/>
     <axis xyz="0 0 0"/>
     <limit effort="2000" lower="0" upper="0" velocity="1"/>
-    <origin rpy="-1.57079 -1.57079 0" xyz="0 0 0"/>
+    <origin rpy="-1.57079 -1.57079 0" xyz="0 0.05 0.0575"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
   <link name="j2s7s300_link_1">
@@ -1209,4 +1209,52 @@
       </plugin>
     </sensor>
   </gazebo>
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin rpy="0 0 3.14159" xyz="-0.08 -0.0035 0.05"/>
+    <parent link="tilt_link"/>
+    <child link="camera_rgb_frame"/>
+  </joint>
+  <link name="camera_rgb_frame"/>
+  <joint name="camera_rgb_optical_joint" type="fixed">
+    <origin rpy="-1.570795 0 -1.570795" xyz="0 0 0"/>
+    <parent link="camera_rgb_frame"/>
+    <child link="camera_rgb_optical_frame"/>
+  </joint>
+  <link name="camera_rgb_optical_frame"/>
+  <joint name="camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.0125 0"/>
+    <parent link="camera_rgb_frame"/>
+    <child link="camera_link"/>
+  </joint>
+  <link name="camera_link">
+    <visual>
+      <origin rpy="1.570795 0 1.570795" xyz="-0.04 0.02 -0.01"/>
+      <geometry>
+        <mesh filename="package://poli2_description/meshes/sensors/astra.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.0400 0.1650 0.0300"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.564"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257"/>
+    </inertial>
+  </link>
+  <joint name="camera_depth_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.025 0"/>
+    <parent link="camera_rgb_frame"/>
+    <child link="camera_depth_frame"/>
+  </joint>
+  <link name="camera_depth_frame"/>
+  <joint name="camera_depth_optical_joint" type="fixed">
+    <origin rpy="-1.570795 0 -1.570795" xyz="0 0 0"/>
+    <parent link="camera_depth_frame"/>
+    <child link="camera_depth_optical_frame"/>
+  </joint>
+  <link name="camera_depth_optical_frame"/>
 </robot>
