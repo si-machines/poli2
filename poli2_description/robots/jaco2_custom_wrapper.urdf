@@ -352,7 +352,7 @@
     <origin rpy="-1.57079632679 0 0" xyz="0 0.10375 0"/>
     <parent link="j2s7s300_link_6"/>
     <child link="j2s7s300_link_7"/>
-    <axis xyz="0 0 1"/>
+    <axis xyz="0 0 -1"/>
     <limit effort="50" velocity="50"/>
   </joint>
   <link name="j2s7s300_link_7">
@@ -363,7 +363,7 @@
     </visual>
     <collision>
       <geometry>
-        <box size="0.1 0.1 0.1"/>
+        <mesh filename="package://poli2_description/meshes/components/weiss_mount.STL"/>
       </geometry>
     </collision>
   </link>

@@ -42,7 +42,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             </visual>
             <collision>
                 <geometry>
-                    <box size="0.1 0.1 0.1"/>
+                    <mesh filename="package://poli2_description/meshes/components/rmp_plate2.STL" />
                 </geometry>
             </collision>
         </link>
