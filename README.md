@@ -1,1 +1,3 @@
-<img src="https://travis-ci.org/si-machines/poli2.svg?branch=master"/>
+High level repository for the PoliV2 robot.
+
+Please consult the Github Wiki for documentation and installation instructions.
