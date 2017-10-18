@@ -8,5 +8,5 @@
     version: master
 - git:
     local-name: kinova_ros
-    uri: https://github.com/Kinovarobotics/kinova-ros.git
-    version: master
+    uri: https://github.com/GT-RAIL/kinova-ros.git
+    version: 7dof_kinetic
