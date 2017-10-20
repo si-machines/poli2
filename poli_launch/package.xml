@@ -19,6 +19,7 @@
   <run_depend>ros_control</run_depend>
   <run_depend>robot_upstart</run_depend>
   <run_depend>yocs_cmd_vel_mux</run_depend>
+  <run_depend>ira_laser_tools</run_depend>
 
   <export>
   </export>
