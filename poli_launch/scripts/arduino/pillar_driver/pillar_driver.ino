@@ -1,4 +1,3 @@
-
 /* Read Quadrature Encoder
   * Connect Encoder to Pins encoder0PinA, encoder0PinB, and +5V.
   *
@@ -21,19 +20,17 @@
 #include <std_msgs/Float32.h>
 #include <std_msgs/Float64.h>
 #include <sensor_msgs/JointState.h>
+#include <diagnostic_msgs/DiagnosticStatus.h>
+#include <diagnostic_msgs/DiagnosticArray.h>
+
 #include "DualMC33926MotorShield.h"
 
 DualMC33926MotorShield md;
 ros::NodeHandle  nh;
 
-void stopIfFault()
-{
-  if (md.getFault())
-  {
-    Serial.println("fault");
-    while(1);
-  }
-}
+ diagnostic_msgs::DiagnosticStatus diagStatus;
+ diagnostic_msgs::DiagnosticArray diagAr;
+
  float act_pos =0.0,des_pos=0.0,err = 40.0, gain= 0.0;
  int val;
  float pos[1];
@@ -49,17 +46,19 @@ void stopIfFault()
  int encoder0PinALast = LOW;
  int n = LOW,a =LOW,b=LOW;
  char junk = ' ';
- 
+
+
  std_msgs::Float32 enc_data; 
  //Publish the encoder data
  ros::Publisher p("/pillar/joint_states", &cur_state);
-
+ ros::Publisher diag_pub("/diagnostics", &diagAr);
 
  void update_state(){
   // convert from mm to meters
   pos[0] = act_pos / 1000;
   cur_state.position = pos;
   cur_state.header.stamp = nh.now();
+  diag_pub.publish(&diagAr);
   p.publish(&cur_state);
  }
 
@@ -103,7 +102,18 @@ void stopIfFault()
     if (abs(err)<10.0)  md.setM1Speed(0);
     else md.setM1Speed((int)err);
      
-    stopIfFault();
+    if (md.getFault())
+    {
+      diagAr.header.stamp = nh.now();
+      diagStatus.level = diagStatus.ERROR;
+      diagAr.status[0] = diagStatus;
+      diag_pub.publish(&diagAr);
+      Serial.println("fault");
+      while(true){
+         diag_pub.publish(&diagAr);
+         delay(10);
+      }
+    }
     
     }
   } 
@@ -132,9 +142,16 @@ void stopIfFault()
    cur_state.velocity = vel;
    cur_state.effort = effort;
    
+   diagStatus.name = "pillar_driver";
+   diagStatus.message = "Streaming";
+   diagStatus.level = diagStatus.OK;
+   diagAr.status_length = 1;
+   diagAr.status[0] = diagStatus;
+
    //Setup the ROS nodes
    nh.initNode();
    nh.advertise(p);
+   nh.advertise(diag_pub);
    nh.subscribe(s);
    //Initialize the motor controller
    md.init();
