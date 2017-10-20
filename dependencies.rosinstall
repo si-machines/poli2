@@ -7,10 +7,10 @@
     uri: https://github.com/si-machines/wsg_32_description.git
     version: master
 - git:
-    local-name: kinova_ros
-    uri: https://github.com/Kinovarobotics/kinova-ros.git
-    version: master
-- git:
     local-name: ira_laser_tools
     uri: https://github.com/iralabdisco/ira_laser_tools.git
     version: master
+- git:
+    local-name: kinova_ros
+    uri: https://github.com/GT-RAIL/kinova-ros.git
+    version: 7dof_kinetic
