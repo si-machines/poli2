@@ -26,7 +26,7 @@ void setup() {
 
   sonar_msg.radiation_type = sonar_msg.ULTRASOUND;
   sonar_msg.min_range = 0.2;
-  sonar_msg.max_range = 7.0;
+  sonar_msg.max_range = 3.0;
   sonar_msg.header.frame_id = "sonar_link_1";
   sonar_msg.field_of_view = 0.306;
 }

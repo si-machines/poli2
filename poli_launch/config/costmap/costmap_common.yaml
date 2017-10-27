@@ -8,7 +8,7 @@ transform_tolerance:        0.1
 robot_radius:               0.35
 
 obstacles_costmap2d:
-  observation_sources: front_scan rear_scan
+  observation_sources: front_scan rear_scan sonar
   front_scan: {
                 sensor_frame:            /front_laser_link,
                 topic:                   /scan_front,
@@ -28,7 +28,7 @@ obstacles_costmap2d:
                raytrace_range: 9.0
 
             }
-sonar:
+  sonar:
     topics: ["/sonar"]
     clear_on_max_reading: true
     no_readings_timeout: 2.0
