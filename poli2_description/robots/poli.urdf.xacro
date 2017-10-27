@@ -34,6 +34,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/urdf/sensors/hokuyo_ust10lx.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/sensors/hokuyo_ust30lx.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/sensors/astra.urdf.xacro"/>
+    <xacro:include filename="$(find poli2_description)/urdf/sensors/sonar.urdf.xacro"/>
 
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/base_plate.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/rmp_plate2.urdf.xacro"/>
@@ -180,6 +181,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:sensor_astra parent="tilt_link">
 	    <origin xyz="-0.08 -0.0035 0.05" rpy="0 0 ${M_PI}"/>
         </xacro:sensor_astra>
+    
+        <xacro:sensor_sonar parent="pillar_plate_link">
+            <origin xyz="0.007 0.022 0.203" rpy="${HALF_PI} 0 ${HALF_PI}"/>
+        </xacro:sensor_sonar>
+    
+
+    
     </xacro:macro>
 
 </robot>
