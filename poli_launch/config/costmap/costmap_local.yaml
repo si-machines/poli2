@@ -11,6 +11,7 @@ local_costmap:
     width: 7.0
     height: 7.0
     plugins:
+        - {name: sonar,   type: "range_sensor_layer::RangeSensorLayer"}
         - {name: obstacles_costmap2d,       type: "costmap_2d::ObstacleLayer"}
         - {name: inflation,                 type: "costmap_2d::InflationLayer"}
     

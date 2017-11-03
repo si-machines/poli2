@@ -1,0 +1,9 @@
+<launch>
+  
+  <!-- Start vacuum pump driver -->
+  <include file="$(find poli_launch)/launch/poli1_upstart/gripper_pump.launch"/>
+
+  <!-- Start pillar driver and encoder clearing utility -->
+  <include file="$(find poli_launch)/launch/poli1_upstart/pillar.launch"/>
+
+</launch>
