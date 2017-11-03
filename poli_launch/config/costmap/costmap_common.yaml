@@ -29,9 +29,9 @@ obstacles_costmap2d:
 
             }
 sonar:
-    topics: ["/sonar"]
-    clear_on_max_reading: true
-    no_readings_timeout: 2.0
+  topics: ["/sonar"]
+  clear_on_max_reading: true
+  no_readings_timeout: 2.0
 
 
 inflation:

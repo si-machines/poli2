@@ -20,6 +20,7 @@
   <run_depend>robot_upstart</run_depend>
   <run_depend>yocs_cmd_vel_mux</run_depend>
   <run_depend>ira_laser_tools</run_depend>
+  <run_depend>range_sensor_layer</run_depend>
 
   <export>
   </export>
