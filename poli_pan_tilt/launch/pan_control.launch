@@ -11,7 +11,7 @@
 
   <param name="pan_id"           value="$(arg pan_id)"/>
 
-  <node name="poli_pan_position_control" pkg="poli_pan_tilt" type="poli_pan_position_control" required="true" output="screen">
+  <node name="poli_pan_position_control" pkg="poli_pan_tilt" type="poli_pan_position_control" output="screen">
     <rosparam>
       profile_velocity: 100
       profile_acceleration: 10
