@@ -20,9 +20,10 @@ const int anPin = 0;
 long anVolt, mm;
 
 void setup() {
+  nh.getHardware()->setBaud(115200);
   nh.initNode();
   nh.advertise(pub_sonar);
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   sonar_msg.radiation_type = sonar_msg.ULTRASOUND;
   sonar_msg.min_range = 0.2;
