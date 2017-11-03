@@ -16,7 +16,7 @@ sensor_msgs::Range sonar_msg;
 ros::Publisher pub_sonar("/sonar", &sonar_msg);
 ros::NodeHandle nh;
 
-const int anPin = 0;
+const int anPin = 1;
 long anVolt, mm;
 
 void setup() {
@@ -27,7 +27,7 @@ void setup() {
 
   sonar_msg.radiation_type = sonar_msg.ULTRASOUND;
   sonar_msg.min_range = 0.2;
-  sonar_msg.max_range = 3.0;
+  sonar_msg.max_range = 2.6;
   sonar_msg.header.frame_id = "sonar_link_1";
   sonar_msg.field_of_view = 0.306;
 }
@@ -46,9 +46,15 @@ void print_range(){
 
 void loop() {
   read_sensor();
+  sonar_msg.header.stamp = nh.now();
   sonar_msg.range = float(mm)/1000.0;
+  
+  //for costmap clearing purposes, set range to max range
+  if(sonar_msg.range > sonar_msg.max_range)
+     sonar_msg.range = sonar_msg.max_range;
+     
   pub_sonar.publish(&sonar_msg);
   //print_range();
-  delay(100);
+  delay(50);
   nh.spinOnce();
 } 
