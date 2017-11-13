@@ -14,3 +14,20 @@
     local-name: kinova_ros
     uri: https://github.com/GT-RAIL/kinova-ros.git
     version: 7dof_kinetic
+- git:
+    local-name: wsg50-ros-pkg
+    uri: https://github.com/si-machines/wsg50-ros-pkg.git
+    version: kinetic_devel
+- git:
+    local-name: epos_hardware
+    uri: https://github.com/RIVeR-Lab/epos_hardware.git/
+    version: kinetic-devel
+- git:
+    local-name: dynamixel-workbench
+    uri: https://github.com/ROBOTIS-GIT/dynamixel-workbench.git
+    version: master
+- git:
+    local-name: dynamixel-workbench-msgs
+    uri: https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs.git
+    version: master
+

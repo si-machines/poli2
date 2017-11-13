@@ -13,13 +13,10 @@
   
   <run_depend>roscpp</run_depend>
   <run_depend>rospy</run_depend>
-  <run_depend>epos_hardware</run_depend>
-  <run_depend>segway_ros</run_depend>
   <run_depend>ros_controllers</run_depend>
   <run_depend>ros_control</run_depend>
   <run_depend>robot_upstart</run_depend>
   <run_depend>yocs_cmd_vel_mux</run_depend>
-  <run_depend>ira_laser_tools</run_depend>
   <run_depend>range_sensor_layer</run_depend>
 
   <export>
