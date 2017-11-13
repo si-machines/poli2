@@ -30,4 +30,9 @@
     local-name: dynamixel-workbench-msgs
     uri: https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs.git
     version: master
+- git:
+    local-name: smart_battery_msgs
+    uri: https://github.com/ros-drivers/smart_battery_msgs.git
+    version: master
+
 
