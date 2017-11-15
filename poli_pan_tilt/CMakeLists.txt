@@ -15,7 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES poli_pan_tilt
-  CATKIN_DEPENDS roscpp rospy std_msgs dynamixel_workbench_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs dynamixel_workbench_msgs dynamixel_workbench_toolbox
 )
 
 include_directories(
