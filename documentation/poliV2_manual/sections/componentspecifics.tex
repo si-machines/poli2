@@ -1,0 +1,141 @@
+\chapter{Component Specifics}\label{ch:componentspecifics}
+This chapter details the particulars of each component. This includes how to interface with the component through the high level repository \href{https://github.com/si-machines/poli2}{Poli2} and its dependent packages and libraries. 
+
+\section{Sensors}
+\subsection{Lidar}
+The lidar are used for both localization and obstacle detection. 
+In order to use multiple scan sources for localization using existing algorithms, they are merged into a single scan using \texttt{ira\_laser\_tools}. 
+This package has a bug in implementation that requires the merging node be launched after the lidar drivers are brought up. \\
+
+\subsection{Sonar}
+The sonar are used strictly for obstacle detection and have a range of approximately 5 feet at their current mounting points. 
+As it stands, the sonar are better used for clear and reflective surfaces that the lidar cannot pickup. 
+Cliff detection is not possible with the current configuration of sonars.
+
+\section{Manipulation}
+Arm-based manipulation has two hardware components due to the use of a third party gripper (WSG-32) with the manipulator (Jaco2 7DOF). These components are exposed to ROS separately. We also consider the pan-tilt motor system which, though have different controllers, are exposed to ROS under the same interface ros-control. 
+
+\subsection{Jaco2 7DOF}
+The Jaco2 uses the same ROS driver that previous Kinova products use. So most things (services, actions, messages) should be familiar. 
+Do note that we use the \texttt{kinetic\_7dof} branch of the GT-RAIL fork of \texttt{kinova\_ros}, and that any finger services in the API will not work with the third party gripper.
+
+\subsubsection{Arm Driver}
+The majority of the driver functions are identical for the 7dof Jaco. 
+The most obvious change is the name of the arm as shown as a prefix for all driver topics and services. \\
+
+The arm has been configured for gravity compensation to be used in an upright position with the third party gripper. 
+Changing either of these parameters would necessitate changing the driver's gravity vector and regenerating center of mass parameters.
+
+\begin{example}{Start gravity compensation}
+  \label{ex:start_gravity_compensation}
+    \texttt{rosservice call /j2s7s300\_driver/in/start\_force\_control "\{\}"} \\
+    Note that the 'start\_grav\_comp` service doesn't seem to do anything.
+\end{example}
+
+\subsubsection{Arm MoveIt! Configurations}
+There exist two separate MoveIt! configurations for the custom Jaco2 arm: \\
+\texttt{jaco2\_custom\_arm\_moveit\_config} and \texttt{poli2\_full\_config}. \\
+
+The former is a standalone configuration for the arm and the Weiss gripper, useful when running manipulation on a table top. 
+The latter is a configuration which takes into account the entire PoliV2 robot platform and is thus collision-aware of the robot's components. \\
+
+The \texttt{poli2\_full\_config} is run by default in the startup launch files. \\
+\texttt{jaco2\_custom\_arm\_moveit\_config} is kept only as a useful addition.
+
+
+\subsection{Vacuum Gripping Unit}
+There is a ROS-controllable vacuum unit that would allow high level vacuum manipulation plans. 
+This unit is controlled by an arduino-based microcontroller and is connected to \textbf{poli1} via USB. \\
+
+Since this unit may or may not always be installed to the robot, ensure that the box is plugged into a \textbf{12V} power rail. \\
+See Example \ref{ex:vacuum_gripper} for how to command the gripper system.
+
+There are three commands that the interface accepts. 
+\begin{itemize}
+\item Start pump: begins pulling a vacuum
+\item Stop pump: stops pulling a vacuum
+\item Release object: Requires the pump be running. Briefly stops pulling vacuum long enough to release an object that gripper may be holding.
+\end{itemize}
+
+\begin{example}{Start vacuum unit}
+  \label{ex:vacuum_gripper}
+    \texttt{rosservice call /poli/gripper\_vacuum "command: 0"} \\
+    Find the mappings of commands in the \href{https://github.com/si-machines/poli2/blob/master/poli_msgs/srv/GripperPump.srv}{GripperPump.srv} service description file in \texttt{poli\_msgs}.
+\end{example}
+
+
+
+\subsection{Weiss WSG-32 Gripper}
+The Weiss gripper has a number of services and a single control topic.
+Here are several examples of commanding the gripper through ROS. \\
+
+The gripper is wirelessly interfaced through the network and is accessible through a web interface. 
+Navigating to the address \texttt{10.66.171.21}, the Gripper's IP address, should bring up the gripper's landing page. 
+This page allows manual control of position, debugging and settings management.
+
+Occasionally the gripper may run into a fault that must be manually cleared. 
+You can clear the fault through the web interface or as in Example \ref{ex:gripper_fault_ack}.
+
+\begin{example}{Send position goal to Gripper}
+  \label{ex:gripper_pos_goal}
+    \texttt{rostopic pub /wsg\_50\_driver/wsg/goal\_position std\_msgs/Float64 "data: 0.0"} \\
+    
+    The mode can be left blank, but velocity must be non-zero. \\
+    Units are in mm. \\
+    Max range is ~65 mm. Min range is 0mm.
+\end{example}
+
+\begin{example}{Clearing a gripper fault}
+  \label{ex:gripper_fault_ack}
+  TODO
+\end{example}
+
+\subsection{Pan-tilt}
+The pan and tilt motors are controlled through \texttt{ros\_controllers} position controllers. 
+Thus they are both controlled through ROS in the same way.
+
+\begin{example}{Send position goal to pan motor}
+  \label{ex:pan_pos_goal}
+    \texttt{rostopic pub /pan\_motor/position\_controller/command std\_msgs/Float64 "data: 0.0"} \\
+\end{example}
+
+\begin{example}{Send position goal to tilt motor}
+  \label{ex:tilt_pos_goal}
+    \texttt{rostopic pub /tilt\_motor/position\_controller/command std\_msgs/Float64 "data: 0.0"} \\
+\end{example}
+
+\textcolor{red}{\textbf{IMPORTANT NOTE}}: The tilt motor utilizes relative encoders to detect the position of the motor. 
+This means the reference position, i.e. zero position of the tilt motor is exactly the motor position when the motor initially gets power. 
+If the tilt motor is not started in the correct position, the model will not reflect reality, since the URDF model assumes a particular location for the zero position. 
+\textcolor{red}{This becomes especially important for perception purposes, where the angle must be known}.
+
+\section{Platform}
+The base platform has one lower level method of control: velocity. 
+You can publish velocity commands directly to the base through \texttt{rostopic} (see Example \ref{ex:base_velocity}). \\
+
+Generally, the base will be controlled through one of two means: teleop and/or autonomous navigation. 
+Navigation is handled via \texttt{movebase} and can be activated via 2D navigation goals. 
+See more on this at \href{http://wiki.ros.org/move_base}{http://wiki.ros.org/move\_base}.
+
+\begin{example}{Publish velocity to base}
+  \label{ex:base_velocity}
+    \texttt{rostopic pub /poli/teleop/cmd\_vel geometry\_msgs/Twist MSG}\\
+\end{example}
+
+\begin{example}{Starting base teleop with playstation controller}
+  \label{ex:base_teleop}
+    Pre: Bringup procedures on both PCs have been completed according to Ex \ref{ex:poli1_bringup} and Ex \ref{ex:poli2_bringup}. \\
+    \texttt{ssh poli1} \\ 
+    \texttt{roslaunch poli\_navigation\_apps playstation\_teleop.launch} \\
+
+\end{example}
+
+
+\section{Computers}
+Each computer has a defacto account named \texttt{poli}, which can be used in a pinch. 
+However, proper procedure is to create and use your own user account on each computer, as detailed in Section \ref{sec:user_accounts}. \\
+
+It should be assumed that poli1 will automatically bring up the \texttt{roscore} under the \texttt{poli} user account, which has sudo privileges. 
+This prevents the ROS network from being killed accidentally, but means that ROS parameters can persist beyond a node's session which is problematic in certain situations. \\
+
+
