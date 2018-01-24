@@ -13,7 +13,7 @@
 - git:
     local-name: kinova_ros
     uri: https://github.com/GT-RAIL/kinova-ros.git
-    version: 7dof_kinetic
+    version: kinetic_7dof
 - git:
     local-name: wsg50-ros-pkg
     uri: https://github.com/si-machines/wsg50-ros-pkg.git
