@@ -1,0 +1,19 @@
+#Command constants
+int8 DISABLE = 0
+int8 ENABLE = 1
+int8 NORMAL = 2
+int8 BLINKY1 = 3
+int8 BLINKY2 = 4
+int8 WINKY = 5
+int8 CRY = 6
+int8 BLINKING_ACTION = 7
+
+#Response constants
+int8 SUCCESS = 0
+int8 ERROR = -1
+
+#goal definition
+int8 command
+---
+#result definition
+int8 response
