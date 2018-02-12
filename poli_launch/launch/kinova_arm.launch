@@ -7,13 +7,13 @@
   <include file="$(find kinova_bringup)/launch/arm.launch">
   </include>
 
-  <!-- run the gripper -->
+  <!-- run the gripper 
   <include file="$(find wsg_50_driver)/launch/wsg_50_tcp_script.launch">
     <arg name="com_mode" value="auto_update"/>
     <param name="ip" value="10.66.171.21"/>
     <param name="js_prefix" value="wsg"/>
   </include>
-
+  -->
   
   <!-- runs the arm in standalone form -->
   <group if="$(arg use_arm_urdf)">
