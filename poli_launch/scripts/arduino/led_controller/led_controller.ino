@@ -3,9 +3,11 @@
  * This file also handles the limit switch for the pan/tilt motor system.
  *
  * The LED libraries that can be used generally are APA102 and Adafruit_DotStar.
- * However, Adarafruit_Dotstar is incompatible with rosserial (async issues). 
- * As such, this file does not implement eye control until the Adafruit_DotStar is reimplemented into using APA102 library. 
- *
+ * This file MUST be flashed to an Arduino Mega or else non-deterministic behavior will ensue.
+ * 
+ * The DOTSTAR, matrix LEDs (eyes) use hardware SPI to streamline. This requires that the 
+ * clock pin (yellow) go to 52 (SCK) and the green pin go to 51 (MOSI).
+ * 
  * Author Maxwell Svetlik, Prashant Rao 
  */
 
@@ -22,14 +24,14 @@
 #include <Adafruit_DotStarMatrix.h>
 #include <Adafruit_DotStar.h>
 #ifndef PSTR
- #define PSTR // Make Arduino Duo happy
+ #define PSTR // Make Arduhino Due happy
 #endif
 
 #define DATAPIN  11
-#define CLOCKPIN 12
+#define CLOCKPIN 13
 
 Adafruit_DotStarMatrix matrix = Adafruit_DotStarMatrix(
-  (uint8_t)8, (uint8_t)8, 2, 1, DATAPIN, CLOCKPIN,
+  (uint8_t)8, (uint8_t)8, 2, 1, 
   DS_TILE_TOP   + DS_TILE_RIGHT   + DS_TILE_ROWS   + DS_TILE_PROGRESSIVE +
   DS_MATRIX_TOP + DS_MATRIX_RIGHT + DS_MATRIX_ROWS + DS_MATRIX_ZIGZAG,
   DOTSTAR_BRG);
@@ -77,7 +79,7 @@ rgb_color ear_color = rgb_color(255, 255, 255);
 boolean ear_enabled = true;
 
 boolean eye_enabled = true;
-int eye_mode = EYE_WINKY;
+int eye_mode = EYE_NORMAL;
 
 /*
  * EYE methods
@@ -118,7 +120,7 @@ void cry_eyes()
 }
 
 //blinks every 3 seconds
-
+// DOESNT WORK. TOTDO
 uint8_t startTime = millis();
 uint8_t blinkTime = millis();
 uint8_t lastTime = millis(); 
@@ -126,11 +128,12 @@ uint8_t lastTime = millis();
 void blink_action()
 {
 
-  if(millis() - lastTime >= 3000) {
+  if(millis() - lastTime >= 3000 && millis() - lastTime <= 3500) {
     //start blinking
-    blinky_eyes_1();
+    blinky_eyes_2();
+    return;
   }
-  else if(millis() - lastTime >= 3200){
+  else if(millis() - lastTime > 3500){
     lastTime = millis();
     normal_eyes();
   }
@@ -150,11 +153,11 @@ void ear_srv_callback(const poli_msgs::LedEar::Request & req, poli_msgs::LedEar:
        case 0:
           ear_color = rgb_color(255, 0, 0); break;
        case 1:
-          ear_color = rgb_color(0, 255, 0); break;
-       case 2:
           ear_color = rgb_color(0, 0, 255); break;
+       case 2:
+          ear_color = rgb_color(0, 255, 0); break;
        case 3:
-          ear_color = rgb_color(255, 200, 0); break;
+          ear_color = rgb_color(255, 255, 0); break;
        case 4:
           ear_color = rgb_color(255, 255, 255); break;
        default:
@@ -176,62 +179,62 @@ void eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye:
   if(req.command == req.DISABLE){
       eye_enabled = false;
   }
-  else
-      eye_mode = req.command;
-  /*
   else if(req.command == req.ENABLE){
       eye_enabled = true;
   }
-  else if(req.command == req.NORMAL){
-      eye_mode = EYE_NORMAL;
-  }
-  else if(req.command == req.BLINKY1){
-      eye_mode = EYE_BLINKY1;
-  }
-  else if(req.command == req.BLINKY2){
-      eye_mode = EYE_BLINKY2;
-  }
-  else if(req.command == req.WINKY){
-      eye_mode = EYE_WINKY;
-  }
-  else if(req.command == req.CRY){
-      eye_mode = EYE_CRY;
-  }
-  else if(req.command == req.BLINKING_ACTION){
-      eye_mode = EYE_BLINKING_ACTION;
-  }*/
-  
+  else
+      eye_mode = req.command;
+
   res.response = req.SUCCESS;
   
 }
 
 std_msgs::Int16 limit_switch_msg;
 ros::ServiceServer<poli_msgs::LedEar::Request, poli_msgs::LedEar::Response> ear_server("led_ear",&ear_srv_callback);
-//ros::ServiceServer<poli_msgs::LedEye::Request, poli_msgs::LedEye::Response> eye_server("led_eye",&eye_srv_callback);
+ros::ServiceServer<poli_msgs::LedEye::Request, poli_msgs::LedEye::Response> eye_server("led_eye",&eye_srv_callback);
 ros::Publisher limit_pub("pillar/limit_switch", &limit_switch_msg);
 
 //TODO once the ears are further established, need to make the limits (i=40) more concrete
 // and document it
+uint16_t additor = 1;
 void writeEar(){
   uint8_t time = millis() >> 2;
-  if(ear_mode = EAR_SOLID){
+  if(ear_mode == EAR_SOLID){
+    brightness = 15;
     for(uint16_t i = 40; i < ledCount; i++)
     {
       ear_colors[i] = ear_color;
     }
   }
-  else if(ear_mode = EAR_GRADIENT){ 
+  else if(ear_mode == EAR_GRADIENT){ 
+    brightness = 15;
     for(uint16_t i = 40; i < ledCount; i++)
     {
       uint8_t x = time - i * 8;
       ear_colors[i] = rgb_color(255 - x, 255 - x, 255 - x);
     }
   }
-  else if(ear_mode = EAR_BREATH){
-     //TODO
+  // THIS DOESNT WORK. TODO
+  else if(ear_mode == EAR_BREATH){
+    if(brightness < 1)
+      additor = 1;
+    else if(brightness > 15)
+      additor = -1;
+    brightness += additor;
+     //for(uint8_t i = brightness; brightness > 0; i--){
+     //   ledStrip.write(ear_colors, ledCount, i);
+     //   delay(5);
+     //}
+     //for(uint8_t i = 0; i < brightness; i++){
+     //   ledStrip.write(ear_colors, ledCount, i);
+     //   delay(5);
+     //}
   }
   if(ear_enabled)
      ledStrip.write(ear_colors, ledCount, brightness);
+  else
+     ledStrip.write(ear_colors, ledCount, 0);
+
 }
 
 
@@ -260,20 +263,20 @@ void writeEye(){
       cry_eyes();
   }
   else if(eye_mode == EYE_BLINKING_ACTION){
-      //blink_action();
+      blink_action();
   }
   
   if(eye_enabled){
     matrix.show();
   }
-}
+}  
+
 
 int x    = 2;
 int pass = 0;
 int seed = 0;
+//This method randomly blinks in different ways
 void prashants_eye_loop(){
-  Serial.print("Loop\n");
-  
    seed = random(1,4);
     
     for (int i = 0;i<40;i++)
@@ -321,22 +324,23 @@ void checkLimitSwitch(){
 void setup()
 {
   pinMode(limitSwitchPin, INPUT_PULLUP);
-  Serial.begin(57600);
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(10);
-  //nh.getHardware()->setBaud(57600);
-
+  
   nh.initNode();
+
+
   nh.advertiseService(ear_server);
+
+  nh.advertiseService(eye_server);
   nh.advertise(limit_pub);
 }
 
 void loop()
 { 
   //prashants_eye_loop();
-  //writeEye();
-  
+  writeEye();
   writeEar();
   checkLimitSwitch();
   

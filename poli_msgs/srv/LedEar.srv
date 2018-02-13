@@ -3,6 +3,7 @@ int8 DISABLE = 0
 int8 ENABLE = 1
 int8 SOLID = 2
 int8 GRADIENT = 3
+int8 BREATH = 4
 
 #Color constants
 int8 RED = 0
