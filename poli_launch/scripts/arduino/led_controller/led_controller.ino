@@ -74,12 +74,12 @@ const uint8_t EYE_CRY= 6;
 const uint8_t EYE_BLINKING_ACTION= 7;
 
 
-int ear_mode = EAR_SOLID;
+int ear_mode = EAR_BREATH;
 rgb_color ear_color = rgb_color(255, 255, 255);
 boolean ear_enabled = true;
 
 boolean eye_enabled = true;
-int eye_mode = EYE_NORMAL;
+int eye_mode = EYE_BLINKING_ACTION;
 
 /*
  * EYE methods
@@ -119,25 +119,34 @@ void cry_eyes()
   matrix.drawLine(12,3,12,6,mycolor); 
 }
 
-//blinks every 3 seconds
-// DOESNT WORK. TOTDO
-uint8_t startTime = millis();
-uint8_t blinkTime = millis();
-uint8_t lastTime = millis(); 
-
+/*
+ * blink_action blinks normally in a deterministic fashion. 
+ * Blinking is done in 'rounds' or a percentage of calls to this function due to the 
+ * unparallelized nature of the arduino. 
+ * Using delays pauses other LED actions on the ears, such as pulsing or gradients. 
+ * Thus using this scheme of cycles is necessary for animations.
+ * 
+ * You can change blinking rates by the following parameters:
+ *    round_cutoff = the number of cycles that the eyes will be 'normal' or 'open'
+ *    blink_difference = the number of cycles the eyes will be 'blinking' or 'closed'
+ */
+int round_cutoff = 60;
+int blink_difference = 5;
+int blink_round = 0;
 void blink_action()
 {
-
-  if(millis() - lastTime >= 3000 && millis() - lastTime <= 3500) {
-    //start blinking
-    blinky_eyes_2();
-    return;
-  }
-  else if(millis() - lastTime > 3500){
-    lastTime = millis();
-    normal_eyes();
-  }
- 
+   matrix.fillScreen(0);
+   matrix.setCursor(0, 1);
+   if(blink_round < round_cutoff){
+      normal_eyes();
+   }
+   else
+   {
+      blinky_eyes_2();
+   }
+   blink_round += 1;
+   if(blink_round > round_cutoff + blink_difference)
+     blink_round = 0;
 }
 
 
@@ -164,7 +173,6 @@ void ear_srv_callback(const poli_msgs::LedEar::Request & req, poli_msgs::LedEar:
           ear_color = rgb_color(255, 255, 255); break;
      }
      ear_mode = EAR_SOLID;
-     //TODO set color globally via an array
     
   } 
   else if(req.command == req.GRADIENT){
@@ -194,41 +202,39 @@ ros::ServiceServer<poli_msgs::LedEar::Request, poli_msgs::LedEar::Response> ear_
 ros::ServiceServer<poli_msgs::LedEye::Request, poli_msgs::LedEye::Response> eye_server("led_eye",&eye_srv_callback);
 ros::Publisher limit_pub("pillar/limit_switch", &limit_switch_msg);
 
-//TODO once the ears are further established, need to make the limits (i=40) more concrete
+void initialize_ear_colors(){
+    for(uint16_t i = 50; i < ledCount; i++)
+    {
+      ear_colors[i] = rgb_color(255, 255, 255);
+    }
+}
+
+//TODO once the both ears are established, need to make the limits (i=50) more concrete
 // and document it
 uint16_t additor = 1;
 void writeEar(){
   uint8_t time = millis() >> 2;
   if(ear_mode == EAR_SOLID){
-    brightness = 15;
-    for(uint16_t i = 40; i < ledCount; i++)
+    brightness = 10;
+    for(uint16_t i = 50; i < ledCount; i++)
     {
       ear_colors[i] = ear_color;
     }
   }
   else if(ear_mode == EAR_GRADIENT){ 
-    brightness = 15;
-    for(uint16_t i = 40; i < ledCount; i++)
+    brightness = 10;
+    for(uint16_t i = 50; i < ledCount; i++)
     {
       uint8_t x = time - i * 8;
       ear_colors[i] = rgb_color(255 - x, 255 - x, 255 - x);
     }
   }
-  // THIS DOESNT WORK. TODO
   else if(ear_mode == EAR_BREATH){
-    if(brightness < 1)
+    if(brightness <= 7)
       additor = 1;
-    else if(brightness > 15)
+    else if(brightness >= 17)
       additor = -1;
     brightness += additor;
-     //for(uint8_t i = brightness; brightness > 0; i--){
-     //   ledStrip.write(ear_colors, ledCount, i);
-     //   delay(5);
-     //}
-     //for(uint8_t i = 0; i < brightness; i++){
-     //   ledStrip.write(ear_colors, ledCount, i);
-     //   delay(5);
-     //}
   }
   if(ear_enabled)
      ledStrip.write(ear_colors, ledCount, brightness);
@@ -327,6 +333,7 @@ void setup()
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(10);
+  initialize_ear_colors();
   
   nh.initNode();
 
@@ -339,7 +346,6 @@ void setup()
 
 void loop()
 { 
-  //prashants_eye_loop();
   writeEye();
   writeEar();
   checkLimitSwitch();
