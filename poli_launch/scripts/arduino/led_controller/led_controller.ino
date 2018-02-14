@@ -178,6 +178,9 @@ void ear_srv_callback(const poli_msgs::LedEar::Request & req, poli_msgs::LedEar:
   else if(req.command == req.GRADIENT){
     ear_mode = EAR_GRADIENT;
   }
+  else if(req.command == req.BREATH){
+    ear_mode = EAR_BREATH; 
+  }
   res.response = req.SUCCESS;
   
 }
