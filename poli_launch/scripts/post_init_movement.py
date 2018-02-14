@@ -105,7 +105,7 @@ if __name__ == '__main__':
             has_been_initialized = rospy.get_param(init_param)
             if has_been_initialized:
 	        rospy.loginfo("Pan-tilt and pillar systems already initialized. Not running script")
-	        exit(1)
+	        exit(0)
 
 	Startup.set_led_start()
 	rospy.sleep(1.0)
@@ -118,4 +118,4 @@ if __name__ == '__main__':
 	Startup.set_led_end()
         rospy.set_param(init_param, True)
 	
-
+	exit(0)
