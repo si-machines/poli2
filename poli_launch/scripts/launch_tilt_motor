@@ -2,6 +2,7 @@
 
 """
 This is a high level driver for the EPOS tilt controller for the PoliV2 platform.
+This file also launches a script that moves the pan/tilt/pillar/led systems for visual inspection.
 
 The specific purpose of this driver is to ensure that the tilt motor's position encoders 
 have been initialized properly. The encoders are set on power-on to the motor.
@@ -14,6 +15,7 @@ If its out of TOLERANCE the driver is killed, error messages are logged, and thi
 There is a persistance parameter INIT_PARAM that is used to track if this driver has been run since 
 the robot has been started. This assumes that the tilt motor's power is tied exclusively with the 
 rest of the robot.
+
 
 Author Maxwell Svetlik
 
@@ -56,11 +58,19 @@ if __name__ == '__main__':
 
 	r_pack = rospkg.RosPack()
 	launch_path = r_pack.get_path('poli_pan_tilt')
+	launch_path_initscript = r_pack.get_path('poli_launch')
 	launch_file_name = "/launch/tilt_control.launch"
-
+	launch_file_name_initscript = "/launch/post_initialization_movement.launch"
+	# Setup roslaunch for tilt motor
 	uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
 	roslaunch.configure_logging(uuid)
 	launch = roslaunch.parent.ROSLaunchParent(uuid, [launch_path+launch_file_name])
+
+
+	# Setup roslaunch for post-initialization movement script
+	mvmt_uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
+	roslaunch.configure_logging(mvmt_uuid)
+	mvmt_launch = roslaunch.parent.ROSLaunchParent(uuid, [launch_path_initscript+launch_file_name_initscript])
 
 	launch.start()
 	
@@ -74,6 +84,7 @@ if __name__ == '__main__':
 		#life is good
 		rospy.set_param(init_param, "true")
 		rospy.loginfo("Tilt motor in good state. Continuing to run.")
+		mvmt_launch.start()
 		while not rospy.is_shutdown():
 			rospy.spin()
 	else:
