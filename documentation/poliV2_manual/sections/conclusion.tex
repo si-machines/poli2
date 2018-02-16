@@ -16,23 +16,10 @@ This will show when launching the base. We don't use hector pose estimation, so 
 This shows up periodically, for a yet-to-be-determined reason. It does not seem to negatively affect input/output from the arduino(s).
 
 \section{Connectivity and Hardware Issues}
-\subsection{Dynamixel driver crashes}
-This is almost always a conflict with USB devices. Theoretically the \texttt{udev} rules should eliminate the issue (these exist in \texttt{poli\_launch/config}). \\
-Unfortunately the only answer currently is to un/plug the USB2Dynamixel adapter and restart the driver.
-
-\subsection{Gripper not connected}
-Exact error: `Unable to connect, please check the port and address used' \\
-
-Whats wrong: The gripper is not connected to the network. Try power cycling the arm. Unfortunately something internal to the gripper is preventing it from connecting. This happens with DHCP and a static IP on the gripper.
-
-\subsection{Gripper connected but does not respond to position goals}
-Exact error: TODO \\
-
-Whats wrong: The gripper has likely hit a fault as a protection mechanism. 
-To continue with normal operation, the fault needs to be acknowledged. 
-An example of how this can be done is in Example \ref{ex:gripper_fault_ack}.
-
-Note: Due to a limitation in the design of the gripper-arm circuit pair, the gripper frequently hits a Fast Stop error. A solution for this is in the works.
+\subsection{Dynamixel driver / pan\_controller driver crashes}
+Previously this was USB devices and udev rule issue. 
+This now looks to be an issue with the controller driver itself. \\
+There is a github issue open: \href{https://github.com/si-machines/poli2/issues/40}{https://github.com/si-machines/poli2/issues/40}
 
 
 \subsection{TF tree broken / no laser scans output in RViz / localization fails}

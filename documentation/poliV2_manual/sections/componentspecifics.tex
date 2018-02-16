@@ -111,7 +111,9 @@ Otherwise, the tilt motor's encoders have been incorrectly initialized, so the u
 
 \subsubsection{Pan-tilt control}
 The pan and tilt motors are controlled through \texttt{ros\_controllers} position controllers. 
-Thus they are both controlled through ROS in the same way.
+Thus they are both controlled through ROS in the same way. \\
+
+Units are in radians, and limits are specified in the URDF for that particular joint.
 
 \begin{example}{Send position goal to pan motor}
   \label{ex:pan_pos_goal}
@@ -123,7 +125,6 @@ Thus they are both controlled through ROS in the same way.
     \texttt{rostopic pub /tilt\_motor/position\_controller/command std\_msgs/Float64 "data: 0.0"} \\
 \end{example}
 
-\textcolor{red}{\textbf{IMPORTANT NOTE}}: 
 \subsection{Pillar}
 The elevating pillar is controlled through a topic published by a microcontroller. It has an approximate range of \[0,0.4\] meters.
 
