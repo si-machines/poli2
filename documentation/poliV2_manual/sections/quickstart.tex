@@ -142,19 +142,21 @@ We will now go through the process of adding a user account with the correct per
   \begin{itemize}
   	\item ssh into poli1: \texttt{ssh poli@poli1}
     \item Make yourself a user: \texttt{sudo adduser <your desired username>}
-    \item Add user to groups: \texttt{sudo usermod -aG sudo,dialout,cdrom,adm,dip,plugdev,lpadmin,sambashare <your username>}
+    \item Add user to groups: \texttt{sudo usermod -aG sudo,dialout,cdrom,adm,dip,plugdev,lpadmin,sambashare,audio <your username>}
 	\item  Log off: \texttt{exit}
     \item Set up your ssh keys for your new user: \texttt{ssh-copy-id <your user>@poli1}
 	\item Log in to your new user account: \texttt{ssh <your user>@poli1}
   \end{itemize}
 \end{example}
 
+Now, log into your account and create a catkin workspace in your home directory. You can see how to do that at \\
+\href{http://wiki.ros.org/catkin/Tutorials/create_a_workspace}{http://wiki.ros.org/catkin/Tutorials/create\_a\_workspace}.
+
 If successful, do the same processes for \textbf{poli2}. Don't forget to setup your bash environment as in Example \ref{ex:bashrc_poli1}, \ref{ex:bashrc_poli2}.\\
 
 \begin{example}{Setting up initial .bashrc file: POLI1}
   \label{ex:bashrc_poli1}
     Open \texttt{\textasciitilde/.bashrc} \\
-    At the bottom add \texttt{source /opt/ros/kinetic/setup.bash} \\
     At the bottom add \texttt{source \textasciitilde/catkin\_ws/devel/setup.bash} \\
     Save and close \\
     In a terminal enter the command: \texttt{source \textasciitilde/.bashrc}
@@ -163,7 +165,7 @@ If successful, do the same processes for \textbf{poli2}. Don't forget to setup y
 \begin{example}{Setting up initial .bashrc file: POLI2}
   \label{ex:bashrc_poli2}
     Open \texttt{\textasciitilde/.bashrc} \\
-    Add items listed in Example \ref{ex:bashrc_poli1} \\
+    At the bottom add \texttt{source \textasciitilde/catkin\_ws/devel/setup.bash} \\
     At the bottom add \texttt{source poli\_RMP.bash} \\
     At the bottom add \texttt{export ROS\_MASTER\_URI=http://poli1:11311} \\
     Save and close \\
@@ -173,7 +175,7 @@ If successful, do the same processes for \textbf{poli2}. Don't forget to setup y
 Finally, you need to setup wireless internet under your user on \textbf{poli1} and \textbf{poli2}. 
 This requires logging in by connecting a keyboard, mouse and monitor directly to the robot and setting up a connection to a network through Ubuntu's \texttt{network manager}. \\
 
-At the time of writing there do not yet exist robot WiFi accounts that can be used here, so you should use your own WiFi credentials to log into an existing network.
+There exist specific WiFi accounts for the robots to connect to the \texttt{utexas} network. Contact a lab manager for these credentials.
 
 If \texttt{network manager}'s front face is updated to be X-forwarded or you switch to a different manager, you may be able to set up the wifi connection in a terminal via \texttt{ssh}.
 
@@ -185,8 +187,6 @@ There are a fair number of forks and specific branches that need to be checked o
 Luckily the ROS-install system makes fetching these simple.
 
 \subsection{Fetch high level repository}
-If you haven't already, create a catkin workspace in the root direction on both \textbf{poli1} and \textbf{poli2}. You can see how to do that at \\
-\href{http://wiki.ros.org/catkin/Tutorials/create_a_workspace}{http://wiki.ros.org/catkin/Tutorials/create\_a\_workspace}.
 
 \begin{example}{Setting up the PoliV2 codebase}
   \label{ex:poli2_codebase_setup}
@@ -217,7 +217,7 @@ As long as Examples \ref{ex:setup_rmp_env} and \ref{ex:bashrc_poli2} have been f
 \begin{example}{Setup RMP Environment Variables}\label{ex:setup_rmp_env}
 \begin{itemize}
   \item \texttt{roscd poli\_launch}
-  \item \texttt{cp config/poli\_RMP.bash \textasciitilde/}
+  \item \texttt{cp config \textasciitilde/poli\_RMP.bash }
   \item \texttt{source \textasciitilde/.bashrc}
 \end{itemize}
 \end{example}
