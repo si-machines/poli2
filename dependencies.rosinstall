@@ -24,11 +24,11 @@
     version: kinetic-devel
 - git:
     local-name: dynamixel-workbench
-    uri: https://github.com/ROBOTIS-GIT/dynamixel-workbench.git
+    uri: https://github.com/si-machines/dynamixel-workbench.git
     version: master
 - git:
     local-name: dynamixel-workbench-msgs
-    uri: https://github.com/ROBOTIS-GIT/dynamixel-workbench-msgs.git
+    uri: https://github.com/si-machines/dynamixel-workbench-msgs.git
     version: master
 - git:
     local-name: smart_battery_msgs
