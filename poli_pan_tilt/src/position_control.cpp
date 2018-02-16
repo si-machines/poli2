@@ -37,7 +37,7 @@ PositionControl::PositionControl()
   }
 
   if (!multi_driver_->initSyncWrite())
-    ROS_ERROR("Init SyncWrite Failed!");
+    ROS_INFO("Pan-init SyncWrite Failed!");
 
   writeValue_ = new WriteValue;
 
