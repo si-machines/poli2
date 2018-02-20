@@ -16,7 +16,7 @@
     version: kinetic_7dof
 - git:
     local-name: robotiq_85_gripper
-    uri: https://github.com/StanleyInnovation/robotiq_85_gripper.git
+    uri: https://github.com/si-machines/robotiq_85_gripper.git
     version: master
 - git:
     local-name: epos_hardware
