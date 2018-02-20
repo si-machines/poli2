@@ -44,7 +44,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/neck_mount.urdf.xacro"/>
 
     <xacro:include filename="$(find poli2_description)/robots/jaco2_custom.xacro"/>
-	
+    <xacro:include filename="$(find kinova_description)/urdf/j2s7s300.xacro" />	
+    
     <property name="M_PI" value="3.14159"/>
     <property name="HALF_PI" value="1.57079"/>
     <property name="FRONT_LASER_PREFIX" value="front"/>
@@ -165,9 +166,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:neck_mount parent="pillar_plate_link">
             <origin xyz="0.2658 0.36 0.1915" rpy="-${HALF_PI} 0 0"/>
         </xacro:neck_mount>
-	
-	<xacro:jaco2_custom base_parent="pillar_plate_link" base_origin_xyz="0 0.05 0.0575" base_origin_rpy="-${HALF_PI} -${HALF_PI} 0">
-	</xacro:jaco2_custom>
+
+	<!-- Poli Jaco Arm -->	
+	<xacro:j2s7s300 base_parent="pillar_plate_link" trans="0 0.05 0.0575" rot="-${HALF_PI} -${HALF_PI} 0">	
+	</xacro:j2s7s300>
         
         <!-- Poli Sensors -->
         <xacro:hokuyo_ust30lx laser_prefix="${REAR_LASER_PREFIX}" parent="rmp_plate2_link">

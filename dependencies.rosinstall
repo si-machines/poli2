@@ -15,9 +15,9 @@
     uri: https://github.com/GT-RAIL/kinova-ros.git
     version: kinetic_7dof
 - git:
-    local-name: wsg50-ros-pkg
-    uri: https://github.com/si-machines/wsg50-ros-pkg.git
-    version: kinetic_devel
+    local-name: robotiq_85_gripper
+    uri: https://github.com/StanleyInnovation/robotiq_85_gripper.git
+    version: master
 - git:
     local-name: epos_hardware
     uri: https://github.com/RIVeR-Lab/epos_hardware.git/
