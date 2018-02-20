@@ -148,9 +148,9 @@
             <origin xyz="${joint_7_origin_xyz}" rpy="-${J_PI/2} 0 0"/>
         </xacro:weiss_mount>
 
-        <xacro:wsg_32_xacro name="wsg_50_gripper" parent="${prefix}_link_7">
+        <!--xacro:wsg_32_xacro name="wsg_50_gripper" parent="${prefix}_link_7">
             <origin xyz="0.0001 0 0.085" rpy="0 0 -${J_PI/2}"/>
-        </xacro:wsg_32_xacro>
+        </xacro:wsg_32_xacro-->
 
     </xacro:macro>
 
