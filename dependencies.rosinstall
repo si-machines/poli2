@@ -12,7 +12,7 @@
     version: master
 - git:
     local-name: kinova_ros
-    uri: https://github.com/GT-RAIL/kinova-ros.git
+    uri: https://github.com/si-machines/kinova-ros.git
     version: kinetic_7dof
 - git:
     local-name: robotiq_85_gripper
