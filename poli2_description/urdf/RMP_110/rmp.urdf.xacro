@@ -34,7 +34,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/urdf/segway_components/hmi_plate_110.urdf.xacro" />
     <xacro:include filename="$(find poli2_description)/urdf/accessories.urdf.xacro" />
 
-    <property name="M_PI" value="3.14159"/>
+    <xacro:property name="M_PI" value="3.14159"/>
 
     <!-- Wheel Mounting Positions -->
     <xacro:property name="track" value="0.48122440" />
