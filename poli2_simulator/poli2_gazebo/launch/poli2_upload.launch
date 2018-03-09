@@ -11,6 +11,6 @@
 	<include file="$(find poli2_gazebo)/launch/state_publishers.launch"/>
 
 	<!-- Start the controllers. -->
-	<!--include file="$(find poli2_gazebo)/launch/controllers.launch"/-->
+	<include file="$(find poli2_gazebo)/launch/controllers.launch"/>
 
 </launch>

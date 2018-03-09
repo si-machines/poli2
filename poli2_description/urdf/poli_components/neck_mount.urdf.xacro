@@ -194,5 +194,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </actuator>
   </transmission>
 
+  <transmission name="pan_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="pan_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="pan_joint_actuator">
+	 <!--mechanicalReduction>29768</mechanicalReduction-->
+	 <mechanicalReduction>160</mechanicalReduction>
+    </actuator>
+  </transmission>
+
   </xacro:macro>
 </robot>
