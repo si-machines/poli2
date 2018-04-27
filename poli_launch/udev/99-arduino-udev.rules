@@ -7,3 +7,6 @@ SUBSYSTEM=="tty", ATTRS{product}=="FT232R USB UART", ATTRS{idProduct}=="6001", A
 #this is a decent nano
 SUBSYSTEM=="tty", ATTRS{product}=="ARDUINO NANO", ATTRS{idProduct}=="6001", ATTRS{idVendor}=="0403", PROGRAM="/usr/bin/arduino-udev-name -w 2 %k", SYMLINK+="%c", GROUP="plugdev"
 
+# Arduino Uno
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0043", PROGRAM="/usr/bin/arduino-udev-name -w 2 %k", SYMLINK+="%c", GROUP="plugdev"
+
