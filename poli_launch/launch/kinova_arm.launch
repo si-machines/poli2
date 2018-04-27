@@ -12,11 +12,11 @@
   </include>
 
   <!-- run the gripper -->
-  <!--node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen">
+  <node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen">
      <param name="num_grippers" value="1" />
      <param name="comport" value="$(arg comport)" />
      <param name="baud" value="$(arg baud)" />
-  </node--> 
+  </node> 
   
   <!-- runs the arm in standalone form -->
   <group if="$(arg use_arm_urdf)">

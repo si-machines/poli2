@@ -13,8 +13,8 @@
   <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch"/>
   
 
-  <!-- Bring up astra camera -->
-  <include file="$(find astra_launch)/launch/astra.launch"/>
+  <!-- Bring up astra camera | commented out for intel camera testing -SM  -->
+  <!-- include file="$(find astra_launch)/launch/astra.launch"/-->
 
   <!-- Bring up base drivers -->
   <include file="$(find poli_launch)/launch/base_bringup.launch"/>
