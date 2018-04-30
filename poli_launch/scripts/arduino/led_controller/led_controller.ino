@@ -48,9 +48,19 @@ const uint8_t limitSwitchPin = 4;
 APA102<ears_dataPin, ears_clockPin> ledStrip;
 
 const uint16_t colors[] = {
-  matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(202, 161, 241), matrix.Color(105, 203, 155)};
-const uint16_t eye_color = colors[4];
-const uint16_t mouth_color = colors[4];
+  matrix.Color(255,255,255),
+  matrix.Color(255, 0, 0), 
+  matrix.Color(255, 0, 180), 
+  matrix.Color(255, 0, 255), 
+  matrix.Color(180, 0, 255), 
+  matrix.Color(0,   0, 255), 
+  matrix.Color(0, 180, 255), 
+  matrix.Color(0, 255, 255), 
+  matrix.Color(0, 255, 180),
+  matrix.Color(0, 255, 0),
+  matrix.Color(180, 255, 0),
+  matrix.Color(255, 255, 0), 
+  matrix.Color(255, 180, 0)};
 
 //Delete this once refactor complete
 const uint16_t mycolor = colors[4];
@@ -113,10 +123,12 @@ boolean ear_enabled = true;
 
 boolean eye_enabled = true;
 boolean face_mode = false;
-int eye_shape = 0;
+int eye_shape = 10; // 13: sleepy
 int eye_direction = 0;
-int mouth_shape = 0;
+int eye_color_idx = 0;
+int mouth_shape = 5; //smile
 int mouth_direction = 0;
+int mouth_color_idx = 0;
 int face_shape = 0;
 
 /*
@@ -159,6 +171,8 @@ void cry_eyes()
 
 void draw_eyes()
 {
+  uint16_t eye_color = colors[eye_color_idx];
+
   // eye centers
   int rx = 3;
   int lx = 12;
@@ -166,20 +180,21 @@ void draw_eyes()
   if(eye_direction==LEFT){
     rx = 4;
     lx = 13;
-  }else if(eye_direction==RIGHT){
+  }
+  else if(eye_direction==RIGHT){
     rx = 2;
     lx = 11;
   }
 
   int ry = 3;
   int ly = 3;
-  
+
   switch(eye_shape){
   case NORMAL:
     matrix.fillRect(rx-1,ry-1,3,3,eye_color);
     matrix.drawPixel(rx,ry-2,eye_color);
     matrix.drawPixel(rx,ry+2,eye_color);
-    
+
     matrix.fillRect(lx-1,ly-1,3,3,eye_color);
     matrix.drawPixel(lx,ly-2,eye_color);
     matrix.drawPixel(lx,ly+2,eye_color);
@@ -191,14 +206,14 @@ void draw_eyes()
   case CRY:
     matrix.drawLine(rx-1,ry-2,rx+1,ry-2,eye_color);
     matrix.drawLine(rx,ry-2,rx,ry+2,eye_color);
-    
+
     matrix.drawLine(lx-1,ly-2,lx+1,ly-2,eye_color);
     matrix.drawLine(lx,ly-2,lx,ly+2,eye_color);    
     break;
   case SQUINT:
     matrix.drawLine(rx-1,ry-2,rx+1,ry,eye_color);
     matrix.drawLine(rx+1,ry,rx-1,ry+2,eye_color);
-    
+
     matrix.drawLine(lx+1,ly-2,lx-1,ly,eye_color);
     matrix.drawLine(lx-1,ly,lx+1,ly+2,eye_color);   
     break;
@@ -231,14 +246,14 @@ void draw_eyes()
   case SIDELEFT:
     matrix.drawLine(rx-1,ry,rx+1,ry,eye_color);
     matrix.drawPixel(rx+1,ry+1,eye_color);
-    
+
     matrix.drawLine(lx-1,ly,lx+1,ly,eye_color);
     matrix.drawPixel(lx+1,ry+1,eye_color);
     break;
   case SIDERIGHT:
     matrix.drawLine(rx-1,ry,rx+1,ry,eye_color);
     matrix.drawPixel(rx-1,ry+1,eye_color);
-    
+
     matrix.drawLine(lx-1,ly,lx+1,ly,eye_color);
     matrix.drawPixel(lx-1,ry+1,eye_color);
     break;
@@ -249,7 +264,7 @@ void draw_eyes()
     matrix.drawLine(rx+2,ry-1,rx+2,ry,eye_color);
     matrix.drawPixel(rx-1,ry-2,eye_color);
     matrix.drawPixel(rx+1,ry-2,eye_color);
-    
+
     matrix.fillRect(lx-1,ly-1,3,3,eye_color);
     matrix.drawPixel(lx,ly+2,eye_color);
     matrix.drawLine(lx-2,ly-1,lx-2,ly,eye_color);
@@ -294,11 +309,11 @@ void draw_eyes()
     matrix.drawPixel(lx+1,ly,eye_color);
     break;
   case DEAD:
-    matrix.drawLine(rx-1,ry-2,rx+1,ry+2,eye_color);
-    matrix.drawLine(rx+1,ry-2,rx-1,ry+2,eye_color);
+    matrix.drawLine(rx-1,ry-1,rx+1,ry+1,eye_color);
+    matrix.drawLine(rx+1,ry-1,rx-1,ry+1,eye_color);
 
-    matrix.drawLine(lx-1,ly-2,lx+1,ly+2,eye_color);
-    matrix.drawLine(lx+1,ly-2,lx-1,ly+2,eye_color);   
+    matrix.drawLine(lx-1,ly-1,lx+1,ly+1,eye_color);
+    matrix.drawLine(lx+1,ly-1,lx-1,ly+1,eye_color);   
     break;
   default:
     matrix.fillRect(rx-1,ry-1,3,3,eye_color);
@@ -313,6 +328,8 @@ void draw_eyes()
 
 void draw_mouth()
 {
+  uint16_t mouth_color = colors[mouth_color_idx];
+
   //note: robot's r/l!
   int rx = 6;
   int lx = 9;
@@ -321,11 +338,12 @@ void draw_mouth()
   if(mouth_direction==LEFT){
     rx = 7;
     lx = 10;
-  }else if(mouth_direction==RIGHT){
+  }
+  else if(mouth_direction==RIGHT){
     rx = 5;
     lx = 8;
   }
-  
+
   switch(mouth_shape){
   case FLAT:
     matrix.drawLine(rx,my,lx,my,mouth_color);
@@ -357,7 +375,7 @@ void draw_mouth()
     matrix.drawPixel(lx,my,mouth_color);
     break;
   case BIGOPEN:
-    matrix.drawLine(rx+1,my-2,ly-1,my-2,mouth_color);
+    matrix.drawLine(rx+1,my-2,lx-1,my-2,mouth_color);
     matrix.drawLine(rx,my-1,rx,my,mouth_color);
     matrix.drawLine(lx,my-1,lx,my,mouth_color);
     matrix.drawLine(rx+1,my+1,lx-1,my+1,mouth_color);
@@ -491,25 +509,36 @@ void eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye:
     eye_enabled = true;
   }
   else{
-    if(req.update_what == req.FULL_FACE){
+    if(req.which_part == req.FULL_FACE){
       face_mode = true;
       face_shape = req.face_shape;
     }
-    else if(req.update_what == req.EYES || req.update_what == req.BOTH){
+    else if(req.which_part == req.EYES || req.which_part == req.BOTH){
       face_mode = false;
-      if(req.update_what_eyes == req.DIRECTION || req.update_what_eyes == req.BOTH){
+      if(req.which_feature == req.DIRECTION || req.which_feature == req.BOTH){
         eye_direction = req.eye_direction;
       } 
-      else if(req.update_what_eyes == req.SHAPE || req.update_what_eyes == req.BOTH){
+      else if(req.which_feature == req.SHAPE || req.which_feature == req.BOTH){
         eye_shape = req.eye_shape;
       }
-      else if(req.update_what == req.MOUTH || req.update_what == req.BOTH){
-        face_mode = false;
-        mouth_shape = req.mouth_shape;
+      else if(req.which_feature == req.COLOR){
+        eye_color_idx = req.eye_color;
       }
     }
-    res.response = req.SUCCESS;
+    else if(req.which_part == req.MOUTH || req.which_part == req.BOTH){
+      face_mode = false;
+      if(req.which_feature == req.DIRECTION || req.which_feature == req.BOTH){
+        mouth_direction = req.mouth_direction;
+      } 
+      else if(req.which_feature == req.SHAPE || req.which_feature == req.BOTH){
+        mouth_shape = req.mouth_shape;
+      }
+      else if(req.which_feature == req.COLOR){
+        mouth_color_idx = req.mouth_color;
+      }
+    }
   }
+  res.response = req.SUCCESS;
 }
 
 std_msgs::Int16 limit_switch_msg;
@@ -637,6 +666,9 @@ void loop()
   nh.spinOnce();
   delay(10);
 }
+
+
+
 
 
 

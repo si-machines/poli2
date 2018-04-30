@@ -48,7 +48,8 @@ int8 FULL_FACE = 3
 #What to update for eyes
 int8 DIRECTION = 0
 int8 SHAPE = 1
-#BOTH = 2, from above
+#BOTH = 2, from above, updates direction and shape but not color
+int8 COLOR = 3
 
 #Eye directions
 int8 CENTER = 0
@@ -57,13 +58,15 @@ int8 RIGHT = 2
 
 #goal definition
 int8 command
-int8 update_what
-int8 update_what_eyes
-int8 eye_direction
+int8 which_part
+int8 which_feature
 int8 face_shape
+int8 eye_direction
 int8 eye_shape
+int8 eye_color
 int8 mouth_direction
 int8 mouth_shape
+int8 mouth_color
 ---
 #result definition
 int8 response
