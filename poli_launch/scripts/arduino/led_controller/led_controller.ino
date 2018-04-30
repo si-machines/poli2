@@ -83,7 +83,9 @@ const uint8_t SAD = 8;
 const uint8_t SIDERIGHT = 9;
 const uint8_t HEART = 10;
 const uint8_t SLEEPY = 11;
-const uint8_t SLEEPY2 = 12;
+const uint8_t HAPPY_WIDE = 12;
+const uint8_t SLEEPY_WIDE = 13;
+const uint8_t DEAD = 14;
 
 //Mouth shape constants
 const uint8_t FLAT = 0;
@@ -95,10 +97,15 @@ const uint8_t SMILE = 5;
 const uint8_t FROWN = 6;
 const uint8_t BIGOPEN = 7;
 const uint8_t SQUIGGLE = 8;
+const uint8_t WHISTLE = 9;
 
 //Full face constants
 const uint8_t HI = 0;
 
+//Direction constants
+const uint8_t CENTER = 0;
+const uint8_t LEFT = 1;
+const uint8_t RIGHT = 2;
 
 int ear_mode = EAR_BREATH;
 rgb_color ear_color = rgb_color(255, 255, 255);
@@ -152,67 +159,216 @@ void cry_eyes()
 
 void draw_eyes()
 {
+  // eye centers
+  int rx = 3;
+  int lx = 12;
+  //robot's r/l
+  if(eye_direction==LEFT){
+    rx = 4;
+    lx = 13;
+  }else if(eye_direction==RIGHT){
+    rx = 2;
+    lx = 11;
+  }
+
+  int ry = 3;
+  int ly = 3;
+  
   switch(eye_shape){
   case NORMAL:
-    matrix.fillRect(2,2,3,3,eye_color);
-    matrix.drawPixel(3,1,eye_color);
-    matrix.drawPixel(3,5,eye_color);
-    matrix.fillRect(11,2,3,3,eye_color);
-    matrix.drawPixel(12,1,eye_color);
-    matrix.drawPixel(12,5,eye_color);
+    matrix.fillRect(rx-1,ry-1,3,3,eye_color);
+    matrix.drawPixel(rx,ry-2,eye_color);
+    matrix.drawPixel(rx,ry+2,eye_color);
+    
+    matrix.fillRect(lx-1,ly-1,3,3,eye_color);
+    matrix.drawPixel(lx,ly-2,eye_color);
+    matrix.drawPixel(lx,ly+2,eye_color);
     break;
   case CLOSE:
+    matrix.drawLine(rx-1,ry,rx+1,ry,eye_color);
+    matrix.drawLine(lx-1,ly,lx+1,ly,eye_color);
     break;
   case CRY:
+    matrix.drawLine(rx-1,ry-2,rx+1,ry-2,eye_color);
+    matrix.drawLine(rx,ry-2,rx,ry+2,eye_color);
+    
+    matrix.drawLine(lx-1,ly-2,lx+1,ly-2,eye_color);
+    matrix.drawLine(lx,ly-2,lx,ly+2,eye_color);    
     break;
   case SQUINT:
+    matrix.drawLine(rx-1,ry-2,rx+1,ry,eye_color);
+    matrix.drawLine(rx+1,ry,rx-1,ry+2,eye_color);
+    
+    matrix.drawLine(lx+1,ly-2,lx-1,ly,eye_color);
+    matrix.drawLine(lx-1,ly,lx+1,ly+2,eye_color);   
     break;
   case WINK:
+    matrix.drawLine(rx-1,ry-2,rx+1,ry,eye_color);
+    matrix.drawLine(rx+1,ry,rx-1,ry+2,eye_color);
+
+    matrix.fillRect(lx-1,ly-1,3,3,eye_color);
+    matrix.drawPixel(lx,ly-2,eye_color);
+    matrix.drawPixel(lx,ly+2,eye_color);
     break;
   case MAD:
+    matrix.drawLine(rx-1,ry-2,rx-1,ry+1,eye_color);
+    matrix.drawLine(rx,ry-1,rx,ry+2,eye_color);
+    matrix.drawLine(rx+1,ry,rx+1,ry+1,eye_color);
+
+    matrix.drawLine(lx-1,ly,lx-1,ly+1,eye_color);
+    matrix.drawLine(lx,ly-1,lx,ly+2,eye_color);
+    matrix.drawLine(lx+1,ly-2,lx+1,ly+1,eye_color);
+    break;
+  case SAD:
+    matrix.drawLine(rx-1,ry,rx-1,ry+1,eye_color);
+    matrix.drawLine(rx,ry-1,rx,ry+2,eye_color);
+    matrix.drawLine(rx+1,ry-2,rx+1,ry+1,eye_color);
+
+    matrix.drawLine(lx-1,ly-2,lx-1,ly+1,eye_color);
+    matrix.drawLine(lx,ly-1,lx,ly+2,eye_color);
+    matrix.drawLine(lx+1,ly,lx+1,ly+1,eye_color);
     break;
   case SIDELEFT:
+    matrix.drawLine(rx-1,ry,rx+1,ry,eye_color);
+    matrix.drawPixel(rx+1,ry+1,eye_color);
+    
+    matrix.drawLine(lx-1,ly,lx+1,ly,eye_color);
+    matrix.drawPixel(lx+1,ry+1,eye_color);
     break;
   case SIDERIGHT:
+    matrix.drawLine(rx-1,ry,rx+1,ry,eye_color);
+    matrix.drawPixel(rx-1,ry+1,eye_color);
+    
+    matrix.drawLine(lx-1,ly,lx+1,ly,eye_color);
+    matrix.drawPixel(lx-1,ry+1,eye_color);
     break;
   case HEART:
+    matrix.fillRect(rx-1,ry-1,3,3,eye_color);
+    matrix.drawPixel(rx,ry+2,eye_color);
+    matrix.drawLine(rx-2,ry-1,rx-2,ry,eye_color);
+    matrix.drawLine(rx+2,ry-1,rx+2,ry,eye_color);
+    matrix.drawPixel(rx-1,ry-2,eye_color);
+    matrix.drawPixel(rx+1,ry-2,eye_color);
+    
+    matrix.fillRect(lx-1,ly-1,3,3,eye_color);
+    matrix.drawPixel(lx,ly+2,eye_color);
+    matrix.drawLine(lx-2,ly-1,lx-2,ly,eye_color);
+    matrix.drawLine(lx+2,ly-1,lx+2,ly,eye_color);
+    matrix.drawPixel(lx-1,ly-2,eye_color);
+    matrix.drawPixel(lx+1,ly-2,eye_color);
     break;
   case SLEEPY:
+    matrix.drawLine(rx-1,ry-1,rx-1,ry+1,eye_color);
+    matrix.drawLine(rx+1,ry-1,rx+1,ry+1,eye_color);
+    matrix.drawPixel(rx,ry+1,eye_color);
+
+    matrix.drawLine(lx-1,ly-1,lx-1,ly+1,eye_color);
+    matrix.drawLine(lx+1,ly-1,lx+1,ly+1,eye_color);
+    matrix.drawPixel(lx,ly+1,eye_color);
     break;
-  case SLEEPY2:
+  case HAPPY:
+    matrix.drawLine(rx-1,ry-1,rx-1,ry+1,eye_color);
+    matrix.drawLine(rx+1,ry-1,rx+1,ry+1,eye_color);
+    matrix.drawPixel(rx,ry-1,eye_color);
+
+    matrix.drawLine(lx-1,ly-1,lx-1,ly+1,eye_color);
+    matrix.drawLine(lx+1,ly-1,lx+1,ly+1,eye_color);
+    matrix.drawPixel(lx,ly-1,eye_color);
+    break;
+  case SLEEPY_WIDE:
+    matrix.drawLine(rx,ry+1,rx+1,ry+1,eye_color);
+    matrix.drawPixel(rx-1,ry,eye_color);
+    matrix.drawPixel(rx+2,ry,eye_color);
+
+    matrix.drawLine(lx-1,ly+1,lx,ly+1,eye_color);
+    matrix.drawPixel(lx-2,ly,eye_color);
+    matrix.drawPixel(lx+1,ly,eye_color);
+    break;
+  case HAPPY_WIDE:
+    matrix.drawLine(rx,ry-1,rx+1,ry-1,eye_color);
+    matrix.drawPixel(rx-1,ry,eye_color);
+    matrix.drawPixel(rx+2,ry,eye_color);
+
+    matrix.drawLine(lx-1,ly-1,lx,ly-1,eye_color);
+    matrix.drawPixel(lx-2,ly,eye_color);
+    matrix.drawPixel(lx+1,ly,eye_color);
+    break;
+  case DEAD:
+    matrix.drawLine(rx-1,ry-2,rx+1,ry+2,eye_color);
+    matrix.drawLine(rx+1,ry-2,rx-1,ry+2,eye_color);
+
+    matrix.drawLine(lx-1,ly-2,lx+1,ly+2,eye_color);
+    matrix.drawLine(lx+1,ly-2,lx-1,ly+2,eye_color);   
     break;
   default:
-    matrix.fillRect(2,2,3,3,eye_color);
-    matrix.drawPixel(3,1,eye_color);
-    matrix.drawPixel(3,5,eye_color);
-    matrix.fillRect(11,2,3,3,eye_color);
-    matrix.drawPixel(12,1,eye_color);
-    matrix.drawPixel(12,5,eye_color);
+    matrix.fillRect(rx-1,ry-1,3,3,eye_color);
+    matrix.drawPixel(rx,ry-2,eye_color);
+    matrix.drawPixel(rx,ry+2,eye_color);
+    matrix.fillRect(lx-1,ly-1,3,3,eye_color);
+    matrix.drawPixel(lx,ly-2,eye_color);
+    matrix.drawPixel(lx,ly+2,eye_color);
     break;
   } 
 }
 
 void draw_mouth()
 {
-  switch(eye_shape){
+  //note: robot's r/l!
+  int rx = 6;
+  int lx = 9;
+  int my = 6;
+
+  if(mouth_direction==LEFT){
+    rx = 7;
+    lx = 10;
+  }else if(mouth_direction==RIGHT){
+    rx = 5;
+    lx = 8;
+  }
+  
+  switch(mouth_shape){
   case FLAT:
-    matrix.drawLine(6,6,9,6,mouth_color);
+    matrix.drawLine(rx,my,lx,my,mouth_color);
     break;
   case GRIN:
+    matrix.drawLine(rx,my-1,lx,my-1,mouth_color);
+    matrix.drawLine(rx+1,my,lx-1,my,mouth_color);
     break;
   case GRIMACE:
+    matrix.drawLine(rx,my,lx,my,mouth_color);
+    matrix.drawLine(rx+1,my-1,lx-1,my-1,mouth_color);
     break;
   case OPEN:
+    matrix.drawLine(rx,my,lx,my,mouth_color);
+    matrix.drawLine(rx+1,my-1,lx-1,my-1,mouth_color);
+    matrix.drawLine(rx+1,my+1,lx-1,my+1,mouth_color);
     break;
   case LONGFACE:
+    matrix.drawLine(rx-4,my+1,lx+4,my+1,mouth_color);
     break;
   case SMILE:
+    matrix.drawLine(rx+1,my,lx-1,my,mouth_color);
+    matrix.drawPixel(rx,my-1,mouth_color);
+    matrix.drawPixel(lx,my-1,mouth_color);
     break;
-  case FROWN:  
+  case FROWN:
+    matrix.drawLine(rx+1,my-1,lx-1,my-1,mouth_color);
+    matrix.drawPixel(rx,my,mouth_color);
+    matrix.drawPixel(lx,my,mouth_color);
     break;
   case BIGOPEN:
+    matrix.drawLine(rx+1,my-2,ly-1,my-2,mouth_color);
+    matrix.drawLine(rx,my-1,rx,my,mouth_color);
+    matrix.drawLine(lx,my-1,lx,my,mouth_color);
+    matrix.drawLine(rx+1,my+1,lx-1,my+1,mouth_color);
     break;
   case SQUIGGLE:
+    matrix.drawLine(rx+1,my,lx-1,my,mouth_color);
+    matrix.drawLine(rx-1,my,rx,my-1,mouth_color);
+    matrix.drawLine(lx+1,my,lx,my-1,mouth_color);
+    break;
+  case WHISTLE:
+    matrix.fillRect(rx+1,my,2,2,mouth_color);
     break;
   default:
     matrix.drawLine(6,6,9,6,mouth_color);

@@ -20,7 +20,9 @@ int8 SAD = 8
 int8 SIDERIGHT = 9
 int8 HEART = 10
 int8 SLEEPY = 11
-int8 SLEEPY2 = 12
+int8 HAPPY_WIDE = 12
+int8 SLEEPY_WIDE = 13
+int8 DEAD = 14
 
 #Mouth shape constants
 int8 FLAT = 0
@@ -32,6 +34,7 @@ int8 SMILE = 5
 int8 FROWN = 6
 int8 BIGOPEN = 7
 int8 SQUIGGLE = 8
+int8 WHISTLE = 9
 
 #Full face constants
 int8 HI = 0
