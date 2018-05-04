@@ -123,9 +123,9 @@ boolean ear_enabled = true;
 
 boolean eye_enabled = true;
 boolean face_mode = false;
-int eye_shape = 10; // 13: sleepy
+int eye_shape = 0; // 13: sleepy
 int eye_direction = 0;
-int eye_color_idx = 0;
+int eye_color_idx = 4;
 int mouth_shape = 5; //smile
 int mouth_direction = 0;
 int mouth_color_idx = 0;
