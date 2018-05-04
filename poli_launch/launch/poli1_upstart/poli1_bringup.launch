@@ -1,4 +1,6 @@
 <launch>
+
+  <rosparam param="ROBOT_NAME">"poli2"</rosparam>
   
   <!-- Start vacuum pump driver -->
   <include file="$(find poli_launch)/launch/poli1_upstart/gripper_pump.launch"/>
