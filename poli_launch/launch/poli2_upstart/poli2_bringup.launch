@@ -1,5 +1,7 @@
 <launch>
 
+  <rosparam param="ROBOT_NAME">"poli2"</rosparam>
+
   <!-- Bring up navigation stack -->
   <include file="$(find poli_launch)/launch/map_navigation.launch"/>
 
