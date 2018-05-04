@@ -142,15 +142,31 @@
 
         <xacro:kinova_armlink link_name="${prefix}_link_6" link_mesh="${link_6_mesh}" use_ring_mesh="true" ring_mesh="ring_small" mesh_no="${link_6_mesh_no}"/>
         <xacro:kinova_armjoint joint_name="${prefix}_joint_6" type="${joint_6_type}" parent="${prefix}_link_5" child="${prefix}_link_6" joint_axis_xyz="${joint_6_axis_xyz}" joint_origin_xyz="${joint_6_origin_xyz}" joint_origin_rpy="${joint_6_origin_rpy}" joint_lower_limit="${joint_6_lower_limit}" joint_upper_limit="${joint_6_upper_limit}"/>
+	
+	<joint name="${prefix}ee_fixed_joint" type="fixed">
+            <parent link="${prefix}_link_6" />
+            <child link = "${prefix}ee_base" />
+            <origin xyz="0 0 -0.09380704" rpy="${M_PI} ${M_PI/2} 0" /> <!--0.09380704156-->
+        </joint>
 
+        <link name="${prefix}ee_base"/>
+ 
+        <!-- Add in an EEF link for the center of the gripper -->
+        <joint name="${prefix}ee_gripper" type="fixed">
+            <parent link="${prefix}ee_base" />
+            <child link ="${prefix}ee_link" />
+            <origin xyz="0.13 0 0" />
+        </joint>
+
+	<link name="${prefix}ee_link"/>
         
-        <xacro:weiss_mount link_name="${prefix}_link_7" joint_name="${prefix}_joint_7" parent="${prefix}_link_6">
+        <!--xacro:weiss_mount link_name="${prefix}_link_7" joint_name="${prefix}_joint_7" parent="${prefix}_link_6">
             <origin xyz="${joint_7_origin_xyz}" rpy="-${J_PI/2} 0 0"/>
-        </xacro:weiss_mount>
+        </xacro:weiss_mount-->
 
-        <xacro:wsg_32_xacro name="wsg_50_gripper" parent="${prefix}_link_7">
+        <!--xacro:wsg_32_xacro name="wsg_50_gripper" parent="${prefix}_link_7">
             <origin xyz="0.0001 0 0.085" rpy="0 0 -${J_PI/2}"/>
-        </xacro:wsg_32_xacro>
+        </xacro:wsg_32_xacro-->
 
     </xacro:macro>
 

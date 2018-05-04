@@ -6,7 +6,7 @@
   <!-- Start pillar driver and encoder clearing utility -->
   <include file="$(find poli_launch)/launch/poli1_upstart/pillar.launch"/>
   
-  <!-- Start LED driver and pan/tilt zero switch manager-->
-  <include file="$(find poli_launch)/launch/poli1_upstart/led_controller.launch"/>
+  <!-- Start LED driver and pan/tilt zero switch manager | commented out for led debugging SM -->
+  <!-- include file="$(find poli_launch)/launch/poli1_upstart/led_controller.launch"/ -->
 
 </launch>

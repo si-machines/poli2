@@ -1,3 +1,4 @@
+
 /* Read Quadrature Encoder
   * Connect Encoder to Pins encoder0PinA, encoder0PinB, and +5V.
   *
@@ -58,7 +59,7 @@ ros::NodeHandle  nh;
   pos[0] = act_pos / 1000;
   cur_state.position = pos;
   cur_state.header.stamp = nh.now();
-  diag_pub.publish(&diagAr);
+//  diag_pub.publish(&diagAr);
   p.publish(&cur_state);
  }
 

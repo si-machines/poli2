@@ -3,20 +3,18 @@
   <!-- Bring up navigation stack -->
   <include file="$(find poli_launch)/launch/map_navigation.launch"/>
 
-  <!-- Bring up Jaco arm 
+  <!-- Bring up Jaco arm--> 
   <include file="$(find poli_launch)/launch/kinova_arm.launch"/>
-  -->
 
-  <!-- Bring up MoveIt! 
+  <!-- Bring up MoveIt! -->
   <include file="$(find poli2_full_moveit)/launch/moveit.launch"/>
-  -->
 
   <!-- Bring up pan tilt motors -->  
   <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch"/>
   
 
-  <!-- Bring up astra camera -->
-  <include file="$(find astra_launch)/launch/astra.launch"/>
+  <!-- Bring up astra camera | commented out for intel camera testing -SM  -->
+  <!-- include file="$(find astra_launch)/launch/astra.launch"/-->
 
   <!-- Bring up base drivers -->
   <include file="$(find poli_launch)/launch/base_bringup.launch"/>

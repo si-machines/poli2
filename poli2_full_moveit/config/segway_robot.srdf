@@ -21,8 +21,6 @@
     </group>
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
     <passive_joint name="pillar_telescope_joint" />
-    <passive_joint name="wsg_50_gripper_base_joint_gripper_left" />
-    <passive_joint name="wsg_50_gripper_base_joint_gripper_right" />
     <passive_joint name="front_caster_swivel" />
     <passive_joint name="front_caster_wheel" />
     <passive_joint name="left_wheel" />
@@ -37,6 +35,7 @@
     <disable_collisions link1="aux_battery_link" link2="front_caster_swivel_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="front_caster_wheel_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="front_laser_link" reason="Never" />
+    <disable_collisions link1="aux_battery_link" link2="gripper_finger1_knuckle_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="hmi_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="hmi_plate_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="inertial_collision_link" reason="Default" />
@@ -44,6 +43,9 @@
     <disable_collisions link1="aux_battery_link" link2="j2s7s300_link_2" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="j2s7s300_link_3" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="aux_battery_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="aux_battery_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="aux_battery_link" link2="j2s7s300_link_7" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="mcu_1_battery_link" reason="Never" />
@@ -59,6 +61,7 @@
     <disable_collisions link1="aux_battery_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="aux_battery_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="aux_battery_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="base_chassis_link" link2="base_plate_link" reason="Adjacent" />
     <disable_collisions link1="base_chassis_link" link2="camera_link" reason="Never" />
@@ -72,6 +75,7 @@
     <disable_collisions link1="base_chassis_link" link2="j2s7s300_link_1" reason="Never" />
     <disable_collisions link1="base_chassis_link" link2="j2s7s300_link_2" reason="Never" />
     <disable_collisions link1="base_chassis_link" link2="j2s7s300_link_3" reason="Never" />
+    <disable_collisions link1="base_chassis_link" link2="j2s7s300_link_4" reason="Never" />
     <disable_collisions link1="base_chassis_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="base_chassis_link" link2="left_wheel_link" reason="Adjacent" />
     <disable_collisions link1="base_chassis_link" link2="mcu_1_battery_link" reason="Adjacent" />
@@ -87,6 +91,7 @@
     <disable_collisions link1="base_chassis_link" link2="right_wheel_link" reason="Adjacent" />
     <disable_collisions link1="base_chassis_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="base_chassis_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="base_chassis_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="base_chassis_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="base_plate_link" link2="camera_link" reason="Never" />
     <disable_collisions link1="base_plate_link" link2="front_caster_plate_link" reason="Never" />
@@ -115,6 +120,7 @@
     <disable_collisions link1="base_plate_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="base_plate_link" link2="rmp_plate2_link" reason="Adjacent" />
     <disable_collisions link1="base_plate_link" link2="rmp_plate3_link" reason="Adjacent" />
+    <disable_collisions link1="base_plate_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="base_plate_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="camera_link" link2="front_caster_plate_link" reason="Never" />
     <disable_collisions link1="camera_link" link2="front_caster_swivel_link" reason="Never" />
@@ -124,6 +130,7 @@
     <disable_collisions link1="camera_link" link2="hmi_plate_link" reason="Never" />
     <disable_collisions link1="camera_link" link2="inertial_collision_link" reason="Never" />
     <disable_collisions link1="camera_link" link2="j2s7s300_link_1" reason="Never" />
+    <disable_collisions link1="camera_link" link2="j2s7s300_link_2" reason="Default" />
     <disable_collisions link1="camera_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="camera_link" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="camera_link" link2="mcu_1_battery_link" reason="Never" />
@@ -139,6 +146,7 @@
     <disable_collisions link1="camera_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="camera_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="camera_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="camera_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="camera_link" link2="tilt_link" reason="Adjacent" />
     <disable_collisions link1="front_caster_plate_link" link2="front_caster_swivel_link" reason="Adjacent" />
     <disable_collisions link1="front_caster_plate_link" link2="front_caster_wheel_link" reason="Never" />
@@ -165,9 +173,12 @@
     <disable_collisions link1="front_caster_plate_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="front_caster_plate_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="front_caster_plate_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="front_caster_wheel_link" reason="Adjacent" />
     <disable_collisions link1="front_caster_swivel_link" link2="front_laser_link" reason="Never" />
+    <disable_collisions link1="front_caster_swivel_link" link2="gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="front_caster_swivel_link" link2="gripper_finger2_knuckle_link" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="hmi_link" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="hmi_plate_link" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="inertial_collision_link" reason="Never" />
@@ -175,6 +186,8 @@
     <disable_collisions link1="front_caster_swivel_link" link2="j2s7s300_link_2" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="j2s7s300_link_3" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="front_caster_swivel_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="front_caster_swivel_link" link2="j2s7s300_link_6" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="mcu_1_battery_link" reason="Never" />
@@ -190,8 +203,10 @@
     <disable_collisions link1="front_caster_swivel_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="front_caster_swivel_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="front_caster_swivel_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="front_laser_link" reason="Never" />
+    <disable_collisions link1="front_caster_wheel_link" link2="gripper_finger2_knuckle_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="hmi_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="hmi_plate_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="inertial_collision_link" reason="Never" />
@@ -200,6 +215,8 @@
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_3" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_4" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_7" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="mcu_1_battery_link" reason="Never" />
@@ -215,7 +232,11 @@
     <disable_collisions link1="front_caster_wheel_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="front_caster_wheel_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="front_caster_wheel_link" link2="tilt_link" reason="Never" />
+    <disable_collisions link1="front_laser_link" link2="gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="front_laser_link" link2="gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="front_laser_link" link2="gripper_finger2_knuckle_link" reason="Never" />
     <disable_collisions link1="front_laser_link" link2="hmi_link" reason="Never" />
     <disable_collisions link1="front_laser_link" link2="hmi_plate_link" reason="Never" />
     <disable_collisions link1="front_laser_link" link2="inertial_collision_link" reason="Never" />
@@ -238,7 +259,86 @@
     <disable_collisions link1="front_laser_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="front_laser_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="front_laser_link" link2="rmp_plate3_link" reason="Adjacent" />
+    <disable_collisions link1="front_laser_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="front_laser_link" link2="tilt_link" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_base_link" link2="gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_base_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_base_link" link2="j2s7s300_link_7" reason="Adjacent" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="gripper_finger1_finger_tip_link" reason="Default" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_link" link2="rear_laser_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger1_finger_tip_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger1_inner_knuckle_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="rear_laser_link" reason="Never" />
+    <disable_collisions link1="gripper_finger1_knuckle_link" link2="sonar_link_1" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="gripper_finger2_finger_tip_link" reason="Default" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_link" link2="sonar_link_1" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_tip_link" link2="gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="gripper_finger2_finger_tip_link" link2="gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_tip_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_tip_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_tip_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_tip_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger2_finger_tip_link" link2="sonar_link_1" reason="Never" />
+    <disable_collisions link1="gripper_finger2_inner_knuckle_link" link2="gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="gripper_finger2_inner_knuckle_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger2_inner_knuckle_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger2_inner_knuckle_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger2_inner_knuckle_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger2_knuckle_link" link2="j2s7s300_link_4" reason="Never" />
+    <disable_collisions link1="gripper_finger2_knuckle_link" link2="j2s7s300_link_5" reason="Never" />
+    <disable_collisions link1="gripper_finger2_knuckle_link" link2="j2s7s300_link_6" reason="Never" />
+    <disable_collisions link1="gripper_finger2_knuckle_link" link2="j2s7s300_link_7" reason="Never" />
+    <disable_collisions link1="gripper_finger2_knuckle_link" link2="rear_caster_wheel_link" reason="Never" />
+    <disable_collisions link1="gripper_finger2_knuckle_link" link2="rear_laser_link" reason="Never" />
     <disable_collisions link1="hmi_link" link2="hmi_plate_link" reason="Adjacent" />
     <disable_collisions link1="hmi_link" link2="inertial_collision_link" reason="Never" />
     <disable_collisions link1="hmi_link" link2="j2s7s300_link_1" reason="Never" />
@@ -259,6 +359,7 @@
     <disable_collisions link1="hmi_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="hmi_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="hmi_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="hmi_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="hmi_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="hmi_plate_link" link2="inertial_collision_link" reason="Never" />
     <disable_collisions link1="hmi_plate_link" link2="j2s7s300_link_1" reason="Never" />
@@ -280,10 +381,12 @@
     <disable_collisions link1="hmi_plate_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="hmi_plate_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="hmi_plate_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="hmi_plate_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="hmi_plate_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="inertial_collision_link" link2="j2s7s300_link_1" reason="Never" />
     <disable_collisions link1="inertial_collision_link" link2="j2s7s300_link_2" reason="Never" />
     <disable_collisions link1="inertial_collision_link" link2="j2s7s300_link_3" reason="Never" />
+    <disable_collisions link1="inertial_collision_link" link2="j2s7s300_link_4" reason="Never" />
     <disable_collisions link1="inertial_collision_link" link2="j2s7s300_link_base" reason="Never" />
     <disable_collisions link1="inertial_collision_link" link2="left_wheel_link" reason="Default" />
     <disable_collisions link1="inertial_collision_link" link2="mcu_1_battery_link" reason="Default" />
@@ -299,6 +402,7 @@
     <disable_collisions link1="inertial_collision_link" link2="right_wheel_link" reason="Default" />
     <disable_collisions link1="inertial_collision_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="inertial_collision_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="inertial_collision_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="inertial_collision_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_1" link2="j2s7s300_link_2" reason="Adjacent" />
     <disable_collisions link1="j2s7s300_link_1" link2="j2s7s300_link_3" reason="Never" />
@@ -319,6 +423,7 @@
     <disable_collisions link1="j2s7s300_link_1" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_1" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_1" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="j2s7s300_link_1" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="j2s7s300_link_1" link2="tilt_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="j2s7s300_link_3" reason="Adjacent" />
     <disable_collisions link1="j2s7s300_link_2" link2="j2s7s300_link_4" reason="Never" />
@@ -326,6 +431,7 @@
     <disable_collisions link1="j2s7s300_link_2" link2="j2s7s300_link_6" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="mcu_1_battery_link" reason="Never" />
+    <disable_collisions link1="j2s7s300_link_2" link2="neck_base_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="pan_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="rear_caster_plate_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="rear_caster_swivel_link" reason="Never" />
@@ -334,6 +440,8 @@
     <disable_collisions link1="j2s7s300_link_2" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_2" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="j2s7s300_link_2" link2="sonar_link_1" reason="Never" />
+    <disable_collisions link1="j2s7s300_link_2" link2="tilt_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_3" link2="j2s7s300_link_4" reason="Adjacent" />
     <disable_collisions link1="j2s7s300_link_3" link2="j2s7s300_link_5" reason="Never" />
     <disable_collisions link1="j2s7s300_link_3" link2="j2s7s300_link_6" reason="Never" />
@@ -354,36 +462,19 @@
     <disable_collisions link1="j2s7s300_link_4" link2="rear_laser_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_4" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_4" link2="rmp_plate3_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_4" link2="wsg_50_gripper_base_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_4" link2="wsg_50_gripper_base_link_gripper_left" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_4" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_4" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_4" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_5" link2="j2s7s300_link_6" reason="Adjacent" />
     <disable_collisions link1="j2s7s300_link_5" link2="mcu_1_battery_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_5" link2="rear_caster_swivel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_5" link2="rear_caster_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_5" link2="rear_laser_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_5" link2="wsg_50_gripper_base_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_5" link2="wsg_50_gripper_base_link_gripper_left" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_5" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_5" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_5" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
+    <disable_collisions link1="j2s7s300_link_5" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_6" link2="j2s7s300_link_7" reason="Adjacent" />
+    <disable_collisions link1="j2s7s300_link_6" link2="mcu_1_battery_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_6" link2="rear_caster_swivel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_6" link2="rear_caster_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_6" link2="rear_laser_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_base_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_base_link_gripper_left" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_6" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
+    <disable_collisions link1="j2s7s300_link_7" link2="rear_caster_swivel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_7" link2="rear_caster_wheel_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_base_link" reason="Adjacent" />
-    <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_base_link_gripper_left" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
-    <disable_collisions link1="j2s7s300_link_7" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_base" link2="left_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_base" link2="mcu_1_battery_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_base" link2="neck_base_link" reason="Never" />
@@ -398,6 +489,7 @@
     <disable_collisions link1="j2s7s300_link_base" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_base" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="j2s7s300_link_base" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="j2s7s300_link_base" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="j2s7s300_link_base" link2="tilt_link" reason="Never" />
     <disable_collisions link1="left_wheel_link" link2="mcu_1_battery_link" reason="Never" />
     <disable_collisions link1="left_wheel_link" link2="neck_base_link" reason="Never" />
@@ -412,6 +504,7 @@
     <disable_collisions link1="left_wheel_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="left_wheel_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="left_wheel_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="left_wheel_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="left_wheel_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="mcu_1_battery_link" link2="neck_base_link" reason="Never" />
     <disable_collisions link1="mcu_1_battery_link" link2="pan_link" reason="Never" />
@@ -425,6 +518,7 @@
     <disable_collisions link1="mcu_1_battery_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="mcu_1_battery_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="mcu_1_battery_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="mcu_1_battery_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="mcu_1_battery_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="neck_base_link" link2="pan_link" reason="Adjacent" />
     <disable_collisions link1="neck_base_link" link2="pillar_base_link" reason="Never" />
@@ -437,6 +531,7 @@
     <disable_collisions link1="neck_base_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="neck_base_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="neck_base_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="neck_base_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="neck_base_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="pan_link" link2="pillar_base_link" reason="Never" />
     <disable_collisions link1="pan_link" link2="pillar_plate_link" reason="Never" />
@@ -448,6 +543,7 @@
     <disable_collisions link1="pan_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="pan_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="pan_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="pan_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="pan_link" link2="tilt_link" reason="Adjacent" />
     <disable_collisions link1="pillar_base_link" link2="pillar_plate_link" reason="Never" />
     <disable_collisions link1="pillar_base_link" link2="pillar_telescope_link" reason="Default" />
@@ -458,6 +554,7 @@
     <disable_collisions link1="pillar_base_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="pillar_base_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="pillar_base_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="pillar_base_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="pillar_base_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="pillar_plate_link" link2="pillar_telescope_link" reason="Adjacent" />
     <disable_collisions link1="pillar_plate_link" link2="rear_caster_plate_link" reason="Never" />
@@ -467,6 +564,7 @@
     <disable_collisions link1="pillar_plate_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="pillar_plate_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="pillar_plate_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="pillar_plate_link" link2="sonar_link_1" reason="Adjacent" />
     <disable_collisions link1="pillar_plate_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="pillar_telescope_link" link2="rear_caster_plate_link" reason="Never" />
     <disable_collisions link1="pillar_telescope_link" link2="rear_caster_swivel_link" reason="Never" />
@@ -475,6 +573,7 @@
     <disable_collisions link1="pillar_telescope_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="pillar_telescope_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="pillar_telescope_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="pillar_telescope_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="pillar_telescope_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="rear_caster_plate_link" link2="rear_caster_swivel_link" reason="Adjacent" />
     <disable_collisions link1="rear_caster_plate_link" link2="rear_caster_wheel_link" reason="Never" />
@@ -482,41 +581,34 @@
     <disable_collisions link1="rear_caster_plate_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="rear_caster_plate_link" link2="rmp_plate2_link" reason="Default" />
     <disable_collisions link1="rear_caster_plate_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="rear_caster_plate_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="rear_caster_plate_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="rear_caster_swivel_link" link2="rear_caster_wheel_link" reason="Adjacent" />
     <disable_collisions link1="rear_caster_swivel_link" link2="rear_laser_link" reason="Never" />
     <disable_collisions link1="rear_caster_swivel_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="rear_caster_swivel_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="rear_caster_swivel_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="rear_caster_swivel_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="rear_caster_swivel_link" link2="tilt_link" reason="Never" />
-    <disable_collisions link1="rear_caster_swivel_link" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />
     <disable_collisions link1="rear_caster_wheel_link" link2="rear_laser_link" reason="Never" />
     <disable_collisions link1="rear_caster_wheel_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="rear_caster_wheel_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="rear_caster_wheel_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="rear_caster_wheel_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="rear_caster_wheel_link" link2="tilt_link" reason="Never" />
-    <disable_collisions link1="rear_caster_wheel_link" link2="wsg_50_gripper_base_link" reason="Never" />
-    <disable_collisions link1="rear_caster_wheel_link" link2="wsg_50_gripper_base_link_gripper_left" reason="Never" />
-    <disable_collisions link1="rear_caster_wheel_link" link2="wsg_50_gripper_base_link_gripper_right" reason="Never" />
-    <disable_collisions link1="rear_caster_wheel_link" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
     <disable_collisions link1="rear_laser_link" link2="right_wheel_link" reason="Never" />
     <disable_collisions link1="rear_laser_link" link2="rmp_plate2_link" reason="Adjacent" />
     <disable_collisions link1="rear_laser_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="rear_laser_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="rear_laser_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="right_wheel_link" link2="rmp_plate2_link" reason="Never" />
     <disable_collisions link1="right_wheel_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="right_wheel_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="right_wheel_link" link2="tilt_link" reason="Never" />
     <disable_collisions link1="rmp_plate2_link" link2="rmp_plate3_link" reason="Never" />
+    <disable_collisions link1="rmp_plate2_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="rmp_plate2_link" link2="tilt_link" reason="Never" />
+    <disable_collisions link1="rmp_plate3_link" link2="sonar_link_1" reason="Never" />
     <disable_collisions link1="rmp_plate3_link" link2="tilt_link" reason="Never" />
-    <disable_collisions link1="wsg_50_gripper_base_link" link2="wsg_50_gripper_base_link_gripper_left" reason="Adjacent" />
-    <disable_collisions link1="wsg_50_gripper_base_link" link2="wsg_50_gripper_base_link_gripper_right" reason="Adjacent" />
-    <disable_collisions link1="wsg_50_gripper_base_link" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
-    <disable_collisions link1="wsg_50_gripper_base_link" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
-    <disable_collisions link1="wsg_50_gripper_base_link_gripper_left" link2="wsg_50_gripper_base_link_gripper_right" reason="Default" />
-    <disable_collisions link1="wsg_50_gripper_base_link_gripper_left" link2="wsg_50_gripper_left_universal_finger_link" reason="Adjacent" />
-    <disable_collisions link1="wsg_50_gripper_base_link_gripper_left" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
-    <disable_collisions link1="wsg_50_gripper_base_link_gripper_right" link2="wsg_50_gripper_left_universal_finger_link" reason="Never" />
-    <disable_collisions link1="wsg_50_gripper_base_link_gripper_right" link2="wsg_50_gripper_right_universal_finger_link" reason="Adjacent" />
-    <disable_collisions link1="wsg_50_gripper_left_universal_finger_link" link2="wsg_50_gripper_right_universal_finger_link" reason="Never" />
+    <disable_collisions link1="sonar_link_1" link2="tilt_link" reason="Never" />
 </robot>
