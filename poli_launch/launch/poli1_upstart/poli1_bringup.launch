@@ -9,6 +9,12 @@
   <include file="$(find poli_launch)/launch/poli1_upstart/pillar.launch"/>
   
   <!-- Start LED driver and pan/tilt zero switch manager | commented out for led debugging SM -->
-  <!-- include file="$(find poli_launch)/launch/poli1_upstart/led_controller.launch"/ -->
+  <include file="$(find poli_launch)/launch/poli1_upstart/led_controller.launch"/>
+
+  <!-- Bring up Jaco arm-->
+  <include file="$(find poli_launch)/launch/kinova_arm.launch"/>
+
+  <!-- Bring up MoveIt! -->
+  <include file="$(find poli2_full_moveit)/launch/moveit.launch"/>
 
 </launch>
