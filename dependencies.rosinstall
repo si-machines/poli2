@@ -13,7 +13,7 @@
 - git:
     local-name: kinova_ros
     uri: https://github.com/si-machines/kinova-ros.git
-    version: kinetic_7dof
+    version: moe-devel
 - git:
     local-name: robotiq_85_gripper
     uri: https://github.com/si-machines/robotiq_85_gripper.git
