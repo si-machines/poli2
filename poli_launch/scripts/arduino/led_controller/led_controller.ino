@@ -40,8 +40,8 @@ ros::NodeHandle  nh;
 using rosserial_arduino::Test;
 
 // Define which pins to use.
-const uint8_t ears_dataPin = 9;
-const uint8_t ears_clockPin = 10;
+const uint8_t ears_dataPin = 8;
+const uint8_t ears_clockPin = 9;
 const uint8_t limitSwitchPin = 4;
 
 // Create an object for writing to the LED strip.
@@ -66,7 +66,7 @@ const uint16_t colors[] = {
 const uint16_t mycolor = colors[4];
 
 // Set the number of LEDs to control.
-const uint16_t ledCount = 90;
+const uint16_t ledCount = 56;
 
 // Create a buffer for holding the colors (3 bytes per color).
 rgb_color ear_colors[ledCount];
@@ -547,44 +547,51 @@ ros::ServiceServer<poli_msgs::LedEye::Request, poli_msgs::LedEye::Response> eye_
 ros::Publisher limit_pub("pillar/limit_switch", &limit_switch_msg);
 
 void initialize_ear_colors(){
-  for(uint16_t i = 50; i < ledCount; i++)
+  for(uint16_t i = 0; i < ledCount; i++)
   {
-    ear_colors[i] = rgb_color(255, 255, 255);
+    ear_colors[i] = rgb_color(0, 128, 0);
   }
 }
 
 //TODO once the both ears are established, need to make the limits (i=50) more concrete
 // and document it
 uint16_t additor = 1;
+uint16_t breath_color = 16;
+bool darken = false;
 void writeEar(){
   uint8_t time = millis() >> 2;
   if(ear_mode == EAR_SOLID){
-    brightness = 10;
-    for(uint16_t i = 50; i < ledCount; i++)
+    brightness = 8;
+    for(uint16_t i = 0; i < ledCount; i++)
     {
       ear_colors[i] = ear_color;
     }
   }
   else if(ear_mode == EAR_GRADIENT){ 
-    brightness = 10;
-    for(uint16_t i = 50; i < ledCount; i++)
+    brightness = 8;
+    for(uint16_t i = 0; i < ledCount; i++)
     {
-      uint8_t x = time - i * 8;
+      uint8_t x = time - i;
       ear_colors[i] = rgb_color(255 - x, 255 - x, 255 - x);
     }
   }
   else if(ear_mode == EAR_BREATH){
-    if(brightness <= 7)
-      additor = 1;
-    else if(brightness >= 17)
-      additor = -1;
-    brightness += additor;
+    brightness = 8;
+    
+    if(darken){breath_color--;}else{breath_color++;}
+    if(breath_color==128){darken=true;}
+    if(breath_color==16){darken=false;}
+    for(uint16_t i = 0; i < ledCount; i++)
+    {
+      ear_colors[i] = rgb_color(0, breath_color, 0);
+    }
   }
   if(ear_enabled)
     ledStrip.write(ear_colors, ledCount, brightness);
   else
     ledStrip.write(ear_colors, ledCount, 0);
 
+   
 }
 
 
@@ -646,12 +653,12 @@ void setup()
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(10);
-  //initialize_ear_colors();
+  initialize_ear_colors();
 
   nh.initNode();
 
 
-  //nh.advertiseService(ear_server);
+  nh.advertiseService(ear_server);
 
   nh.advertiseService(eye_server);
   //nh.advertise(limit_pub);
@@ -660,7 +667,7 @@ void setup()
 void loop()
 { 
   writeEye();
-  //writeEar();
+  writeEar();
   //checkLimitSwitch();
 
   nh.spinOnce();
