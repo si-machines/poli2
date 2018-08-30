@@ -1,4 +1,6 @@
-# docker commands to get helper running
+#!/bin/bash
+# Install all needed dependencies and code for a development machine working with the
+# Segway-base Poli2 platform (i.e. Moe)
 
 sudo apt-get update
 sudo apt-get install -yq \
