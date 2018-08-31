@@ -1,0 +1,29 @@
+pub_rate: 1.0 
+base_path: '' 
+analyzers:
+  sensors:
+    type: AnalyzerGroup
+    path: Sensors
+    analyzers:
+      front_hk:
+        type: GenericAnalyzer
+        path: Front Hokuyo
+        timeout: 25.0
+        find_and_remove_prefix: front_urg_node
+        num_items: 2
+      rear_hk:
+        type: GenericAnalyzer
+        path: Rear Hokuyo
+        timeout: 25.0
+        find_and_remove_prefix: rear_urg_node
+        num_items: 2
+  manipulation:
+    type: AnalyzerGroup
+    path: Manipulation
+    analyzers:
+      weiss_gripper:
+        type: GenericAnalyzer
+        path: WSG-32 Gripper
+        timeout: 25.0
+        find_and_remove_prefix: wsg_50_driver
+        num_items: 1
