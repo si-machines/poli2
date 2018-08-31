@@ -1,0 +1,58 @@
+\chapter{Robot Overview}\label{ch:overview}
+This chapter goes over the components of the robot and how they interact with one another at a high level. 
+For more detailed information about a specific component and examples running a component through ROS see chapter ~\ref{ch:componentspecifics}.
+
+\section{Sensors}
+There are three primary types of sensors aboard PoliV2: lidar, sonar and RGB-D.
+Two lidar sensors, a Hokuyo 30EW at the front, and a Hokuyo 10LX at the rear, are used for primary localization and obstacle detection.\\
+
+A Maxbotix 1230-EZ sonar sensor is used for additional obstacle detection of surfaces not detectable by 2D laser, e.g. glass or stairs.\\
+
+Finally an Astra RGB-D camera is used for general perception. 
+While possible to fuse depth data into localization and obstacle detection, this is not done for the Astra whose primary perception is used for manipulation of objects.
+
+\section{Manipulation}
+Robotic manipulation is accomplished with a custom Kinova Jaco2 7DOF robotic manipulator fitted with a Weiss WSG-32 gripper with force-sensing finger tips. Both the arm and gripper are exposed to the ROS network.\\
+
+The robot also has two additional degrees of freedom in the pan-tilt construction on the head and neck of the robot.
+This is accomplished with a Dynamixel X Series servo for the pan degree, and a Maxon motor with planetary gearbox for the tilt degree.
+
+\section{Platform}
+The robot's mobility is provided via the Segway RMP 110 platform, which offers two wheeled differential drive. 
+The acceleration and velocity capabilities are quite high and are typically scaled back via soft limits.
+
+\subsection{Platform Power}
+Power is provided in through two means: propulsion power and auxiliary power. 
+Both are provided and charged through the RMP platform. Propulsion is strictly for internal use of the base. \\
+
+The auxiliary power supplies the computers, arm, pillar, and other components. 
+As it stands, this allows for around 4.5 hours of runtime while disconnected from the charger. 
+If running the robot connected to the charger, expect about 12 hours of run time before the auxiliary battery is depleted. \\
+
+Charging the batteries takes 8 to 10 hours due to the chemistry of the batteries. 
+See details about charging in Section \ref{sec:charging_robot}.
+
+
+\section{Computers}
+There are two computers present, each an Intel NUC \textit{NUC6i7KYK} featuring a 2.6 GHz processor, 32 Gb of RAM, and Integrated Iris 580 graphics. 
+Both PCs are networked locally and have access to network resources. 
+Additionally, each PC is responsible for a number of locally connected USB devices. 
+More on this in Chapter \ref{sec:network_configuration}.\\
+
+The PCs are enumerated with the robot as a base name, making them \texttt{poli1} and \texttt{poli2}. 
+There is a defacto user account, \texttt{poli} on each computer.
+
+\subsection{ROS Environment}
+All computers run Ubuntu 16.04 LTS and ROS Kinetic.
+
+\section{Glossary of terms}
+In the following chapters, specific terms are used to refer to the robot and its components. 
+Please refer below to help disambiguate.
+
+\begin{itemize}
+\item PoliV2/Poli2 - The name for an instance of the whole robot platform
+\item poli1 - The name for a PC on the PoliV2 platform, specifically the PC mounted on the base.
+\item poli2 - The name for a PC on the PoliV2 platform, specifically the PC mounted on the torso.
+\item poli2 high level repository - The name for the organizational repository for the PoliV2 platform. Can be found at \href{https://github.com/si-machines/poli2}{https://github.com/si-machines/poli2}
+\end{itemize}
+
