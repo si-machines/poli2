@@ -458,6 +458,9 @@ void blink_action()
     blink_round = 0;
 }
 
+ros::ServiceServer<poli_msgs::LedEar::Request, poli_msgs::LedEar::Response> ear_server("led_ear",&ear_srv_callback);
+ros::ServiceServer<poli_msgs::LedEye::Request, poli_msgs::LedEye::Response> eye_server("led_eye",&eye_srv_callback);
+
 
 void ear_srv_callback(const poli_msgs::LedEar::Request & req, poli_msgs::LedEar::Response & res){
   if(req.command == req.DISABLE){
@@ -500,7 +503,9 @@ void ear_srv_callback(const poli_msgs::LedEar::Request & req, poli_msgs::LedEar:
 
 }
 
-void eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye::Response & res){
+
+
+int eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye::Response & res){
 
   if(req.command == req.DISABLE){
     eye_enabled = false;
@@ -538,13 +543,11 @@ void eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye:
       }
     }
   }
-  res.response = req.SUCCESS;
+  eye_color_idx += 1;
+  res.response = 1; //req.SUCCESS;
+  return(1);
 }
 
-std_msgs::Int16 limit_switch_msg;
-ros::ServiceServer<poli_msgs::LedEar::Request, poli_msgs::LedEar::Response> ear_server("led_ear",&ear_srv_callback);
-ros::ServiceServer<poli_msgs::LedEye::Request, poli_msgs::LedEye::Response> eye_server("led_eye",&eye_srv_callback);
-ros::Publisher limit_pub("pillar/limit_switch", &limit_switch_msg);
 
 void initialize_ear_colors(){
   for(uint16_t i = 0; i < ledCount; i++)
@@ -579,11 +582,11 @@ void writeEar(){
     brightness = 8;
     
     if(darken){breath_color--;}else{breath_color++;}
-    if(breath_color==128){darken=true;}
+    if(breath_color==126){darken=true;}
     if(breath_color==16){darken=false;}
     for(uint16_t i = 0; i < ledCount; i++)
     {
-      ear_colors[i] = rgb_color(0, breath_color, 0);
+      ear_colors[i] = rgb_color(breath_color*2, breath_color, 0);
     }
   }
   if(ear_enabled)
@@ -637,6 +640,8 @@ void prashants_eye_loop(){
   } 
 }
 
+std_msgs::Int16 limit_switch_msg;
+ros::Publisher limit_pub("pillar/limit_switch", &limit_switch_msg);
 void checkLimitSwitch(){
   if (digitalRead(limitSwitchPin) == HIGH) {
     limit_switch_msg.data = 1;
@@ -647,9 +652,13 @@ void checkLimitSwitch(){
   limit_pub.publish(&limit_switch_msg);
 }
 
+
+
+
+
 void setup()
 {
-  //pinMode(limitSwitchPin, INPUT_PULLUP);
+  pinMode(limitSwitchPin, INPUT_PULLUP);
   matrix.begin();
   matrix.setTextWrap(false);
   matrix.setBrightness(10);
@@ -661,14 +670,14 @@ void setup()
   nh.advertiseService(ear_server);
 
   nh.advertiseService(eye_server);
-  //nh.advertise(limit_pub);
+  nh.advertise(limit_pub);
 }
 
 void loop()
 { 
   writeEye();
   writeEar();
-  //checkLimitSwitch();
+  checkLimitSwitch();
 
   nh.spinOnce();
   delay(10);
