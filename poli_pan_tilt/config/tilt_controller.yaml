@@ -1,6 +1,6 @@
 tilt_joint_motor:
   actuator_name: 'tilt_joint_actuator'
-  serial_number: '602084008801'
+  serial_number: '602084010709'
   operation_mode: 'profile_position'
   clear_faults: true
 

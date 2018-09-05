@@ -1,6 +1,6 @@
 <launch>
   <!-- TILT -->
-  <node name="tilt_driver_launcher" pkg="poli_launch" type="launch_tilt_motor" output="screen"/>
+  <node name="tilt_driver_launcher" pkg="poli_pan_tilt" type="launch_tilt_motor" output="screen"/>
 
   <!-- PAN -->
   <include file="$(find poli_pan_tilt)/launch/pan_control.launch"/>
