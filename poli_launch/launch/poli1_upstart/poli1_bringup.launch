@@ -3,7 +3,7 @@
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
   
   <!-- Start vacuum pump driver -->
-  <include file="$(find poli_launch)/launch/poli1_upstart/gripper_pump.launch"/>
+  <!-- <include file="$(find poli_launch)/launch/poli1_upstart/gripper_pump.launch"/> -->
 
   <!-- Start pillar driver and encoder clearing utility -->
   <include file="$(find poli_launch)/launch/poli1_upstart/pillar.launch"/>
@@ -16,5 +16,13 @@
 
   <!-- Bring up MoveIt! -->
   <include file="$(find poli2_full_moveit)/launch/moveit.launch"/>
+
+  <!-- Bring up pan tilt motors -->  
+  <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch"/>
+
+
+  <!-- Bring up base drivers -->
+  <include file="$(find poli_launch)/launch/base_bringup.launch"/>
+
 
 </launch>

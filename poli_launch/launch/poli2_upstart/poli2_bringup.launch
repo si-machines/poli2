@@ -14,5 +14,4 @@
   <!-- Bring up base drivers -->
   <include file="$(find poli_launch)/launch/base_bringup.launch"/>
 
-
 </launch>
