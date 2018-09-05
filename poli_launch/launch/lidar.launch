@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Front hokuyo laser -->
-  <node name="front_urg_node" pkg="urg_node" type="urg_node" output="screen">
+  <node name="front_urg_node" pkg="urg_node" type="urg_node">
     <param name="ip_address" value="10.66.171.11"/>
     <param name="frame_id" value="front_laser_link"/>
     <param name="calibrate_time" value="true"/>
@@ -14,7 +14,7 @@
 
 
   <!-- Rear hokuyo laser --> 
-  <node name="rear_urg_node" pkg="urg_node" type="urg_node" output="screen">
+  <node name="rear_urg_node" pkg="urg_node" type="urg_node">
     <param name="ip_address" value="10.66.171.12"/>
     <param name="frame_id" value="rear_laser_link"/>
     <param name="calibrate_time" value="true"/>

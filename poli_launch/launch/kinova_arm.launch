@@ -4,7 +4,7 @@
   <arg name="use_arm_urdf" default="false"/>
   
   <!-- Gripper Params --> 
-  <arg name="comport" default="/dev/ttyUSB0"/>
+  <arg name="comport" default="/dev/robotiq"/>
   <arg name="baud" default="115200"/>
   
   <!-- the version of kinova_robot.launch run must be edited s.t. no code under the urdf groups are run -->
@@ -17,10 +17,10 @@
      <param name="comport" value="$(arg comport)" />
      <param name="baud" value="$(arg baud)" />
   </node> 
-  
+
   <!-- runs the arm in standalone form -->
   <group if="$(arg use_arm_urdf)">
-    <param name="robot_description" command="$(find xacro)/xacro.py '$(find poli2_description)/robots/jaco2_custom_wrapper.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find poli2_description)/robots/jaco2_custom_wrapper.xacro'" />
   
     <!--node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node-->
 
