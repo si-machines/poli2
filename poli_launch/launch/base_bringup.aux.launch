@@ -4,7 +4,7 @@
 
   <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
   <param name="robot_description"
-    command="$(find xacro)/xacro.py '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
+    command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
 
   <!-- launch the tf tree for base -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">

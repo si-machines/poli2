@@ -46,10 +46,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/robots/jaco2_custom.xacro"/>
     <xacro:include filename="$(find kinova_description)/urdf/j2s7s300.xacro" />	
     
-    <property name="M_PI" value="3.14159"/>
-    <property name="HALF_PI" value="1.57079"/>
-    <property name="FRONT_LASER_PREFIX" value="front"/>
-    <property name="REAR_LASER_PREFIX" value="rear"/>
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="HALF_PI" value="1.57079"/>
+    <xacro:property name="FRONT_LASER_PREFIX" value="front"/>
+    <xacro:property name="REAR_LASER_PREFIX" value="rear"/>
 
     <!-- Wheel Mounting Positions -->
     <xacro:property name="track" value="0.48122440" />
