@@ -3,16 +3,16 @@
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
   
   <!-- Start vacuum pump driver -->
-  <!-- <include file="$(find poli_launch)/launch/poli1_upstart/gripper_pump.launch"/> -->
+  <!-- <include file="$(find poli2_launch)/launch/machine1_upstart/gripper_pump.launch"/> -->
 
   <!-- Start pillar driver and encoder clearing utility -->
-  <include file="$(find poli_launch)/launch/poli1_upstart/pillar.launch"/>
+  <include file="$(find poli2_launch)/launch/machine1_upstart/pillar.launch"/>
   
   <!-- Start LED driver and pan/tilt zero switch manager | commented out for led debugging SM -->
-  <include file="$(find poli_launch)/launch/poli1_upstart/led_controller.launch"/>
+  <include file="$(find poli2_launch)/launch/machine1_upstart/led_controller.launch"/>
 
   <!-- Bring up Jaco arm-->
-  <include file="$(find poli_launch)/launch/kinova_arm.launch"/>
+  <include file="$(find poli2_launch)/launch/kinova_arm.launch"/>
 
   <!-- Bring up MoveIt! -->
   <include file="$(find poli2_full_moveit)/launch/moveit.launch"/>
@@ -22,7 +22,7 @@
 
 
   <!-- Bring up base drivers -->
-  <include file="$(find poli_launch)/launch/base_bringup.launch"/>
+  <include file="$(find poli2_launch)/launch/base_bringup.launch"/>
 
 
 </launch>

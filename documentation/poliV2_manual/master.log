@@ -2146,7 +2146,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 39--40
 
 Overfull \hbox (55.56519pt too wide) in paragraph at lines 41--42
 \T1/pplx/m/n/10.95 were fully up, or it wasn't launched at all. Run-ning \T1/cm
-tt/m/n/10.95 rosrun poli_launch scan_merger.launch
+tt/m/n/10.95 rosrun poli2_launch scan_merger.launch
  []
 
 

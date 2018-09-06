@@ -3,7 +3,7 @@
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
 
   <!-- Bring up navigation stack -->
-  <include file="$(find poli_launch)/launch/map_navigation.launch"/>
+  <include file="$(find poli2_launch)/launch/map_navigation.launch"/>
 
   <!-- Bring up pan tilt motors -->  
   <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch"/>
@@ -12,6 +12,6 @@
   <!-- include file="$(find astra_launch)/launch/astra.launch"/-->
 
   <!-- Bring up base drivers -->
-  <include file="$(find poli_launch)/launch/base_bringup.launch"/>
+  <include file="$(find poli2_launch)/launch/base_bringup.launch"/>
 
 </launch>

@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
 	r_pack = rospkg.RosPack()
 	launch_path = r_pack.get_path('poli_pan_tilt')
-	launch_path_initscript = r_pack.get_path('poli_launch')
+	launch_path_initscript = r_pack.get_path('poli2_launch')
 	launch_file_name = "/launch/tilt_control.launch"
 	launch_file_name_initscript = "/launch/post_initialization_movement.launch"
 	# Setup roslaunch for tilt motor

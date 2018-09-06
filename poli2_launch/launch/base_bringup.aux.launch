@@ -28,10 +28,10 @@
   <group ns="poli">
         <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager"/>
         <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet nodelet_manager">
-            <param name="yaml_cfg_file" value="$(find poli_launch)/config/cmd_vel_mux.yaml"/>
+            <param name="yaml_cfg_file" value="$(find poli2_launch)/config/cmd_vel_mux.yaml"/>
 	</node>
   </group>
 
-  <include file="$(find poli_launch)/launch/lidar.launch"/>
+  <include file="$(find poli2_launch)/launch/lidar.launch"/>
 
 </launch>
