@@ -198,7 +198,7 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     <joint name="left_wheel">
-      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
   <link name="right_wheel_link">
@@ -240,7 +240,7 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
     <joint name="right_wheel">
-      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
   </transmission>
   <joint name="rear_caster_plate_joint" type="fixed">
@@ -303,10 +303,10 @@
   <transmission name="rear_caster_swivel_trans" type="SimpleTransmission">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rear_caster_swivel">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="rear_caster_swivel_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -348,10 +348,10 @@
   <transmission name="rear_caster_wheel_trans" type="SimpleTransmission">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rear_caster_wheel">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="rear_caster_wheel_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -415,10 +415,10 @@
   <transmission name="front_caster_swivel_trans" type="SimpleTransmission">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="front_caster_swivel">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="front_caster_swivel_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -460,10 +460,10 @@
   <transmission name="front_caster_wheel_trans" type="SimpleTransmission">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="front_caster_wheel">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="front_caster_wheel_motor">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -755,7 +755,7 @@
   <transmission name="j2s7s300_joint_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_1">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_1_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -797,7 +797,7 @@
   <transmission name="j2s7s300_joint_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_2">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_2_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -839,7 +839,7 @@
   <transmission name="j2s7s300_joint_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_3">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_3_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -881,7 +881,7 @@
   <transmission name="j2s7s300_joint_4_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_4">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_4_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -923,7 +923,7 @@
   <transmission name="j2s7s300_joint_5_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_5">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_5_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -965,7 +965,7 @@
   <transmission name="j2s7s300_joint_6_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_6">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_6_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -1016,7 +1016,7 @@
   <transmission name="j2s7s300_joint_7_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_7">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_7_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -1303,11 +1303,11 @@
   <transmission name="gripper_finger1_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="gripper_finger1_joint">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="gripper_finger1_motor">
       <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </actuator>
   </transmission>
   <gazebo>

@@ -5,11 +5,10 @@
     <arg name="driver_launch" default="false" />
     <arg name="use_hlpr_traj_exec" default="true" />
     <arg name="sim" default="false" />
-    <arg name="use_octomap" default="false" />
-    <arg name="custom_sdf" default="$(find poli2_full_moveit)/config/segway_robot.srdf"/>
+    <arg name="load_robot_description" default="true" />
 
     <include file="$(find poli2_full_moveit)/launch/planning_context.launch">
-        <arg name="load_robot_description" value="true"/>
+        <arg name="load_robot_description" value="$(arg load_robot_description)"/>
     </include>
 
     <!-- Run the main MoveIt executable with trajectory execution -->

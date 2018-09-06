@@ -132,7 +132,7 @@
   <transmission name="j2s7s300_joint_1_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_1">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_1_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -174,7 +174,7 @@
   <transmission name="j2s7s300_joint_2_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_2">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_2_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -216,7 +216,7 @@
   <transmission name="j2s7s300_joint_3_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_3">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_3_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -258,7 +258,7 @@
   <transmission name="j2s7s300_joint_4_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_4">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_4_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -300,7 +300,7 @@
   <transmission name="j2s7s300_joint_5_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_5">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_5_actuator">
       <mechanicalReduction>160</mechanicalReduction>
@@ -342,7 +342,7 @@
   <transmission name="j2s7s300_joint_6_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="j2s7s300_joint_6">
-      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="j2s7s300_joint_6_actuator">
       <mechanicalReduction>160</mechanicalReduction>

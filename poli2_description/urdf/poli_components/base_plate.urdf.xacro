@@ -23,7 +23,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="base_plate">
-  
+
     <xacro:macro name="base_plate" params="parent *origin">
         <joint name="base_plate_joint" type="fixed">
             <xacro:insert_block name="origin" />
@@ -45,7 +45,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
                     <mesh filename="package://poli2_description/meshes/components/base_plate.STL" />
                 </geometry>
             </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="1"/>
+                <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+            </inertial>
         </link>
-        
+
     </xacro:macro>
 </robot>

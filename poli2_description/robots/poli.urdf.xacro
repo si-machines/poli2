@@ -43,9 +43,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/pillar_plate.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/neck_mount.urdf.xacro"/>
 
-    <xacro:include filename="$(find poli2_description)/robots/jaco2_custom.xacro"/>
-    <xacro:include filename="$(find kinova_description)/urdf/j2s7s300.xacro" />	
-    
+    <xacro:include filename="$(find kinova_description)/urdf/j2s7s300.xacro" />
+
     <xacro:property name="M_PI" value="3.14159"/>
     <xacro:property name="HALF_PI" value="1.57079"/>
     <xacro:property name="FRONT_LASER_PREFIX" value="front"/>
@@ -59,9 +58,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:property name="wheel_length" value="0.09224900" />
     <xacro:property name="wheel_radius" value="0.2405681" />
 
-    <xacro:macro name="segway_robot">  
-        <gazebo> 
-          <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"> 
+    <xacro:macro name="segway_robot">
+        <gazebo>
+          <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
               <robotNamespace>/</robotNamespace>
           </plugin>
             <plugin name="object_controller" filename="libgazebo_ros_force_based_move.so">
@@ -79,12 +78,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
         <!-- Base link is the center of the robot's chassis between the motors projected on the ground -->
         <link name="base_link"/>
-        
+
         <!--Chassis -->
         <xacro:powerbase_110 chassis_prefix="base" parent="base_link">
             <origin xyz="0 0 ${-wheel_vertical_offset + wheel_radius}" rpy="0 0 0" />
         </xacro:powerbase_110>
-        
+
         <link name="inertial_collision_link">
 			<inertial>
 				<mass value="29.756375" />
@@ -99,12 +98,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 				</geometry>
 			</collision>
 		</link>
-		
+
 		<joint name="inertial_collision_joint" type="fixed" >
 		    <parent link="base_chassis_link" />
 		    <child link="inertial_collision_link" />
-		</joint>                    
-               
+		</joint>
+
 
         <!-- Propulsion Batteries -->
         <xacro:battery battery_prefix="mcu_1" parent="base_chassis_link">
@@ -115,13 +114,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:battery battery_prefix="aux" parent="base_chassis_link">
             <origin xyz="0.09298 0 0" rpy="0 0 ${M_PI}" />
         </xacro:battery>
-        
+
 
         <!-- HMI Box -->
         <xacro:hmi_box_110 parent="base_chassis_link">
             <origin xyz="0 0 0.09504494" rpy="0 0 0" />
         </xacro:hmi_box_110>
-        
+
         <xacro:hmi_plate_110 parent="hmi_link">
             <origin xyz="0 0 0" rpy="0 0 0" />
         </xacro:hmi_plate_110>
@@ -133,7 +132,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:i2_wheel wheel_prefix="right" parent="base_chassis_link" visual_rotation="${M_PI}">
             <origin xyz="0 ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
         </xacro:i2_wheel>
-        
+
         <!-- Segway Caster Assembly-->
         <xacro:caster_assembly_110 caster_prefix="rear" parent="base_chassis_link">
             <origin xyz="-0.32784550 0 0.03326933" rpy="0 0 ${M_PI}" />
@@ -146,15 +145,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:base_plate parent="base_chassis_link">
             <origin xyz="0.0762 0.16355 0.076" rpy="${HALF_PI} 0 -${HALF_PI}"/>
         </xacro:base_plate>
-        
+
         <xacro:rmp_plate2 parent="base_plate_link">
             <origin xyz="-0.079 -0.016 0.075" rpy="0 0 0"/>
         </xacro:rmp_plate2>
-        
+
         <xacro:rmp_plate3 parent="base_plate_link">
             <origin xyz="-0.079 0.048 0.075" rpy="${M_PI} 0 0"/>
         </xacro:rmp_plate3>
-        
+
         <xacro:pillar parent="base_plate_link">
             <origin xyz="0.2315586 0 0.0075" rpy="0 -${HALF_PI} 0"/>
         </xacro:pillar>
@@ -162,15 +161,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:pillar_plate parent="pillar_telescope_link">
             <origin xyz="-0.14899868 0.17604938 -0.14899868" rpy="0 0 0"/>
         </xacro:pillar_plate>
-	
+
         <xacro:neck_mount parent="pillar_plate_link">
             <origin xyz="0.2658 0.36 0.1915" rpy="-${HALF_PI} 0 0"/>
         </xacro:neck_mount>
 
-	<!-- Poli Jaco Arm -->	
-	<xacro:j2s7s300 base_parent="pillar_plate_link" trans="0 0.05 0.0575" rot="-${HALF_PI} -${HALF_PI} 0">	
+	<!-- Poli Jaco Arm -->
+	<xacro:j2s7s300 base_parent="pillar_plate_link" trans="0 0.05 0.0575" rot="-${HALF_PI} -${HALF_PI} 0">
 	</xacro:j2s7s300>
-        
+
         <!-- Poli Sensors -->
         <xacro:hokuyo_ust30lx laser_prefix="${REAR_LASER_PREFIX}" parent="rmp_plate2_link">
             <origin xyz="0.242 0.075 0.33" rpy="-${HALF_PI} -${HALF_PI} 0" />
@@ -183,13 +182,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:sensor_astra parent="tilt_link">
 	    <origin xyz="-0.22 0.0 -0.0624 " rpy="${HALF_PI} 0 ${M_PI+1.0472}"/>
         </xacro:sensor_astra>
-    
+
         <xacro:sensor_sonar parent="pillar_plate_link">
             <origin xyz="0.007 0.022 0.203" rpy="${HALF_PI} 0 ${HALF_PI*2}"/>
         </xacro:sensor_sonar>
-    
 
-    
+
+
     </xacro:macro>
 
 </robot>

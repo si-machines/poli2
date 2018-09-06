@@ -96,10 +96,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 			<type>transmission_interface/SimpleTransmission</type>
 
 			<joint name="${caster_prefix}_caster_swivel">
-			    <hardwareInterface>EffortJointInterface</hardwareInterface>
+			    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${caster_prefix}_caster_swivel_motor">
-			    <hardwareInterface>EffortJointInterface</hardwareInterface>
+			    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
@@ -148,10 +148,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 			<type>transmission_interface/SimpleTransmission</type>
 
 			<joint name="${caster_prefix}_caster_wheel">
-			    <hardwareInterface>EffortJointInterface</hardwareInterface>
+			    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 			</joint>
 			<actuator name="${caster_prefix}_caster_wheel_motor">
-			    <hardwareInterface>EffortJointInterface</hardwareInterface>
+			    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>

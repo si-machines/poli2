@@ -11,9 +11,3 @@ controller_list:
       - j2s7s300_joint_5
       - j2s7s300_joint_6
       - j2s7s300_joint_7
-  #- name: gripper_actions
-  #  action_ns: gripper_command
-  #  type: GripperCommand
-  #  default: true
-  #  joints:
-#    - j2s7s300_robotiq_85_left_knuckle_joint
