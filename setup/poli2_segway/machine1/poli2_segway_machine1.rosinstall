@@ -25,7 +25,7 @@
 - git:
     local-name: hlpr_manipulation
     uri: https://github.com/HLP-R/hlpr_manipulation.git
-    version: master
+    version: kinetic-devel
 - git:
     local-name: hlpr_speech
     uri: https://github.com/HLP-R/hlpr_speech.git

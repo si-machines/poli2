@@ -2,7 +2,7 @@
 # Install all needed dependencies and code for a development machine working with the
 # Segway-base Poli2 platform (i.e. Moe)
 
-sudo apt-get update
+sudo apt-get update && sudo apt-get -y upgrade
 sudo apt-get install -yq \
   apt-utils \
   dialog \
@@ -12,6 +12,7 @@ sudo apt-get install -yq \
 source /opt/ros/kinetic/setup.bash
 rosdep update
 
+cd ~
 mkdir -p poli2_segway_ws/src
 cd poli2_segway_ws/src
 catkin_init_workspace
@@ -26,8 +27,6 @@ git clone https://github.com/si-machines/wpi_jaco.git -b vector-develop && \
   touch wpi_jaco/jaco_interaction/CATKIN_IGNORE && \
   touch wpi_jaco/jaco_teleop/CATKIN_IGNORE && \
   touch wpi_jaco/wpi_jaco/CATKIN_IGNORE
-# is this segway-specific?
-git clone https://github.com/si-machines/poli2
 
 # dependencies for HLP-R
 git clone https://github.com/GT-RAIL/rail_manipulation_msgs.git
@@ -39,12 +38,8 @@ git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
  git config --global advice.detachedHead true)
 git clone https://github.com/si-machines/robotiq_85_gripper.git
 git clone https://github.com/si-machines/kinova-ros.git -b moe-devel && \
-  touch kinova-ros/kinova_moveit/CATKIN_IGNORE
-git clone https://github.com/si-machines/wpi_jaco.git -b vector-develop && \
-  touch wpi_jaco/jaco_description/CATKIN_IGNORE && \
-  touch wpi_jaco/jaco_interaction/CATKIN_IGNORE && \
-  touch wpi_jaco/jaco_teleop/CATKIN_IGNORE && \
-  touch wpi_jaco/wpi_jaco/CATKIN_IGNORE
+  touch kinova-ros/kinova_moveit/CATKIN_IGNORE && \
+  touch kinova-ros/kinova_moveit_demo/kinova_arm_moveit_demo/CATKIN_IGNORE
 
 # HLPR
 git clone https://github.com/HLP-R/hlpr_common.git -b kinetic-devel
@@ -59,10 +54,21 @@ git clone https://github.com/HLP-R/hlpr_manipulation.git -b kinetic-devel && \
   touch hlpr_manipulation/hlpr_wpi_jaco_moveit_config_two_arms/CATKIN_IGNORE
 git clone https://github.com/HLP-R/hlpr_speech.git -b kinetic-devel
 git clone https://github.com/HLP-R/hlpr_lookat.git -b kinetic-devel
-# The simulator is Vector-only (i.e. Poli1)
+# The simulator is Vector-only (i.e. Poli1)...for now
 # git clone https://github.com/HLP-R/hlpr_simulator.git -b kinetic-devel
 
+# Poli 2 platform code
+git clone https://github.com/si-machines/poli2
+
+# install all needed dependencies
 rosdep install --from-paths . --ignore-src --rosdistro=kinetic -y
 
+# post-installation steps
+sudo apt-get purge ros-kinetic-dynamixel-workbench-toolbox
+sudo wget https://raw.githubusercontent.com/tu-darmstadt-ros-pkg/hector_localization/catkin/hector_pose_estimation/hector_pose_estimation_nodelets.xml -P /opt/ros/kinetic/share/hector_pose_estimation/
+sudo rm /etc/udev/rules.d/10-local.rules
+sudo ln -s ~/catkin_ws/src/poli2/setup/poli2_segway/machine1/udev.rules /etc/udev/rules.d/10-local.rules
+
+# now build
 cd ..
 catkin build
