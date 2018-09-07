@@ -32,6 +32,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </joint>
 
         <link name="base_plate_link">
+			<!-- THESE ARE MADE UP. TODO: REPLACE WITH REAL NUMBERS-->
+            <inertial>
+                <mass value="0.078971" />
+                <origin xyz="-0.000022 -0.000090 0.035623" />
+                <inertia  ixx="0.000082"  ixy="0.000000" ixz="0.000000"
+                          iyx="0.000000" iyy="0.000081"  iyz="-0.000001"
+                          izx="0.000000"  izy="-0.000001" izz="0.000103" />
+            </inertial>
             <visual>
                 <geometry>
                     <mesh filename="package://poli2_description/meshes/components/base_plate.STL" />
