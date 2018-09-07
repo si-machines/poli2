@@ -34,13 +34,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:include filename="$(find poli2_description)/urdf/sensors/hokuyo_ust10lx.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/sensors/hokuyo_ust30lx.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/sensors/astra.urdf.xacro"/>
-    <xacro:include filename="$(find poli2_description)/urdf/sensors/sonar.urdf.xacro"/>
 
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/base_plate.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/rmp_plate2.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/rmp_plate3.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/pillar.urdf.xacro"/>
-    <xacro:include filename="$(find poli2_description)/urdf/poli_components/pillar_plate.urdf.xacro"/>
+    <xacro:include filename="$(find poli2_description)/urdf/poli_components/torso.urdf.xacro"/>
     <xacro:include filename="$(find poli2_description)/urdf/poli_components/neck_mount.urdf.xacro"/>
 
     <xacro:include filename="$(find kinova_description)/urdf/j2s7s300.xacro" />
@@ -158,16 +157,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <origin xyz="0.2315586 0 0.0075" rpy="0 -${HALF_PI} 0"/>
         </xacro:pillar>
 
-        <xacro:pillar_plate parent="pillar_telescope_link">
-            <origin xyz="-0.14899868 0.17604938 -0.14899868" rpy="0 0 0"/>
-        </xacro:pillar_plate>
 
-        <xacro:neck_mount parent="pillar_plate_link">
-            <origin xyz="0.2658 0.36 0.1915" rpy="-${HALF_PI} 0 0"/>
+	<!-- Torso -->
+
+        <xacro:torso parent="pillar_base_link">
+            <origin xyz="0.06717 -0.0308 0.06717" rpy="0 ${M_PI} 0"/>
+        </xacro:torso>
+
+        <xacro:neck_mount parent="torso_link">
+            <origin xyz="0 0.7125 0" rpy="-${HALF_PI} ${M_PI} 0"/>
         </xacro:neck_mount>
 
 	<!-- Poli Jaco Arm -->
-	<xacro:j2s7s300 base_parent="pillar_plate_link" trans="0 0.05 0.0575" rot="-${HALF_PI} -${HALF_PI} 0">
+	<xacro:j2s7s300 base_parent="torso_link" trans="0.18365 0.33377 0.14557" rot="-${HALF_PI} ${HALF_PI} 0">
 	</xacro:j2s7s300>
 
         <!-- Poli Sensors -->
@@ -180,12 +182,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </xacro:hokuyo_ust10lx>
 
         <xacro:sensor_astra parent="tilt_link">
-	    <origin xyz="-0.22 0.0 -0.0624 " rpy="${HALF_PI} 0 ${M_PI+1.0472}"/>
+	    <origin xyz="-0.195 0.0835 0" rpy="0 0 ${HALF_PI+1.0472}"/>
         </xacro:sensor_astra>
-
-        <xacro:sensor_sonar parent="pillar_plate_link">
-            <origin xyz="0.007 0.022 0.203" rpy="${HALF_PI} 0 ${HALF_PI*2}"/>
-        </xacro:sensor_sonar>
 
 
 

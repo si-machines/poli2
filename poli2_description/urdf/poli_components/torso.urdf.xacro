@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+Copyright (c) 2017, University of Texas Austin
+Author Maxwell Svetlik
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Stanley Innovation, Inc. nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="torso">
+  
+    <xacro:macro name="torso" params="parent *origin">
+        <joint name="torso_joint" type="prismatic">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}" />
+            <child link="torso_link" />
+            <limit
+              lower="-0.25"
+              upper="0"
+              effort="0"
+              velocity="0" />
+        </joint>
+
+        <link name="torso_link">
+	        <inertial>
+              <origin
+                xyz="0.014758 0.47107 0.0089251"
+                rpy="0 0 0" />
+              <mass
+                value="9.0651" />
+              <inertia
+                ixx="0.27969"
+                ixy="0.0139"
+                ixz="-0.0075445"
+                iyy="0.079581"
+                iyz="0.0055367"
+                izz="0.26758" />
+            </inertial>
+            <visual>
+                <geometry>
+                    <mesh filename="package://poli2_description/meshes/components/torso_link.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.5 0.5 0.5 1" />
+                </material>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://poli2_description/meshes/components/torso_link.STL" />
+                </geometry>
+            </collision>
+        </link>
+        
+    </xacro:macro>
+</robot>

@@ -26,7 +26,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   
     <xacro:macro name="neck_mount" params="parent *origin">
     
-    <joint name="neck_base_joint" type="fixed">
+    <!--joint name="neck_base_joint" type="fixed">
             <xacro:insert_block name="origin" />
             <parent link="${parent}" />
             <child link="neck_base_link" />
@@ -72,7 +72,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           filename="package://poli2_description/meshes/components/neck/base_link.STL" />
       </geometry>
     </collision>
-   </link>    
+   </link-->    
    <link
     name="pan_link">
     <inertial>
@@ -117,12 +117,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <joint
     name="pan_joint"
     type="revolute">
+    <xacro:insert_block name="origin" />
+    <parent link="${parent}" />
     <limit lower="-1.54" upper="1.54" velocity="10" effort="10"/>
-    <origin
-      xyz="0.0014145 0 0.0466"
-      rpy="0 0 0" />
-    <parent
-      link="neck_base_link" />
     <child
       link="pan_link" />
     <axis
@@ -132,8 +129,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     name="tilt_link">
     <inertial>
       <origin
-        xyz="-0.0449449011423384 0.0505307759460616 -0.0582731595130051"
-        rpy="0 0 0" />
+        xyz="-0.0449449011423384 0 -0.0582731595130051"
+        rpy="0 1.5708 0" />
       <mass
         value="0.282648823094398" />
       <inertia
@@ -147,7 +144,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <visual>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 1.5708 0.5236" />
       <geometry>
         <mesh
           filename="package://poli2_description/meshes/components/neck/tilt_link.STL" />
@@ -173,7 +170,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     type="revolute">
     <limit upper="0.0" lower="-1.0471975512" velocity="1.0" effort="10.0"/>
     <origin
-      xyz="0 -0.05475 0.09675"
+      xyz="0 0 0.095"
       rpy="1.5708 0 0" />
     <parent
       link="pan_link" />
