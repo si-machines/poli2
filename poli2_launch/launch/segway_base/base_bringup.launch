@@ -20,11 +20,6 @@
     <param name="robot_frame_id" value="$(arg tf_prefix)/base_link" />
     <param name="odom_frame_id" value="$(arg tf_prefix)/odom" />
   </node>
-  
-  
-  <include file="$(find poli2_launch)/launch/setup_urdf.launch">
-    <arg name="urdf_file" value="$(arg urdf_file)"/>
-  </include>
-
+ 
 </launch>
 
