@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>poli_launch</name>
+  <name>poli2_launch</name>
   <version>0.0.1</version>
-  <description>The poli_launch package</description>
+  <description>The poli2_launch package</description>
 
   <maintainer email="maxsvetlik@utexas.edu">Maxwell Svetlik</maintainer>
   <license>BSD</license>

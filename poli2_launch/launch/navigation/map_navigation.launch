@@ -4,7 +4,7 @@
     <!-- Run the map server -->
     <node name="map_server" pkg="map_server" type="map_server" args="$(find poli_navigation_apps)/maps/$(arg map_file).yaml" />
 
-    <include file="$(find poli_launch)/launch/move_base.launch"/>
+    <include file="$(find poli2_launch)/launch/move_base.launch"/>
 
     <!-- Bringup lidar scan merger -->
     <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
@@ -18,7 +18,7 @@
 
     <!--- Run amcl -->
     <node pkg="amcl" type="amcl" name="amcl" output="screen" clear_params="true">
-        <rosparam command="load" file="$(find poli_launch)/config/amcl.yaml"/>
+        <rosparam command="load" file="$(find poli2_launch)/config/amcl.yaml"/>
         <remap from="scan" to="/scan_merged" />
     </node>
 

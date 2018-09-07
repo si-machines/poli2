@@ -1,0 +1,55 @@
+<launch>
+  <arg name="robot_name" default="moe"/>
+  <arg name="start_moveit" default ="false"/>
+  <arg name="start_navigation" default="false"/>
+
+  <rosparam param="ROBOT_NAME">"poli2"</rosparam>
+  
+  <!-- Start vacuum pump driver -->
+  <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
+
+  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
+    <!-- Start pillar driver and encoder clearing utility -->
+    <include file="$(find poli2_launch)/launch/torso/pillar.launch"/>
+    
+    <!-- Bring up base drivers -->
+    <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
+
+    <include file="$(find poli2_launch)/launch/full_robot/robot_state_publishers.launch">
+      <arg name="use_segway" value="true"/>
+    </include>
+    
+    <!-- Bring up pan tilt motors -->  
+    <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch"/>
+
+    
+    <!-- Start LED driver and pan/tilt zero switch manager-->
+    <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
+  </group>
+
+  <group unless="$(eval robot_name=='moe')">
+    <include file="$(find poli2_launch)/launch/full_robot/robot_state_publishers.launch">
+      <arg name="use_segway" value="false"/>
+    </include>
+    
+    <!-- Bring up pan motor only -->  
+    <include file="$(find poli_pan_tilt)/launch/pan_control.launch"/>
+  </group>
+
+
+  <!-- Bring up Jaco arm-->
+  <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
+    <arg name="comport" value="/dev/robotiq"/>
+  </include>
+
+
+
+  <group if="$(arg start_moveit)">
+    <include file="$(find poli2_launch)/launch/manipulation.launch"/>
+  </group>
+
+  <group if="$(arg start_navigation)">
+    <include file="$(find poli2_launch)/launch/navigation.launch"/>
+  </group>
+ 
+</launch>
