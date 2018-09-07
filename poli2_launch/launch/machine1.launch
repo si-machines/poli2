@@ -1,0 +1,37 @@
+<launch>
+  <arg name="robot_name" default="moe"/>
+  <arg name="start_moveit" default ="false"/>
+  <arg name="start_navigation" default="false"/>
+
+  <rosparam param="ROBOT_NAME">"poli2"</rosparam>
+  
+  <!-- Start vacuum pump driver -->
+  <!-- <include file="$(find poli2_launch)/launch/machine1_upstart/gripper_pump.launch"/> -->
+
+  <group if="(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
+    <!-- Start pillar driver and encoder clearing utility -->
+    <include file="$(find poli2_launch)/launch/pillar.launch"/>
+    
+    <!-- Bring up base drivers -->
+    <include file="$(find poli2_launch)/launch/base_bringup.launch"/>
+  </group>
+
+  <!-- Start LED driver and pan/tilt zero switch manager | commented out for led debugging SM -->
+  <include file="$(find poli2_launch)/launch/led_controller.launch"/>
+
+  <!-- Bring up Jaco arm-->
+  <include file="$(find poli2_launch)/launch/kinova_arm.launch"/>
+
+  <!-- Bring up pan tilt motors -->  
+  <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch"/>
+
+
+  <group if="$(arg start_moveit)">
+    <include file="$(find poli2_launch)/manipulation.launch"/>
+  </group>
+
+  <group if="$(arg start_navigation)">
+    <include file="$(find poli2_launch)/navigation.launch"/>
+  </group>
+ 
+</launch>

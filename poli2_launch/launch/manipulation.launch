@@ -1,0 +1,4 @@
+<launch>
+  <!-- Bring up MoveIt! -->
+  <include file="$(find poli2_full_moveit)/launch/moveit.launch"/>
+</launch>

@@ -1,0 +1,4 @@
+<launch>
+  <!-- Bring up navigation stack -->
+  <include file="$(find poli2_launch)/launch/map_navigation.launch"/>
+</launch>

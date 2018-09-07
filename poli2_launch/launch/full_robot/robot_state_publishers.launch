@@ -1,0 +1,46 @@
+<launch>
+  <arg name="use_segway" default="true">
+
+  <group if="$(arg use_segway)">
+    <arg name="robot_name" default="RMP_110"/>
+    <arg name="urdf_file" default="$(find poli2_description)/robots/moe_wrapper.urdf.xacro" />
+  </group>
+
+  <group unless="$(arg use_segway)"> <!--this will need to change-->
+    <arg name="robot_name" default="RMP_110"/> 
+    <arg name="urdf_file" default="$(find poli2_description)/robots/poli_wrapper.urdf.xacro" />
+  </group>
+    
+
+  <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
+
+  <!-- launch the tf tree for base -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+    <param name="use_tf_static" value="false"/>
+    <param name="use_gui" value="false" />
+  </node>
+
+  <!-- tf tree for pillar actuator -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="pillar_state_publisher">
+    <param name="publish_frequency" type="double" value="10.0" />
+    <remap from="joint_states" to="pillar/joint_state"/>
+  </node>
+
+  <group if="$(arg use_segway)">
+    <!-- launch the joint state publisher to default values -->
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="rmp_joint_state_publisher">
+      <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state"]</rosparam>
+    </node>
+  </group>
+
+  <group unless="$(arg use_segway)"> <!--this will need to change-->
+    <!-- launch the joint state publisher to default values -->
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="rmp_joint_state_publisher">
+      <rosparam param="source_list"> "/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state"]</rosparam>
+  </group>
+
+
+</launch>
