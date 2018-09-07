@@ -1,0 +1,319 @@
+<robot
+  name="Moe_01">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00053406 0.02703 -0.0077426"
+        rpy="0 0 0" />
+      <mass
+        value="54.769" />
+      <inertia
+        ixx="2.0289"
+        ixy="0.00099883"
+        ixz="-0.0050299"
+        iyy="2.71"
+        iyz="0.039704"
+        izz="2.7986" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="pillar_link">
+    <inertial>
+      <origin
+        xyz="-1.0024E-06 0.26564 -0.00087383"
+        rpy="0 0 0" />
+      <mass
+        value="3.9099" />
+      <inertia
+        ixx="0.098403"
+        ixy="-3.684E-09"
+        ixz="3.5945E-08"
+        iyy="0.014636"
+        iyz="-2.1821E-05"
+        izz="0.098592" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/pillar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/pillar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pillar_joint"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.12324"
+      rpy="1.5708 6.123E-17 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="pillar_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit effort="30" velocity="1.0" lower="0.0" upper="0.4"/>
+  </joint>
+  <link
+    name="torso_link">
+    <inertial>
+      <origin
+        xyz="0.014758 0.47107 0.0089251"
+        rpy="0 0 0" />
+      <mass
+        value="9.0651" />
+      <inertia
+        ixx="0.27969"
+        ixy="0.0139"
+        ixz="-0.0075445"
+        iyy="0.079581"
+        iyz="0.0055367"
+        izz="0.26758" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/torso_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/torso_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="torso_joint"
+    type="prismatic">
+    <origin
+      xyz="0 -0.12324 0"
+      rpy="0 0 0" />
+    <parent
+      link="pillar_link" />
+    <child
+      link="torso_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.25"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="pan_link">
+    <inertial>
+      <origin
+        xyz="-0.0005366 -0.080207 -0.0031388"
+        rpy="0 0 0" />
+      <mass
+        value="0.38459" />
+      <inertia
+        ixx="0.00072629"
+        ixy="-5.9431E-06"
+        ixz="-2.3582E-06"
+        iyy="0.00044033"
+        iyz="-2.6781E-05"
+        izz="0.00037813" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/pan_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/pan_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pan_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.70759 0"
+      rpy="-1.2246E-16 -1.2246E-16 -3.1416" />
+    <parent
+      link="torso_link" />
+    <child
+      link="pan_link" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="tilt_link">
+    <inertial>
+      <origin
+        xyz="0.00014297 0.077925 -0.015304"
+        rpy="3.14159265 0 0" />
+      <mass
+        value="1.4043" />
+      <inertia
+        ixx="0.016171"
+        ixy="-1.585E-07"
+        ixz="2.1654E-05"
+        iyy="0.019115"
+        iyz="0.0013211"
+        izz="0.015464" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="3.14159265 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/tilt_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="3.14159265 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/tilt_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="tilt_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.10335 0"
+      rpy="0 -1.5708 0" />
+    <parent
+      link="pan_link" />
+    <child
+      link="tilt_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.5236"
+      upper="0.5236"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <!--link
+    name="kinova_link">
+    <inertial>
+      <origin
+        xyz="-0.039533 -0.121 0.34963"
+        rpy="0 0 0" />
+      <mass
+        value="1.2476" />
+      <inertia
+        ixx="0.073278"
+        ixy="-0.00882"
+        ixz="0.003465"
+        iyy="0.047603"
+        iyz="0.010781"
+        izz="0.032466" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/kinova_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.10196 0.10196 0.10196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Moe_01/meshes/kinova_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="kinova_joint"
+    type="fixed">
+    <origin
+      xyz="0.18365 0.33377 0.14557"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="torso_link" />
+    <child
+      link="kinova_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint-->
+</robot>
