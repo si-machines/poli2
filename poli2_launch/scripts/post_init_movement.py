@@ -61,14 +61,14 @@ class PostInitializationStartup:
 	    	if len(self.tilt_js.position) > 0:
 		   if abs(self.tilt_js.position[0]) < 0.01:
 		      msg = Float64()
-		      msg.data = -1.0
+		      msg.data = -0.5
 		      self.tilt_pub.publish(msg)
 	    else:
 		 msg = Float64()
 		 msg.data = 0.0
 		 self.tilt_pub.publish(msg)
 		 rospy.sleep(1.0)
-		 msg.data = -1.0
+		 msg.data = -0.5
 		 self.tilt_pub.publish(msg)
 
 
@@ -86,14 +86,16 @@ class PostInitializationStartup:
 
 	#Sets the ears to solid orange, eyes to >_< 
 	def set_led_start(self):
-		self.led_ear(2,3)
-		self.led_eye(3)
+		#self.led_ear(2,3)
+		self.led_eye(command=2, which_part=0, which_feature=1, eye_shape=3)
+		self.led_eye(command=2, which_part=1, which_feature=1, eye_shape=3,mouth_shape=7)
 	
 	#Sets the ears to pulsing white, eyes to blinking
 	def set_led_end(self):
-		self.led_ear(2,4)
-		self.led_ear(4,4)
-		self.led_eye(7)
+		#self.led_ear(2,4)
+		#self.led_ear(4,4)
+		self.led_eye(command=2, which_part=0, which_feature=1, eye_shape=0,mouth_shape=5)
+		self.led_eye(command=2, which_part=1, which_feature=1, eye_shape=0,mouth_shape=5)
 
 if __name__ == '__main__':
 	rospy.init_node('post_initialization_startup')
@@ -112,8 +114,8 @@ if __name__ == '__main__':
 	Startup.move_pan()
 	rospy.sleep(1.0)
 	Startup.move_tilt()
-	rospy.sleep(2.0)
-	Startup.move_pillar()
+	#rospy.sleep(2.0)
+	#Startup.move_pillar()
 	rospy.sleep(1.0)
 	Startup.set_led_end()
         rospy.set_param(init_param, True)
