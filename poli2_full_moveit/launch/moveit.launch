@@ -6,9 +6,11 @@
     <arg name="use_hlpr_traj_exec" default="true" />
     <arg name="sim" default="false" />
     <arg name="load_robot_description" default="true" />
+    <arg name="robot_description_file" />
 
     <include file="$(find poli2_full_moveit)/launch/planning_context.launch">
         <arg name="load_robot_description" value="$(arg load_robot_description)"/>
+    	<arg name="robot_description_file" value="$(arg robot_description_file)"/>
     </include>
 
     <!-- Run the main MoveIt executable with trajectory execution -->

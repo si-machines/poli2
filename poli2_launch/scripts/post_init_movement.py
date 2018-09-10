@@ -13,7 +13,7 @@ Author Maxwell J Svetlik
 
 """
 
-
+import sys
 import rospy
 from std_msgs.msg import Float64, Float32
 from sensor_msgs.msg import JointState
@@ -86,26 +86,27 @@ class PostInitializationStartup:
 
 	#Sets the ears to solid orange, eyes to >_< 
 	def set_led_start(self):
-		#self.led_ear(2,3)
-		self.led_eye(command=2, which_part=0, which_feature=1, eye_shape=3)
-		self.led_eye(command=2, which_part=1, which_feature=1, eye_shape=3,mouth_shape=7)
+		self.led_eye(command=2, which_part=0, which_feature=3, eye_color=5)
+		self.led_eye(command=2, which_part=1, which_feature=1, mouth_shape=5, eye_color=5)
 	
 	#Sets the ears to pulsing white, eyes to blinking
 	def set_led_end(self):
-		#self.led_ear(2,4)
-		#self.led_ear(4,4)
-		self.led_eye(command=2, which_part=0, which_feature=1, eye_shape=0,mouth_shape=5)
-		self.led_eye(command=2, which_part=1, which_feature=1, eye_shape=0,mouth_shape=5)
+		#self.led_eye(command=2, which_part=0, which_feature=3, eye_color=5)
+		self.led_eye(command=2, which_part=1, which_feature=1, mouth_shape=5, eye_color=5)
+		#self.led_eye(command=2, which_part=1, which_feature=3, mouth_color=5)
+		#self.led_eye(command=2, which_part=2, which_feature=1, mouth_shape=3, eye_shape=4)
 
 if __name__ == '__main__':
 	rospy.init_node('post_initialization_startup')
 	Startup = PostInitializationStartup()
 	rospy.sleep(1.0)
+
+        force_initialize = len(sys.argv) > 1 and sys.argv[1] == 'force'
 	
 	has_been_initialized = False
 	if rospy.has_param(init_param):
             has_been_initialized = rospy.get_param(init_param)
-            if has_been_initialized:
+            if has_been_initialized and not force_initialize:
 	        rospy.loginfo("Pan-tilt and pillar systems already initialized. Not running script")
 	        exit(0)
 

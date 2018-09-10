@@ -1,9 +1,10 @@
 <launch>
   <arg name="use_segway" default="true"/>
+  <arg name="robot_description_file"/>
   
   <group if="$(arg use_segway)">
     <arg name="robot_name" value="RMP_110"/>
-    <arg name="urdf_file" value="$(find poli2_description)/robots/moe_wrapper.urdf.xacro" />
+    <arg name="urdf_file" value="$(arg robot_description_file)" />
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
     <param name="robot_description"
       command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
@@ -11,7 +12,7 @@
 
   <group unless="$(arg use_segway)"> <!--this will need to change-->
     <arg name="robot_name" value="RMP_110"/> 
-    <arg name="urdf_file" value="$(find poli2_description)/robots/poli_wrapper.urdf.xacro" />
+    <arg name="urdf_file" value="$(arg robot_description_file)" />
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
     <param name="robot_description"
       command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
