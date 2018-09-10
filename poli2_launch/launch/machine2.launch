@@ -2,5 +2,12 @@
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
 
   <!-- Bring up astra camera-->
-  <include file="$(find astra_launch)/launch/astra.launch"/>
+  <include file="$(find astra_launch)/launch/astra.launch">
+<!--    <arg name="camera" value="astra"/>-->
+  </include>
+
+  <!-- Tell the astra driver where it is -->
+  <node pkg="tf" type="static_transform_publisher" name="camera_to_astra_link"
+    args="0 0 0 1.57 0 1.57 camera_link astra_link 100" /> 
+
 </launch>

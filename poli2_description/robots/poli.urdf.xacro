@@ -181,9 +181,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <origin xyz="0.242 -0.015 0.33" rpy="${HALF_PI} -${HALF_PI} 0" />
         </xacro:hokuyo_ust10lx>
 
-        <xacro:sensor_astra parent="tilt_link">
-	    <origin xyz="-0.195 0.0835 0" rpy="0 0 ${HALF_PI+1.0472}"/>
-        </xacro:sensor_astra>
+
+        <link name="camera_placement_link"/>
+        <joint name="camera_placement_joint">
+            <parent name="tilt_link"/>
+            <child name="camera_placement_link"/>
+            <origin xyz="-0.195 0.0835 0" rpy="0 0 ${HALF_PI+1.0472}"/>
+        </joint>
+<!--         <xacro:sensor_astra parent="tilt_link">
+	    
+        </xacro:sensor_astra> -->
 
 
 
