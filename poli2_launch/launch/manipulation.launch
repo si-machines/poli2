@@ -3,7 +3,7 @@
   <arg name="robot_description_file"/>
 
   <include file="$(find poli2_full_moveit)/launch/moveit.launch">
-    <arg name="load_robot_description" value="true">
+    <arg name="load_robot_description" value="true"/>
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
 </launch>

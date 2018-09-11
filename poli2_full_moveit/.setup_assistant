@@ -1,10 +1,11 @@
 moveit_setup_assistant_config:
   URDF:
     package: poli2_description
-    relative_path: robots/poli.urdf
+    relative_path: robots/moe.urdf.xacro
+    xacro_args: ""
   SRDF:
     relative_path: config/segway_robot.srdf
   CONFIG:
     author_name: Max Svetlik
     author_email: maxsvetlik@utexas.edu
-    generated_timestamp: 1519169380
+    generated_timestamp: 1536684949
