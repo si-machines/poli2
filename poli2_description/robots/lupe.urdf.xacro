@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<robot name="freight_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find poli2_description)/robots/poli2_freight.urdf.xacro" />
+  <xacro:freight_robot />
+
+</robot>

@@ -16,6 +16,7 @@ limitations under the License.!-->
   <xacro:include filename="$(find poli2_description)/urdf/freight/freight.gazebo.xacro"/>
   <xacro:macro name="freight_base">
     <link name="base_link">
+     
       <inertial>
         <origin rpy="0 0 0" xyz="-0.0036 0.0 0.0014" />
         <mass value="1070.1294" />
