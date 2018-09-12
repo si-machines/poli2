@@ -505,7 +505,7 @@ void ear_srv_callback(const poli_msgs::LedEar::Request & req, poli_msgs::LedEar:
 
 
 
-int eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye::Response & res){
+void eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye::Response & res){
 
   if(req.command == req.DISABLE){
     eye_enabled = false;
@@ -518,7 +518,7 @@ int eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye::
       face_mode = true;
       face_shape = req.face_shape;
     }
-    else if(req.which_part == req.EYES || req.which_part == req.BOTH){
+    if(req.which_part == req.EYES || req.which_part == req.BOTH){
       face_mode = false;
       if(req.which_feature == req.DIRECTION || req.which_feature == req.BOTH){
         eye_direction = req.eye_direction;
@@ -530,7 +530,7 @@ int eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye::
         eye_color_idx = req.eye_color;
       }
     }
-    else if(req.which_part == req.MOUTH || req.which_part == req.BOTH){
+    if(req.which_part == req.MOUTH || req.which_part == req.BOTH){
       face_mode = false;
       if(req.which_feature == req.DIRECTION || req.which_feature == req.BOTH){
         mouth_direction = req.mouth_direction;
@@ -543,9 +543,7 @@ int eye_srv_callback(const poli_msgs::LedEye::Request & req, poli_msgs::LedEye::
       }
     }
   }
-  eye_color_idx += 1;
   res.response = 1; //req.SUCCESS;
-  return(1);
 }
 
 

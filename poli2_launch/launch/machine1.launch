@@ -1,22 +1,24 @@
 <launch>
   <arg name="robot_name" default="moe"/>
-  <arg name="start_moveit" default ="false"/>
+  <arg name="start_manipulation" default ="false"/>
   <arg name="start_navigation" default="false"/>
 
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
   
+  <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe
+             will have the same URDF presumably -->
+  <arg name="robot_description_file" value="$(find poli2_description)/robots/$(arg robot_name).urdf.xacro"/>
+
   <!-- Start vacuum pump driver -->
   <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
 
-  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
-    <!-- Start pillar driver and encoder clearing utility -->
-    <include file="$(find poli2_launch)/launch/torso/pillar.launch"/>
-    
+  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->    
     <!-- Bring up base drivers -->
     <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
 
     <include file="$(find poli2_launch)/launch/full_robot/robot_state_publishers.launch">
       <arg name="use_segway" value="true"/>
+      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
     </include>
     
     <!-- Bring up pan tilt motors -->  
@@ -30,6 +32,7 @@
   <group unless="$(eval robot_name=='moe')">
     <include file="$(find poli2_launch)/launch/full_robot/robot_state_publishers.launch">
       <arg name="use_segway" value="false"/>
+      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
     </include>
     
     <!-- Bring up pan motor only -->  
@@ -44,8 +47,10 @@
 
 
 
-  <group if="$(arg start_moveit)">
-    <include file="$(find poli2_launch)/launch/manipulation.launch"/>
+  <group if="$(arg start_manipulation)">
+    <include file="$(find poli2_launch)/launch/manipulation.launch">
+      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
+    </include>
   </group>
 
   <group if="$(arg start_navigation)">

@@ -1,0 +1,5 @@
+<launch>
+
+  <node pkg="poli2_launch" type="post_init_movement.py" name="post_init_movement" output="screen" args="force"/>
+
+</launch>
