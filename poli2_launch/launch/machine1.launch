@@ -12,10 +12,7 @@
   <!-- Start vacuum pump driver -->
   <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
 
-  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
-    <!-- Start pillar driver and encoder clearing utility -->
-    <include file="$(find poli2_launch)/launch/torso/pillar.launch"/>
-    
+  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->    
     <!-- Bring up base drivers -->
     <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
 
