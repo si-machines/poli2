@@ -45,7 +45,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        for the segmentation server. If you want to override these, you should
        add a <rosparam load> tag somewhere after the orp.launch call. -->
   <include file="$(find orp)/launch/orp.launch">
-    <arg name="astra"             value="true"/>
+    <arg name="realsense_4xx"     value="true"/>
     <arg name="hue"               value="true"/>
     <arg name="autostart"         value="true"/>
     <arg name="recognition_frame" value="j2s7s300_link_base"/>
