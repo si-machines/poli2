@@ -16,7 +16,7 @@ sudo apt-get install -yq \
   wget
 
 # create a custom desktop background based on the computer hostname
-convert -size 1920x1080 xc:black -font "Ubuntu" -pointsize 128 -fill white -annotate +100+150 "`hostname`" `hostname`_bg_image.png
+convert -size 1920x1080 xc:"#222222" -font "Ubuntu" -pointsize 128 -fill white -annotate +100+150 "`hostname`" `hostname`_bg_image.png
 gsettings set org.gnome.desktop.background picture-uri "file://${HOME}/`hostname`_bg_image.png"
 
 source /opt/ros/kinetic/setup.bash
