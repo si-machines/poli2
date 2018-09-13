@@ -1,0 +1,28 @@
+- git:
+    local-name: DynamixelSDK
+    uri: https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+    version: tags/3.5.4
+- git:
+    local-name: dynamixel-workbench
+    uri: https://github.com/si-machines/dynamixel-workbench.git
+    version: master
+- git:
+    local-name: dynamixel-workbench-msgs
+    uri: https://github.com/si-machines/dynamixel-workbench-msgs.git
+    version: master
+- git:
+    local-name: kinova-ros
+    uri: https://github.com/si-machines/kinova-ros.git
+    version: moe-devel
+- git:
+    local-name: poli2
+    uri: https://github.com/si-machines/poli2.git
+    version: master
+- git:
+    local-name: robotiq_85_gripper
+    uri: https://github.com/si-machines/robotiq_85_gripper.git
+    version: master
+- git:
+    local-name: segway_v3
+    uri: https://github.com/StanleyInnovation/segway_v3.git
+    version: master
