@@ -1,6 +1,6 @@
 <launch>
   <remap from="joint_states" to="tilt_motor/joint_states"/>
-  <node name="epos_hardware" pkg="epos_hardware" type="epos_hardware_node" args="tilt_joint_motor">
+  <node name="epos_hardware" pkg="epos_hardware" type="epos_hardware_node" args="tilt_joint_motor" output="screen">
     <rosparam command="load" file="$(find poli_pan_tilt)/config/tilt_controller.yaml" />
   </node>
 
