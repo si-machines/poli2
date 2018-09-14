@@ -1,0 +1,6 @@
+{clippingFrame: j2s7s300_link_base, cluster_tolerance: 0.03, max_cluster_size: 2000,
+  max_clusters: 10, max_plane_segmentation_iterations: 50, min_cluster_size: 150,
+  percentage_to_analyze: 0.2, publishAllObjects: true, publishAllPlanes: false, publishBoundedScene: true,
+  publishLargestObject: true, publishVoxelScene: false, segmentation_distance_threshold: 0.02,
+  spatial_max_x: 5.0, spatial_max_y: -0.1, spatial_max_z: 0.15, spatial_min_x: -5.0,
+  spatial_min_y: -1.0, spatial_min_z: 0.02, voxel_leaf_size: 0.005}

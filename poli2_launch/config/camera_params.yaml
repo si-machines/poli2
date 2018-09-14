@@ -1,0 +1,63 @@
+aligned_depth_to_color:
+  image_raw:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+aligned_depth_to_infra1:
+  image_raw:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+aligned_depth_to_infra2:
+  image_raw:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+color:
+  image_raw:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+  image_rect_color:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+color_rectify_color: {interpolation: 1}
+depth:
+  image_rect_raw:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+driver: {depth_registration: true}
+infra1:
+  image_rect_raw:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+infra2:
+  image_rect_raw:
+    compressed: {format: jpeg, jpeg_quality: 80, png_level: 9}
+    compressedDepth: {depth_max: 10.0, depth_quantization: 100.0, png_level: 9}
+    theora: {keyframe_frequency: 64, optimize_for: 1, quality: 31, target_bitrate: 800000}
+realsense2_camera: {accel_fps: 1000, accel_optical_frame_id: camera_accel_optical_frame,
+  align_depth: true, aligned_depth_to_color_frame_id: camera_aligned_depth_to_color_frame,
+  aligned_depth_to_fisheye_frame_id: camera_aligned_depth_to_fisheye_frame, aligned_depth_to_infra1_frame_id: camera_aligned_depth_to_infra1_frame,
+  aligned_depth_to_infra2_frame_id: camera_aligned_depth_to_infra2_frame, color_fps: 30,
+  color_height: 480, color_optical_frame_id: camera_color_optical_frame, color_width: 640,
+  depth_fps: 30, depth_height: 480, depth_optical_frame_id: camera_depth_optical_frame,
+  depth_width: 640, enable_color: true, enable_depth: true, enable_fisheye: true,
+  enable_imu: true, enable_infra1: true, enable_infra2: true, enable_pointcloud: false,
+  enable_sync: true, fisheye_fps: 30, fisheye_height: 480, fisheye_optical_frame_id: camera_fisheye_optical_frame,
+  fisheye_width: 640, gyro_fps: 1000, gyro_optical_frame_id: camera_gyro_optical_frame,
+  infra1_fps: 30, infra1_height: 480, infra1_optical_frame_id: camera_infra1_optical_frame,
+  infra1_width: 640, infra2_fps: 30, infra2_height: 480, infra2_optical_frame_id: camera_infra2_optical_frame,
+  infra2_width: 640, json_file_path: '', rosbag_filename: '', serial_no: ''}
+realsense2_camera_manager: {rs435_JSON_file_path: '', rs435_color_auto_exposure_priority: false,
+  rs435_color_backlight_compensation: true, rs435_color_brightness: 0, rs435_color_contrast: 50,
+  rs435_color_enable_auto_exposure: true, rs435_color_exposure: 166, rs435_color_frames_queue_size: 16,
+  rs435_color_gain: 64, rs435_color_gamma: 300, rs435_color_hue: 0, rs435_color_power_line_frequency: 3,
+  rs435_color_saturation: 64, rs435_color_sharpness: 50, rs435_color_white_balance: 325,
+  rs435_depth_emitter_enabled: 1, rs435_depth_enable_auto_exposure: true, rs435_depth_error_polling_enabled: false,
+  rs435_depth_exposure: 425, rs435_depth_frames_queue_size: 16, rs435_depth_gain: 16,
+  rs435_depth_laser_power: 12.0, rs435_depth_output_trigger_enabled: false, rs435_depth_units: 0.001,
+  rs435_depth_visual_preset: 3}
