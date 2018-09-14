@@ -37,9 +37,6 @@ class PostInitializationStartup:
         self.led_ear = rospy.ServiceProxy('/led_ear', LedEar)
         self.led_eye = rospy.ServiceProxy('/led_eye', LedEye)
 
-        #Change to TRUE to enforce zero-position assumptions about pillar and tilt motor
-        self.check_init_pos = False
-
     def pillar_callback(self,data):
         self.pillar_js = data
 
@@ -49,52 +46,59 @@ class PostInitializationStartup:
 
     def move_pan(self):
         msg = Float64()
+
         msg.data = 0.4
         self.pan_pub.publish(msg)
         #wait for motion
         rospy.sleep(2.0)
+
         msg.data = 0.0
         self.pan_pub.publish(msg)
+        #wait for motion
+        rospy.sleep(2.0)
 
     def move_tilt(self):
-        if self.check_init_pos:
-            if len(self.tilt_js.position) > 0:
-                if abs(self.tilt_js.position[0]) < 0.01:
-                    msg = Float64()
-                    msg.data = -0.5
-                    self.tilt_pub.publish(msg)
-                else:
-                    msg = Float64()
-                    msg.data = 0.0
-                    self.tilt_pub.publish(msg)
-                    rospy.sleep(1.0)
-                    msg.data = -0.5
-                    self.tilt_pub.publish(msg)
+        msg = Float64()
 
+        msg.data = -0.3
+        self.tilt_pub.publish(msg)
+        #wait for motion
+        rospy.sleep(1.0)
 
-    def move_pillar(self): 
-        if self.check_init_pos:
-            if len(self.pillar_js.position) > 0:
-                if abs(self.pillar_js.position[0]) < 0.01:
-                    msg = Float32()
-                    msg.data = 0.1
-                    self.pillar_pub.publish(msg)
-                else:
-                    msg = Float32()
-                    msg.data = 0.1
-                    self.pillar_pub.publish(msg)
+        msg.data = 0.0
+        self.tilt_pub.publish(msg)
+        #wait for motion
+        rospy.sleep(1.0)
 
-    #Sets the ears to solid orange, eyes to >_< 
+        msg.data = -0.25
+        self.tilt_pub.publish(msg)
+        #wait for motion
+        rospy.sleep(1.0)
+
+    # DANGEROUS AND UNTESTED
+    # def move_pillar(self): 
+    #     if abs(self.pillar_js.position[0]) < 0.01:
+    #         msg = Float32()
+    #         msg.data = 0.1
+    #         self.pillar_pub.publish(msg)
+    #     else:
+    #         msg = Float32()
+    #         msg.data = 0.1
+    #         self.pillar_pub.publish(msg)
+
+    # Make a face for the duration of the movement
     def set_led_start(self):
         self.led_eye(command=2, which_part=2, which_feature=3, eye_color=12, mouth_color=12)
-        self.led_eye(command=2, which_part=2, which_feature=1, eye_shape=4, mouth_shape=9)
+        self.led_eye(command=2, which_part=2, which_feature=1, eye_shape=3, mouth_shape=5)
         self.led_ear(command=3, color=3)
+        rospy.sleep(0.1)
     
-    #Sets the ears to pulsing white, eyes to blinking
+    # Default face
     def set_led_end(self):
         self.led_eye(command=2, which_part=2, which_feature=3, eye_color=11, mouth_color=11)
         self.led_eye(command=2, which_part=2, which_feature=1, eye_shape=0, mouth_shape=5)
         self.led_ear(command=4, color=0)
+        rospy.sleep(0.1)
 
 if __name__ == '__main__':
     rospy.init_node('post_initialization_startup')
@@ -111,13 +115,8 @@ if __name__ == '__main__':
             exit(0)
 
     Startup.set_led_start()
-    rospy.sleep(1.0)
     Startup.move_pan()
-    rospy.sleep(1.0)
     Startup.move_tilt()
-    #rospy.sleep(2.0)
-    #Startup.move_pillar()
-    rospy.sleep(1.0)
     Startup.set_led_end()
     rospy.set_param(init_param, True)
     
