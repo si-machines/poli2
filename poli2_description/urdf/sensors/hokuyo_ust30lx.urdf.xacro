@@ -24,7 +24,6 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="hokuyo_ust30lx">
-  
     <xacro:macro name="hokuyo_ust30lx" params="laser_prefix parent *origin">
         <joint name="${laser_prefix}_laser_joint" type="fixed">
             <xacro:insert_block name="origin" />
@@ -39,12 +38,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
                 </geometry>
             </visual>
             <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://poli2_description/meshes/visual/sensors/hokuyo_ustlx.dae" />
+                    <box size="0.09 0.09 0.09" />
                 </geometry>
             </collision>
         </link>
-        
         <gazebo reference="${laser_prefix}_laser_link">
             <sensor type="ray" name="${laser_prefix}_hokuyo_laser">
                 <pose>0 0 0 0 0 0</pose>

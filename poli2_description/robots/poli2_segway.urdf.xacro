@@ -146,7 +146,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </xacro:base_plate>
 
         <xacro:rmp_plate2 parent="base_plate_link">
-            <origin xyz="-0.079 -0.016 0.075" rpy="0 0 0"/>
+            <origin xyz="0.165387 0.015746 0.345301" rpy="0 0 0"/>
         </xacro:rmp_plate2>
 
         <xacro:rmp_plate3 parent="base_plate_link">
@@ -174,7 +174,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
         <!-- Poli Sensors -->
         <xacro:hokuyo_ust30lx laser_prefix="${REAR_LASER_PREFIX}" parent="rmp_plate2_link">
-            <origin xyz="0.242 0.075 0.33" rpy="-${HALF_PI} -${HALF_PI} 0" />
+            <origin xyz="0 0.04 0.04" rpy="-${HALF_PI} -${HALF_PI} 0" />
         </xacro:hokuyo_ust30lx>
 
         <xacro:hokuyo_ust10lx laser_prefix="${FRONT_LASER_PREFIX}" parent="rmp_plate3_link">
@@ -188,12 +188,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <child link="camera_placement_link"/>
             <origin xyz="-0.195 0.0835 0" rpy="0 0 ${HALF_PI+1.0472}"/>
         </joint>
-<!--         <xacro:sensor_astra parent="tilt_link">
-	    
-        </xacro:sensor_astra> -->
-
-
-
     </xacro:macro>
 
 </robot>

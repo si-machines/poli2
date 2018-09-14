@@ -23,56 +23,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="neck_mount">
-  
-    <xacro:macro name="neck_mount" params="parent *origin">
-    
-    <!--joint name="neck_base_joint" type="fixed">
-            <xacro:insert_block name="origin" />
-            <parent link="${parent}" />
-            <child link="neck_base_link" />
-            <limit effort="50" velocity="50"/>
-    </joint>
-        
 
-    <link name="neck_base_link">
-    <inertial>
-      <origin
-        xyz="0.0023997 -3.3244E-06 0.033447"
-        rpy="0 0 0" />
-      <mass
-        value="0.6796" />
-      <inertia
-        ixx="0.0014012"
-        ixy="9.4856E-09"
-        ixz="-3.5218E-06"
-        iyy="0.0010212"
-        iyz="-7.8472E-10"
-        izz="0.0010421" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://poli2_description/meshes/components/neck/base_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.89804 0.91765 0.92941 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://poli2_description/meshes/components/neck/base_link.STL" />
-      </geometry>
-    </collision>
-   </link-->    
+    <xacro:macro name="neck_mount" params="parent *origin">
+
    <link
     name="pan_link">
     <inertial>
@@ -112,7 +65,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           filename="package://poli2_description/meshes/components/neck/pan_link.STL" />
       </geometry>
     </collision>
-  </link>  
+  </link>
 
   <joint
     name="pan_joint"
@@ -158,10 +111,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 1.5708 0.5236" />
       <geometry>
         <mesh
-          filename="package://poli2_description/meshes/components/neck/tilt_link.STL" />
+          filename="package://poli2_description/meshes/components/neck/tilt_link_collision.STL" />
       </geometry>
     </collision>
   </link>

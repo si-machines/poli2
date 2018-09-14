@@ -23,7 +23,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="pillar">
-  
     <xacro:macro name="pillar" params="parent *origin">
         <joint name="pillar_base_joint" type="fixed">
             <xacro:insert_block name="origin" />
@@ -42,12 +41,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             </visual>
             <collision>
                 <geometry>
-                    <mesh filename="package://poli2_description/meshes/components/pillar_exterior.STL" />
+                    <mesh filename="package://poli2_description/meshes/components/pillar_exterior_collision.STL" />
                 </geometry>
             </collision>
         </link>
-               
-        
-        
     </xacro:macro>
 </robot>

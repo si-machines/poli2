@@ -23,7 +23,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="base_plate">
-  
+
     <xacro:macro name="rmp_plate2" params="parent *origin">
         <joint name="rmp_plate2_joint" type="fixed">
             <xacro:insert_block name="origin" />
@@ -42,10 +42,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             </visual>
             <collision>
                 <geometry>
-                    <mesh filename="package://poli2_description/meshes/components/rmp_plate2.STL" />
+                    <box size="0.298 0.006 0.189"/>
                 </geometry>
             </collision>
         </link>
-        
+
     </xacro:macro>
 </robot>
