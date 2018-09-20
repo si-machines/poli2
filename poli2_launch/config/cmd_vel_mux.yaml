@@ -1,6 +1,5 @@
 # Typically automatic controllers should have the minimum priority
 #
-#
 # Individual subscriber configuration:
 #   name:           Source name
 #   topic:          The topic that provides cmd_vel messages
@@ -9,23 +8,19 @@
 #   short_desc:     Short description (optional)
 
 subscribers:
-
-
   - name:        "Manual Override"
-    topic:       "/poli/manual_override/cmd_vel"
+    topic:       "/poli2/manual_override/cmd_vel"
     timeout:     2.0
-    priority:    2
+    priority:    10
 
-  - name:        "Platstation Controller"
-    topic:       "/poli/teleop/cmd_vel"
+  - name:        "Controller or Joystick"
+    topic:       "/poli2/teleop/cmd_vel"
     timeout:     1.0
     priority:    1
 
   - name:        "MoveBase"
-    topic:       "/poli/navigation/cmd_vel"
+    topic:       "/poli2/navigation/cmd_vel"
     timeout:     0.5
     priority:    0
 
-
-    
 publisher: "/segway/cmd_vel"

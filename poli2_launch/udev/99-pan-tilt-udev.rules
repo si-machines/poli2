@@ -1,1 +1,0 @@
-ATTRS{product}=="FT232 USB-Serial (UART) IC",  KERNEL="ttyUSB0", MODE="0666"

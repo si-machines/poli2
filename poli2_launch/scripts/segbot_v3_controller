@@ -31,11 +31,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-
-
 Note this is code used from the BWI segbot repository: https://github.com/utexas-bwi/segbot/blob/master/segbot_bringup/scripts/segbot_v3_controller
-
 
 """
 
