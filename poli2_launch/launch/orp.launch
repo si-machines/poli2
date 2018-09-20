@@ -37,6 +37,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
      obj_green, or obj_blue.
 -->
 <launch>
+  <rosparam command="load" param="/orp/segmentation" file="$(find poli2_launch)/config/segmentation_params.yaml" />
+  <rosparam command="load" param="/camera" file="$(find poli2_launch)/config/camera_params.yaml" />
+
   <!-- Before calling orp.launch, your list of items should be loaded onto the
        ROS parameter server. The following line does just that. -->
   <rosparam command="load" param="/orp/items" file="$(find orp)/data/example_database.yaml" />
