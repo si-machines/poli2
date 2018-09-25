@@ -61,5 +61,5 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
   <node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
-    args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" /> 
+    args="-0.03 0.035 -0.01 1.57 0 1.57 camera_placement_link camera_link 100" /> 
 </launch>
