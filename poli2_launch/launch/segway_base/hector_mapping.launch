@@ -4,7 +4,7 @@
     <include file="$(find hector_mapping)/launch/mapping_default.launch">
         <arg name="base_frame" value="/base_link"/>
         <arg name="odom_frame" default="/odom"/>
-        <arg name="scan_topic" value="/scan_front"/>
+        <arg name="scan_topic" value="/scan_merged"/>
     </include>
 
 </launch>

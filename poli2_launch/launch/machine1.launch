@@ -5,49 +5,38 @@
 
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
   
-  <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe
-             will have the same URDF presumably -->
+  <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe will not have the same URDF presumably -->
   <arg name="robot_description_file" value="$(find poli2_description)/robots/$(arg robot_name).urdf.xacro"/>
 
   <!-- Start vacuum pump driver -->
   <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
 
-  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->    
-    <!-- Bring up base drivers -->
-    <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
+  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch">
+    <arg name="use_segway" value="$(eval robot_name=='moe')"/>
+    <arg name="robot_description_file" value="$(arg robot_description_file)"/>
+  </include>
 
-    <include file="$(find poli2_launch)/launch/full_robot/robot_state_publishers.launch">
-      <arg name="use_segway" value="true"/>
-      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
-    </include>
-    
+  <!-- Moe -->
+  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
     <!-- Bring up pan tilt motors -->  
     <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch"/>
 
-    
     <!-- Start LED driver and pan/tilt zero switch manager-->
     <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
   </group>
 
+  <!-- Barton and Lupe -->
   <group unless="$(eval robot_name=='moe')">
-    <include file="$(find poli2_launch)/launch/full_robot/robot_state_publishers.launch">
-      <arg name="use_segway" value="false"/>
-      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
-    </include>
-    
     <!-- Bring up pan motor only -->  
     <include file="$(find poli_pan_tilt)/launch/pan_control.launch">
 	    <arg name="baud_rate" value="57600"/>
     </include>
   </group>
 
-
   <!-- Bring up Jaco arm-->
   <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
     <arg name="comport" value="/dev/robotiq"/>
   </include>
-
-
 
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
@@ -56,6 +45,10 @@
   </group>
 
   <group if="$(arg start_navigation)">
+    <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->    
+    <!-- Bring up base drivers -->
+      <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
+    </group>
     <include file="$(find poli2_launch)/launch/navigation.launch"/>
   </group>
  

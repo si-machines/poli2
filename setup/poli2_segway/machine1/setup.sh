@@ -51,6 +51,7 @@ touch wpi_jaco/jaco_description/CATKIN_IGNORE && \
 rosdep install --from-paths . --ignore-src --rosdistro=kinetic -y
 
 # post-installation steps
+sudo apt-get install -yq ros-kinetic-teleop-twist-keyboard  ros-kinetic-teleop-twist-joy
 sudo apt-get purge ros-kinetic-dynamixel-workbench-toolbox
 sudo wget https://raw.githubusercontent.com/tu-darmstadt-ros-pkg/hector_localization/catkin/hector_pose_estimation/hector_pose_estimation_nodelets.xml -P /opt/ros/kinetic/share/hector_pose_estimation/
 sudo rm /etc/udev/rules.d/10-local.rules

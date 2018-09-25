@@ -1,0 +1,11 @@
+<launch>
+  <include file="$(find poli2_launch)/launch/machine1.launch">
+  	<arg name="start_manipulation" value="true"/>
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" output="screen"/>
+
+  <node name="freeze_frame" pkg="hlpr_manipulation_utils" type="freeze_frame.py"
+  	    args='"{box: [obj_yellow_0], bowl: [obj_red_0]}" j2s7s300_link_base' />
+
+</launch>
