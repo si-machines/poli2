@@ -1,13 +1,12 @@
 <launch>
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
+  <rosparam command="load" param="/camera" file="$(find poli2_launch)/config/camera_params.yaml"/>
 
-  <!-- Bring up astra camera-->
-  <include file="$(find astra_launch)/launch/astra.launch">
-<!--    <arg name="camera" value="astra"/>-->
-  </include>
+  <!-- Bring up realsense camera-->
+  <include file="$(find realsense2_camera)/launch/rs_rgbd.launch"/>
 
-  <!-- Tell the astra driver where it is -->
-  <node pkg="tf" type="static_transform_publisher" name="camera_to_astra_link"
-    args="0 0 0 1.57 0 1.57 camera_link astra_link 100" /> 
+  <!-- Tell the realsense driver where it is -->
+  <node pkg="tf" type="static_transform_publisher" name="camera_to_realsense_link"
+    args="-0.03 0.035 -0.01 1.57 0 1.57 camera_placement_link camera_link 100" /> 
 
 </launch>
