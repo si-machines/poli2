@@ -6,12 +6,21 @@ sudo apt-get update && sudo apt-get -y upgrade
 sudo apt-get install -yq \
   apt-utils \
   dialog \
-  python-catkin-tools \
+  git \
   wget
 
-source /opt/ros/kinetic/setup.bash
+# install ROS
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-get update
+sudo apt-get install -yq \
+  python-catkin-tools
+  ros-kinetic-desktop-full
+sudo rosdep init
 rosdep update
+source /opt/ros/kinetic/setup.bash
 
+# set up the workspace
 cd ~
 mkdir -p poli2_segway_ws/src
 cd poli2_segway_ws/src
@@ -20,6 +29,8 @@ catkin_init_workspace
 # segway-base specific
 git clone https://github.com/StanleyInnovation/segway_v3.git
 git clone https://github.com/iralabdisco/ira_laser_tools.git -b kinetic
+
+# dependencies for HLP-R
 git clone https://github.com/si-machines/dynamixel-workbench.git
 git clone https://github.com/si-machines/dynamixel-workbench-msgs.git
 git clone https://github.com/si-machines/wpi_jaco.git -b vector-develop && \
@@ -27,8 +38,6 @@ git clone https://github.com/si-machines/wpi_jaco.git -b vector-develop && \
   touch wpi_jaco/jaco_interaction/CATKIN_IGNORE && \
   touch wpi_jaco/jaco_teleop/CATKIN_IGNORE && \
   touch wpi_jaco/wpi_jaco/CATKIN_IGNORE
-
-# dependencies for HLP-R
 git clone https://github.com/GT-RAIL/rail_manipulation_msgs.git
 git clone https://github.com/RIVeR-Lab/epos_hardware.git -b kinetic-devel
 git clone https://github.com/ros-drivers/smart_battery_msgs.git
@@ -41,7 +50,7 @@ git clone https://github.com/si-machines/kinova-ros.git -b moe-devel && \
   touch kinova-ros/kinova_moveit/CATKIN_IGNORE && \
   touch kinova-ros/kinova_moveit_demo/kinova_arm_moveit_demo/CATKIN_IGNORE
 
-# HLPR
+# HLP-R
 git clone https://github.com/HLP-R/hlpr_common.git -b kinetic-devel
 git clone https://github.com/HLP-R/hlpr_robots.git -b kinetic-devel && \
   touch hlpr_robots/hlpr_poli/CATKIN_IGNORE
@@ -69,6 +78,7 @@ sudo wget https://raw.githubusercontent.com/tu-darmstadt-ros-pkg/hector_localiza
 sudo rm /etc/udev/rules.d/10-local.rules
 sudo ln -s ~/catkin_ws/src/poli2/setup/poli2_segway/machine1/udev.rules /etc/udev/rules.d/10-local.rules
 
-# now build
+# now we can build
 cd ..
 catkin build
+source devel/setup.bash
