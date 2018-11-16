@@ -29,13 +29,6 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- This launch file is an example of how to use ORP in your own application,
-     using one of the built-in classifiers.
-
-     The example uses OpenNI2 (e.g. Asus Xtion Pro), and attempts to find small
-     objects on a planar surface. It detects those objects as type obj_red,
-     obj_green, or obj_blue.
--->
 <launch>
   <rosparam command="load" param="/orp/segmentation" file="$(find poli2_launch)/config/segmentation_params.yaml" />
   <rosparam command="load" param="/camera" file="$(find poli2_launch)/config/camera_params.yaml" />
@@ -59,7 +52,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        It may be necessary to define one or more TF static_transform_publisher
        nodes to define the transformations between the camera and the world.-->
 
+  <node
+     pkg="tf"
+     type="static_transform_publisher"
+     name="camera_link_static_transform_publisher"
+     args="-0.0310555920005 -1.06796765327 0.681559681892 1.5707 0.57697567599 0 j2s7s300_link_base camera_link 100"
+  />
 
-<node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
-    args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />
 </launch>
