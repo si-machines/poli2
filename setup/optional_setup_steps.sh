@@ -36,3 +36,5 @@ gsettings set org.gnome.gedit.preferences.editor tabs-size "uint32 2"
 # Clean up the Unity launcher
 gsettings set com.canonical.Unity.Launcher favorites "['application://firefox.desktop']"
 
+# Set the cache to timeout after 1 hour (setting is in seconds)
+git config --global credential.helper 'cache --timeout=3600'
