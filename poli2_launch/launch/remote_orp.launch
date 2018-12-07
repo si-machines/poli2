@@ -1,0 +1,3 @@
+<launch>
+	<node name="orp_headless" pkg="poli2_launch" type="launch_orp_remote.sh" />
+</launch>
