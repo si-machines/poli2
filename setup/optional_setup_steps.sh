@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Optional upgrades
+# Make sure we don't do anything stupid!
+cd ~
 
 # Delete useless folders
 rmdir Documents
@@ -15,7 +16,6 @@ rm examples.desktop
 sudo apt-get install -yq \
   curl \
   emacs \
-  git \
   gitk \
   terminator \
   vim \

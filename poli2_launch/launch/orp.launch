@@ -60,6 +60,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        nodes to define the transformations between the camera and the world.-->
 
 
-  <node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
-    args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" /> 
+<node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
+    args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />
 </launch>
