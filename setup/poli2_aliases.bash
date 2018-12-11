@@ -1,0 +1,2 @@
+alias gripper_open='rostopic pub --once /gripper/cmd robotiq_85_msgs/GripperCmd "{emergency_release: false, emergency_release_dir: 0, stop: false, position: 1.0, speed: 0.0}"'
+alias gripper_close='rostopic pub --once /gripper/cmd robotiq_85_msgs/GripperCmd "{emergency_release: false, emergency_release_dir: 0, stop: false, position: 0.0, speed: 0.0}"'
