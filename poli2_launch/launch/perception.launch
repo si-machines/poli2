@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <!--
 Copyright (c) 2017, Adam Allevato
 All rights reserved.
@@ -30,6 +31,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <launch>
+  <arg name="robot_name">
+
   <rosparam command="load" param="/orp/segmentation" file="$(find poli2_launch)/config/segmentation_params.yaml" />
   <rosparam command="load" param="/camera" file="$(find poli2_launch)/config/camera_params.yaml" />
 
@@ -52,11 +55,18 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        It may be necessary to define one or more TF static_transform_publisher
        nodes to define the transformations between the camera and the world.-->
 
-  <node
-     pkg="tf"
-     type="static_transform_publisher"
-     name="camera_link_static_transform_publisher"
-     args="-0.0310555920005 -1.06796765327 0.681559681892 1.5707 0.57697567599 0 j2s7s300_link_base camera_link 100"
-  />
+  <group if="$(eval robot_name=='tablebot')">
+    <node
+       pkg="tf"
+       type="static_transform_publisher"
+       name="camera_link_static_transform_publisher"
+       args="-0.0310555920005 -1.06796765327 0.681559681892 1.5707 0.57697567599 0 j2s7s300_link_base camera_link 100"
+    />
+  </group>
+
+  <group if="$(eval robot_name=='moe' or robot_name=='barton' or robot_name=='lupe')">
+    <node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
+      args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />
+  </group>
 
 </launch>
