@@ -26,3 +26,7 @@
     local-name: segway_v3
     uri: https://github.com/StanleyInnovation/segway_v3.git
     version: master
+- git:
+    local-name: realsense
+    uri: https://github.com/mojin-robotics/realsense.git
+    version: development
