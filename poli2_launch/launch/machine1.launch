@@ -36,6 +36,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="start_navigation" default="false"/>
   <arg name="start_perception" default="false"/>
 
+  <!-- TODO(Kukanani): this flag is ONLY used for the kinesthetic teaching node, to distinguish between
+       the 2D arm simulator and the real robot. This should probably be specified another way, such as
+       by using the already-existing robot_name parameter. -->
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
 
   <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe will not have the same URDF presumably -->
@@ -64,7 +67,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <group if="$(eval robot_name=='barton' or robot_name=='lupe')">
     <!-- Bring up pan motor only -->
     <include file="$(find poli_pan_tilt)/launch/pan_control.launch">
-	    <arg name="baud_rate" value="57600"/>
+      <arg name="baud_rate" value="57600"/>
     </include>
   </group>
 
