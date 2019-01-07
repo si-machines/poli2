@@ -32,23 +32,22 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
   <arg name="use_segway" default="true"/>
   <arg name="robot_description_file"/>
-  
+  <arg name="urdf_file" value="$(arg robot_description_file)" />
+
   <group if="$(arg use_segway)">
     <arg name="robot_name" value="RMP_110"/>
-    <arg name="urdf_file" value="$(arg robot_description_file)" />
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
     <param name="robot_description"
       command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
   </group>
 
   <group unless="$(arg use_segway)"> <!--this will need to change-->
-    <arg name="robot_name" value="RMP_110"/> 
-    <arg name="urdf_file" value="$(arg robot_description_file)" />
+    <arg name="robot_name" value="RMP_110"/>
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
     <param name="robot_description"
       command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
   </group>
-    
+
   <!-- launch the tf tree for base -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="10.0" />
@@ -70,8 +69,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <!--this will need to change-->
-  <group unless="$(arg use_segway)"> 
+  <group unless="$(arg use_segway)">
     <node pkg="joint_state_publisher" type="joint_state_publisher" name="rmp_joint_state_publisher">
+      <!-- <param name="rate" value="5" /> -->
       <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state"]</rosparam>
       <!-- The following rosparam is just for the temporary necks on lupe and barton-->
       <rosparam>
