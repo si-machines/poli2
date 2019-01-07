@@ -44,6 +44,12 @@ rosdep install --from-paths . --ignore-src --rosdistro=kinetic -y
 sudo apt-get purge ros-kinetic-dynamixel-workbench-toolbox
 sudo wget https://raw.githubusercontent.com/tu-darmstadt-ros-pkg/hector_localization/catkin/hector_pose_estimation/hector_pose_estimation_nodelets.xml -P /opt/ros/kinetic/share/hector_pose_estimation/
 
+# add shortcuts to bashrc
+echo "
+# Include handy Poli2-specific command line aliases, such as opening the gripper.
+# This line was added by the Poli2 machine1 setup.sh script.
+source `pwd`/poli2/setup/shortcuts.bash" >> ~/.bashrc
+
 # now build
 cd ..
 catkin build

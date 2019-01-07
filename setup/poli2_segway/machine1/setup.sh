@@ -61,7 +61,7 @@ sudo ln -s ~/catkin_ws/src/poli2/setup/poli2_segway/machine1/udev.rules /etc/ude
 echo "
 # Include handy Poli2-specific command line aliases, such as opening the gripper.
 # This line was added by the Poli2 machine1 setup.sh script.
-source `pwd`/poli2/setup/poli2_segway/machine1/shortcuts.bash" >> ~/.bashrc
+source `pwd`/poli2/setup/shortcuts.bash" >> ~/.bashrc
 
 # now build
 cd ..
