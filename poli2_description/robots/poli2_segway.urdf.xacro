@@ -57,7 +57,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:property name="wheel_length" value="0.09224900" />
     <xacro:property name="wheel_radius" value="0.2405681" />
 
-    <xacro:macro name="segway_robot">
+    <xacro:macro name="poli2_segway">
         <gazebo>
           <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
               <robotNamespace>/</robotNamespace>

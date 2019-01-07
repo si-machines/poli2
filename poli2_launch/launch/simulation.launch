@@ -29,7 +29,9 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<launch>
+<!-- TODO(Kukanani): this launch file currently does not work, so I've commented out this tag
+     so no one expects it to. -->
+<!-- <launch> -->
     <arg name="paused" default="false" />
     <arg name="gui" default="false" />
     <arg name="world" default="worlds/empty.world" />
@@ -52,7 +54,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- push robot_description to factory and spawn robot in gazebo -->
     <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot " respawn="false" output="screen" />
 
-    <!-- Setup all of the TFs, states, etc. --> 
+    <!-- Setup all of the TFs, states, etc. -->
     <include file="$(find hlpr_gazebo)/launch/state_publishers.launch"/>
 
 </launch>

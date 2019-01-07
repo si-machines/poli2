@@ -23,7 +23,7 @@ OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTE
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<robot name="segway_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="poli2_segway" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <!-- Included URDF/XACRO Files -->
     <xacro:include filename="$(find poli2_description)/urdf/segway_components/battery.urdf.xacro" />
@@ -44,7 +44,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:property name="wheel_length" value="0.09224900" />
     <xacro:property name="wheel_radius" value="0.2405681" />
 
-    <xacro:macro name="segway_robot">  
+    <xacro:macro name="poli2_segway">  
         <gazebo> 
           <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"> 
               <robotNamespace>/</robotNamespace>

@@ -6,12 +6,13 @@
     <arg name="use_hlpr_traj_exec" default="true" />
     <arg name="sim" default="false" />
     <arg name="load_robot_description" default="true" />
-    <arg name="robot_description_file" />
+    <arg name="robot_name" />
+    <arg name="srdf_file" />
 
-    <include file="$(find poli2_full_moveit)/launch/planning_context.launch">
+<!--     <include file="$(find poli2_full_moveit)/launch/planning_context.launch">
         <arg name="load_robot_description" value="$(arg load_robot_description)"/>
-    	<arg name="robot_description_file" value="$(arg robot_description_file)"/>
-    </include>
+        <arg name="robot_name" value="$(arg robot_name)"/>
+    </include> -->
 
     <!-- Run the main MoveIt executable with trajectory execution -->
     <include file="$(find poli2_full_moveit)/launch/move_group.launch">
@@ -19,5 +20,6 @@
         <arg name="fake_execution" value="false"/>
         <arg name="info" value="true"/>
         <arg name="debug" value="false"/>
+        <arg name="robot_name" value="$(arg robot_name)"/>
     </include>
 </launch>

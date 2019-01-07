@@ -37,21 +37,21 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="start_perception" default="false"/>
 
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
-  
+
   <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe will not have the same URDF presumably -->
   <arg name="robot_description_file" value="$(find poli2_description)/robots/$(arg robot_name).urdf.xacro"/>
 
   <!-- Start vacuum pump driver -->
   <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
 
-  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch">
+  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch.xml">
     <arg name="use_segway" value="$(eval robot_name=='moe')"/>
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
 
   <!-- Moe -->
   <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
-    <!-- Bring up pan tilt motors -->  
+    <!-- Bring up pan tilt motors -->
     <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
     </include>
@@ -62,7 +62,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Barton and Lupe -->
   <group if="$(eval robot_name=='barton' or robot_name=='lupe')">
-    <!-- Bring up pan motor only -->  
+    <!-- Bring up pan motor only -->
     <include file="$(find poli_pan_tilt)/launch/pan_control.launch">
 	    <arg name="baud_rate" value="57600"/>
     </include>
@@ -75,7 +75,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
-      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
+      <arg name="robot_name" value="$(arg robot_name)" />
     </include>
   </group>
 
@@ -86,11 +86,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <group if="$(arg start_navigation)">
-    <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->    
+    <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
     <!-- Bring up base drivers -->
       <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
     </group>
     <include file="$(find poli2_launch)/launch/navigation.launch"/>
   </group>
- 
+
 </launch>
