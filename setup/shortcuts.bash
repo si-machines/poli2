@@ -5,13 +5,13 @@
 # Creation Date: Jan 05 2019
 
 # Bringup
-alias up='roslaunch poli2_launch machine1.launch start_manipulation:=true'
+alias up='roslaunch poli2_launch machine1.launch'
 
 # Gripper
-alias gripper_open='rostopic pub /gripper/cmd robotiq_85_msgs/GripperCmd "{emergency_release: false, emergency_release_dir: 0, stop: false, position: 1.0, speed: 1.0,
-  force: 0.0}"'
-alias gripper_close='rostopic pub /gripper/cmd robotiq_85_msgs/GripperCmd "{emergency_release: false, emergency_release_dir: 0, stop: false, position: 0.0, speed: 1.0,
-  force: 0.0}"'
+alias gripper_open='(rostopic pub --once /gripper/cmd robotiq_85_msgs/GripperCmd "{emergency_release: false, emergency_release_dir: 0, stop: false, position: 1.0, speed: 1.0,
+  force: 0.0}" > /dev/null 2>&1 &)'
+alias gripper_close='(rostopic pub --once /gripper/cmd robotiq_85_msgs/GripperCmd "{emergency_release: false, emergency_release_dir: 0, stop: false, position: 0.0, speed: 1.0,
+  force: 0.0}" > /dev/null 2>&1 &)'
 
 # Force Control
 alias force_control_start='rosservice call /j2s7s300_driver/in/start_force_control'
