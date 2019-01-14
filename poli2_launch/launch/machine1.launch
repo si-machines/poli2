@@ -35,6 +35,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="start_manipulation" default ="false"/>
   <arg name="start_navigation" default="false"/>
   <arg name="start_perception" default="false"/>
+  <arg name="start_rviz" default="false"/>
 
   <!-- TODO(Kukanani): this flag is ONLY used for the kinesthetic teaching node, to distinguish between
        the 2D arm simulator and the real robot. This should probably be specified another way, such as
@@ -80,6 +81,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <include file="$(find poli2_launch)/launch/manipulation.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
     </include>
+    <node
+      name="collision_scene"
+      pkg="poli2_launch"
+      type="setup_$(arg robot_name)_collision_scene.py"
+    />
   </group>
 
   <group if="$(arg start_perception)">
@@ -94,6 +100,15 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
     </group>
     <include file="$(find poli2_launch)/launch/navigation.launch"/>
+  </group>
+
+  <group if="$(arg start_rviz)">
+    <node
+      name="$(anon rviz)"
+      pkg="rviz"
+      type="rviz"
+      args="-d $(find poli2_launch)/rviz/$(arg robot_name).rviz"
+    />
   </group>
 
 </launch>
