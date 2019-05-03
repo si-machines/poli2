@@ -39,7 +39,7 @@
   <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
     <arg name="comport" value="/dev/robotiq"/>
   </include>
-
+  
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
       <arg name="robot_description_file" value="$(arg robot_description_file)"/>
