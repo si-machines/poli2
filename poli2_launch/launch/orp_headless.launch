@@ -51,6 +51,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="realsense_4xx"     value="true"/>
     <arg name="hue"               value="true"/>
     <arg name="autostart"         value="true"/>
+    <arg name="reconfigure"	  value="false"/>
+    <arg name="rviz"		  value="false"/>
     <arg name="recognition_frame" value="j2s7s300_link_base"/>
   </include>
 
@@ -60,6 +62,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        nodes to define the transformations between the camera and the world.-->
 
 
-<node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
-    args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />
+  <node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
+    args="-0.03 0.035 -0.01 1.57 0 1.57 camera_placement_link camera_link 100" /> 
 </launch>
