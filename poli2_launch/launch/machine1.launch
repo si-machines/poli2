@@ -1,17 +1,53 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2018, Adam Allevato
+Copyright (c) 2018, The University of Texas at Austin
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
 <launch>
   <arg name="robot_name" default="moe"/>
   <arg name="start_manipulation" default ="false"/>
   <arg name="start_navigation" default="false"/>
+  <arg name="start_perception" default="false"/>
 
+  <!-- TODO(Kukanani): this flag is ONLY used for the kinesthetic teaching node, to distinguish between
+       the 2D arm simulator and the real robot. This should probably be specified another way, such as
+       by using the already-existing robot_name parameter. -->
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
-  
+
   <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe will not have the same URDF presumably -->
   <arg name="robot_description_file" value="$(find poli2_description)/robots/$(arg robot_name).urdf.xacro"/>
 
   <!-- Start vacuum pump driver -->
   <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
 
-  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch">
+  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch.xml">
     <arg name="use_segway" value="$(eval robot_name=='moe')"/>
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
@@ -22,8 +58,6 @@
   <!-- Start LED driver and pan/tilt zero switch manager-->
   <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
 
-
-
   <!-- Bring up Jaco arm-->
   <!--include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
     <arg name="comport" value="/dev/robotiq"/>
@@ -31,16 +65,22 @@
 
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
-      <arg name="robot_description_file" value="$(arg robot_description_file)"/>
+      <arg name="robot_name" value="$(arg robot_name)" />
+    </include>
+  </group>
+
+  <group if="$(arg start_perception)">
+    <include file="$(find poli2_launch)/launch/perception.launch">
+      <arg name="robot_name" value="$(arg robot_name)" />
     </include>
   </group>
 
   <group if="$(arg start_navigation)">
-    <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->    
+    <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
     <!-- Bring up base drivers -->
       <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
     </group>
     <include file="$(find poli2_launch)/launch/navigation.launch"/>
   </group>
- 
+
 </launch>

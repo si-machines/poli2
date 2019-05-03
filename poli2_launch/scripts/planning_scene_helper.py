@@ -280,7 +280,7 @@ class PlanningSceneHelper:
     # Remove the provided object from the world.
     def remove(self, object_id):
         if object_id not in self.objects:
-            logwarn("PlanningSceneHelper was not used to create object with id"
+            logwarn("PlanningSceneHelper was not used to create object with id "
                     + object_id + ". Attempting to remove it anyway.")
         try:
             # first remove the actual collision object

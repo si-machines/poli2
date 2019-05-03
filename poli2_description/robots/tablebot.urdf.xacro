@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <!--
+Copyright (c) 2018, Adam Allevato
 Copyright (c) 2018, The University of Texas at Austin
 All rights reserved.
 
@@ -29,9 +30,15 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<launch>
-  <node name="poli2_joystick" pkg="joy" type="joy_node" />
-  <node name="teleop_node_joy" pkg="teleop_twist_joy" type="teleop_node">
-    <remap from="cmd_vel" to="/poli2/teleop/cmd_vel"/>
-  </node>
-</launch>
+<robot name="tablebot" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="M_PI" value="3.14159"/>
+    <xacro:property name="HALF_PI" value="1.57079"/>
+
+    <link name="world"/>
+
+    <xacro:include filename="$(find kinova_description)/urdf/j2s7s300.xacro" />
+    <xacro:j2s7s300
+        base_parent="world"
+        trans="0.0 0.0 0.0"
+        rot="0.0 0.0 0.0" />
+</robot>
