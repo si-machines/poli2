@@ -32,6 +32,11 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
   <arg name="robot_name" default="moe"/>
   
+  <!-- Bring up Jaco arm-->
+  <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
+    <arg name="comport" value="/dev/robotiq"/>
+  </include>
+  
   <include file="$(find poli2_full_moveit)/launch/moveit.launch">
     <arg name="load_robot_description" value="true"/>
     <arg name="robot_name" value="$(arg robot_name)"/>
