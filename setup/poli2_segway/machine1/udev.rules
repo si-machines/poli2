@@ -36,3 +36,6 @@ SUBSYSTEM=="usb|usb_device", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="a8b0", 
 
 # Arduino Uno for pillar control
 ACTION=="add", SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0043", SYMLINK+="tty_pillar"
+
+# Mini DSP
+ACTION=="add", SUBSYSTEM=="usb|usb_device|tty", ATTRS{idVendor}=="2752", ATTRS{idProduct}=="001c", GROUP="dialout", MODE="666", SYMLINK+="mic_array"
