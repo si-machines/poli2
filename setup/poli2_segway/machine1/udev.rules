@@ -32,7 +32,7 @@ KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:
 
 # Epos (head tilt board)
 # see also https://github.com/RIVeR-Lab/epos_hardware/blob/indigo-devel/epos_hardware/90-ftd2xx.rules
-SUBSYSTEM=="usb|usb_device", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="a8b0", GROUP="dialout", MODE="666", SYMLINK+="tilt_motor"
+ACTION=="add", SUBSYSTEM=="usb|usb_device", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="a8b0", GROUP="dialout", MODE="666", SYMLINK+="tilt_motor"
 
 # Arduino Uno for pillar control
 ACTION=="add", SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0043", SYMLINK+="tty_pillar"
