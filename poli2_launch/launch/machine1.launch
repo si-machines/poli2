@@ -52,30 +52,14 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="use_segway" value="$(eval robot_name=='moe')"/>
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
-
-  <!-- Moe -->
-  <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
-    <!-- Bring up pan tilt motors -->
-    <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
-      <arg name="robot_name" value="$(arg robot_name)" />
-    </include>
-
-    <!-- Start LED driver and pan/tilt zero switch manager-->
-    <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
-  </group>
-
-  <!-- Barton and Lupe -->
-  <group if="$(eval robot_name=='barton' or robot_name=='lupe')">
-    <!-- Bring up pan motor only -->
-    <include file="$(find poli_pan_tilt)/launch/pan_control.launch">
-      <arg name="baud_rate" value="57600"/>
-    </include>
-  </group>
-
-  <!-- Bring up Jaco arm-->
-  <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
-    <arg name="comport" value="/dev/robotiq"/>
+  
+  <!-- Bring up pan tilt motors -->
+  <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
+    <arg name="robot_name" value="$(arg robot_name)" />
   </include>
+  
+  <!-- Start LED driver and pan/tilt zero switch manager-->
+  <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
 
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
