@@ -37,9 +37,7 @@ if __name__=="__main__":
 
     p.remove("table")
     p.remove("back")
+    p.remove("hoop_protector")
 
     p.add_box("table", "world", size=(2, 2, 0.2), position=(0, 0, -0.14), color=(0,0,1.,0.4))
-
-    p.add_box("back", "world", size=(2, 0.2, 2), position=(0, 0.22, 0), color=(0,0,1.,0.4))
-    
-    
+    p.add_box("hoop_protector", "world", size=(0.2, 2, 2), position=(-0.9, 0, 0), color=WALL_COLOR)

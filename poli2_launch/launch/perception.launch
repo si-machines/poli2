@@ -56,11 +56,12 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        nodes to define the transformations between the camera and the world.-->
 
   <group if="$(eval robot_name=='tablebot')">
+    <include file="$(find poli2_launch)/launch/tablebot_camera_position.launch.xml"/>
     <node
        pkg="tf"
        type="static_transform_publisher"
        name="camera_link_static_transform_publisher"
-       args="-0.0310555920005 -1.06796765327 0.681559681892 1.5707 0.57697567599 0 j2s7s300_link_base camera_link 100"
+       args="-0.015510737896 -1.10815286636 0.669830799103 1.57395472088 0.426216309179 0.0881404617368 j2s7s300_link_base camera_link 100"
     />
   </group>
 
