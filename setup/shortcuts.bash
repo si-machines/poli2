@@ -37,13 +37,13 @@ set_me_master() {
 
 set_moe_master () {
   export ROS_MASTER_URI="http://${ip_moe1}:11311"
-  export ROS_HOSTNAME="moe1"
+  export ROS_HOSTNAME=$(hostname)
   export ROS_IP=$ip_mine
 }
 
 set_lupe_master () {
   export ROS_MASTER_URI="http://${ip_lupe1}:11311"
-  export ROS_HOSTNAME="lupe1"
+  export ROS_HOSTNAME=$(hostname)
   export ROS_IP=$ip_mine
 }
 
@@ -52,6 +52,6 @@ set_barton_master () {
   echo "UPDATE poli2/setup/shortcuts.bash WITH THE CORRECT"
   echo "IP ADDRESS FOR BARTON ONE, THEN COMMIT AND PUSH THE CHANGE."
   export ROS_MASTER_URI="http://${ip_barton1}:11311"
-  export ROS_HOSTNAME="barton1"
+  export ROS_HOSTNAME=$(hostname)
   export ROS_IP=$ip_mine
 }
