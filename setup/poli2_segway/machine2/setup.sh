@@ -30,7 +30,7 @@ catkin_init_workspace
 ####################################
 
 # download and install everything in one fell swoop
-wget https://raw.githubusercontent.com/si-machines/poli2/master/setup/poli2_segway/machine1/poli2_segway_machine2.rosinstall
+wget https://raw.githubusercontent.com/si-machines/poli2/master/setup/poli2_segway/machine2/poli2_segway_machine2.rosinstall
 wstool init ./ poli2_segway_machine2.rosinstall
 
 # gitignore some packages that won't build without vector. Grouped by repository
