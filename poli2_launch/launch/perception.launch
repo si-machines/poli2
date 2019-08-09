@@ -31,7 +31,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <launch>
-  <arg name="robot_name" default="moe">
+  <arg name="robot_name" default="moe"/>
 
   <rosparam command="load" param="/orp/segmentation" file="$(find poli2_launch)/config/segmentation_params.yaml" />
   <rosparam command="load" param="/camera" file="$(find poli2_launch)/config/camera_params.yaml" />

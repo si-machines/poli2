@@ -12,18 +12,24 @@ rmdir Templates
 rmdir Videos
 rm examples.desktop
 
+# Dependencies for Sublime Text (from https://www.sublimetext.com/docs/3/linux_repositories.html#apt)
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+sudo apt-get install -yq apt-transport-https
+echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+
 # Install stuff that people in the lab like to use
 sudo apt-get install -yq \
   curl \
   emacs \
   gitk \
+  sublime-text
   terminator \
   vim \
   wget
 
 # Allow SSH into this machine
 sudo apt-get install -yq openssh-server
-
 
 # Set the default settings for gedit to be OK for programming
 gsettings set org.gnome.gedit.preferences.editor auto-indent true
