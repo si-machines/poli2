@@ -2,8 +2,8 @@
   <arg name="robot_name" />
 
   <arg name="device_name"        default="/dev/pan_motor"/>
-  <arg name="baud_rate"          value="57600" unless="$(eval robot_name == 'moe')" />
-  <arg name="baud_rate"          value="1000000" if="$(eval robot_name == 'moe')" />
+  <!--arg name="baud_rate"          value="57600" unless="$(eval robot_name == 'moe')" /-->
+  <arg name="baud_rate"          value="1000000" />
   <arg name="protocol_version"   default="2.0"/>
 
   <arg name="pan_id"             default="1"/>
