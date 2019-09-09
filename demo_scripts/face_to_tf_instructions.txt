@@ -1,0 +1,5 @@
+roslaunch poli2_launch machine2.launch
+
+rosrun opencv_apps face_detection _debug_view:=True image:=/camera/color/image_rect_color _face_cascade_name:=/opt/ros/kinetic/share/OpenCV-3.3.1-dev/haarcascades/haarcascade_frontalface_alt.xml  _eyes_cascade_name:=/opt/ros/kinetic/share/OpenCV-3.3.1-dev/haarcascades/haarcascade_eye_tree_eyeglasses.xml 
+
+rosrun hlpr_lookat face_to_tf.py
