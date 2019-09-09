@@ -73,11 +73,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
       <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
       <rosparam param="rate">100</rosparam>
-      <!-- The following rosparam is just for the temporary necks on lupe and barton-->
-      <rosparam>
-        zeros:
-          tilt_joint: -0.4
-      </rosparam>
     </node>
   </group>
 </launch>
