@@ -35,17 +35,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="urdf_file" value="$(arg robot_description_file)" />
 
   <group if="$(arg use_segway)">
-    <arg name="robot_name" value="RMP_110"/>
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
     <param name="robot_description"
-      command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
+      command="$(find xacro)/xacro --inorder '$(arg urdf_file)'" />
   </group>
 
-  <group unless="$(arg use_segway)"> <!--this will need to change-->
-    <arg name="robot_name" value="RMP_110"/>
+  <!-- TODO: this block is now identical to the previous one. Delete this group and remove the group/if on the previous block -->
+  <group unless="$(arg use_segway)">
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
     <param name="robot_description"
-      command="$(find xacro)/xacro --inorder '$(arg urdf_file)' robot_name:=$(arg robot_name)" />
+      command="$(find xacro)/xacro --inorder '$(arg urdf_file)'"/>
   </group>
 
   <!-- launch the tf tree for base -->
@@ -66,6 +65,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <node pkg="joint_state_publisher" type="joint_state_publisher" name="rmp_joint_state_publisher">
       <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
       <rosparam param="rate">100</rosparam>
+    </node>
   </group>
 
   <!--this will need to change-->

@@ -2,9 +2,9 @@
 <package>
   <name>poli2_launch</name>
   <version>0.0.1</version>
-  <description>The poli2_launch package</description>
+  <description>Launch files for various Poli2 platforms</description>
 
-  <maintainer email="maxsvetlik@utexas.edu">Maxwell Svetlik</maintainer>
+  <maintainer email="siml.utexas@gmail.com">UT SIM Lab</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>

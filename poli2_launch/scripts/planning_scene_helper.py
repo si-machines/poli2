@@ -46,8 +46,8 @@ class PlanningSceneHelper:
     def __init__(self, package=None, mesh_folder_path=None):
         # interface to the planning and collision scenes
         self.psi = PlanningSceneInterface()
-        self.scene_pub = Publisher("/collision_object", CollisionObject,
-                                   queue_size=1, latch=True)
+        # self.scene_pub = Publisher("/collision_object", CollisionObject,
+        #                            queue_size=1, latch=True)
         self.vis_pub = Publisher("/collision_scene", MarkerArray, queue_size=10)
         self.marker_array = MarkerArray()
         sleep(1.0)
@@ -61,7 +61,7 @@ class PlanningSceneHelper:
             self.folder_path = os.path.join(self.package_path, mesh_folder_path)\
             + os.sep
         else:
-            logwarn("Missing package or mesh folder path; no meshes can be added")
+            loginfo("Missing package or mesh folder path supplied to planning_scene_helper; no meshes can be added")
 
         # Create dict of objects, for removing markers later
         self.objects = {}
@@ -92,7 +92,7 @@ class PlanningSceneHelper:
             # marker.mesh_resource = "file:/" + self.folder_path + visual
             marker.mesh_resource = "package://" + self.package + os.sep + self.mesh_folder_path + os.sep + visual
 
-            self.marker_array = MarkerArray()
+            self.marker_array = self.make_new_marker_array_msg()
             self.marker_array.markers.append(marker)
             self.vis_pub.publish(self.marker_array)
             self.objects[object_id] = marker
@@ -128,7 +128,7 @@ class PlanningSceneHelper:
             prim.dimensions = [size[0], size[1]]
             cyl.primitives = [prim]
             cyl.primitive_poses = [stamped_pose.pose]
-            self.scene_pub.publish(cyl)
+            # self.scene_pub.publish(cyl)
 
             marker = self.make_marker_stub(stamped_pose, [size[1]*2, size[2]*2, size[0]], color=color)
             marker.type = Marker.CYLINDER
@@ -269,19 +269,23 @@ class PlanningSceneHelper:
         self.next_id += 1
         return marker
 
+    def make_new_marker_array_msg(self):
+        ma = MarkerArray()
+        return ma
+
     # publish a single marker
     def publish_marker(self, object_id, marker):
         loginfo("Publishing marker for object {}".format(object_id))
-        self.marker_array = MarkerArray()
+        self.marker_array = self.make_new_marker_array_msg()
         self.marker_array.markers.append(marker)
         self.vis_pub.publish(self.marker_array)
         self.objects[object_id] = marker
 
     # Remove the provided object from the world.
     def remove(self, object_id):
-        if object_id not in self.objects:
-            logwarn("PlanningSceneHelper was not used to create object with id "
-                    + object_id + ". Attempting to remove it anyway.")
+        # if object_id not in self.objects:
+        #     logwarn("PlanningSceneHelper was not used to create object with id "
+        #             + object_id + ". Attempting to remove it anyway.")
         try:
             # first remove the actual collision object
             self.psi.remove_world_object(object_id)

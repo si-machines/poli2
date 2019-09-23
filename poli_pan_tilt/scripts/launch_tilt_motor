@@ -67,11 +67,12 @@ class LaunchTiltMotor(object):
         tilt_encoder = 0.0
         if not has_been_initialized:
             while not has_been_initialized and not rospy.is_shutdown():
-                rospy.logwarn_throttle(5, "Waiting for tilt motor joint state to be initialized...")
-                rospy.sleep(0.1)
+                rospy.sleep(1.0)
                 if len(self.joint_states.position) > 0:
                     tilt_encoder = self.joint_states.position[0]
                     has_been_initialized = True
+                else:
+                    rospy.logwarn_throttle(5, "Waiting for tilt motor joint state to be initialized...")
         
         if rospy.is_shutdown():
             return

@@ -34,7 +34,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   
   <!-- Bring up Jaco arm-->
   <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
-    <arg name="comport" value="/dev/robotiq"/>
   </include>
   
   <include file="$(find poli2_full_moveit)/launch/moveit.launch">

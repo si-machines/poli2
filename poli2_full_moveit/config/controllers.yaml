@@ -1,5 +1,5 @@
 controller_list:
-  - name: jaco_trajectory_controller
+  - name: hlpr_jaco_trajectory_action_server
     action_ns: trajectory
     type: FollowJointTrajectory
     default: true
