@@ -53,13 +53,15 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
   
-  <!-- Bring up pan tilt motors -->
-  <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
-    <arg name="robot_name" value="$(arg robot_name)" />
-  </include>
+  <group if="$(eval robot_name=='barton' or robot_name=='lupe' or robot_name=='moe')">
+    <!-- Bring up pan tilt motors -->
+    <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
+      <arg name="robot_name" value="$(arg robot_name)" />
+    </include>
   
-  <!-- Start LED driver and pan/tilt zero switch manager-->
-  <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
+    <!-- Start LED driver and pan/tilt zero switch manager-->
+    <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
+  </group>
 
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">

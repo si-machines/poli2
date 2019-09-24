@@ -35,16 +35,16 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="urdf_file" value="$(arg robot_description_file)" />
 
   <group if="$(arg use_segway)">
+    <arg name="robot_name" value="RMP_110"/>
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
-    <param name="robot_description"
-      command="$(find xacro)/xacro --inorder '$(arg urdf_file)'" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg urdf_file)'" />
   </group>
 
   <!-- TODO: this block is now identical to the previous one. Delete this group and remove the group/if on the previous block -->
   <group unless="$(arg use_segway)">
+    <arg name="robot_name" value="RMP_110"/>
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
-    <param name="robot_description"
-      command="$(find xacro)/xacro --inorder '$(arg urdf_file)'"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg urdf_file)'" />
   </group>
 
   <!-- launch the tf tree for base -->
@@ -62,17 +62,17 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <group if="$(arg use_segway)">
     <!-- launch the joint state publisher to default values -->
-    <node pkg="joint_state_publisher" type="joint_state_publisher" name="rmp_joint_state_publisher">
-      <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
       <rosparam param="rate">100</rosparam>
+      <rosparam param="source_list">["/segway/rmp_joint_states", "/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
     </node>
   </group>
 
   <!--this will need to change-->
   <group unless="$(arg use_segway)">
     <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
-      <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
       <rosparam param="rate">100</rosparam>
+      <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
     </node>
   </group>
 </launch>

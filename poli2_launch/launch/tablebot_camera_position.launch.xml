@@ -1,7 +1,6 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!--
-Copyright (c) 2018, Adam Allevato
-Copyright (c) 2018, The University of Texas at Austin
+Copyright (c) 2017, Adam Allevato
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -30,40 +29,40 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<robot name="tablebot" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="M_PI" value="3.14159" />
-    <xacro:property name="HALF_PI" value="1.57079" />
-
-    <link name="world" />
-
-    <xacro:include filename="$(find poli2_description)/urdf/j2s7s300_robotiq.xacro" />
-    <xacro:j2s7s300 base_parent="world" trans="0.0 0.0 0.0" rot="0.0 0.0 0.0" />
 
 
-    <joint name="j2s7s300_ee_spatula_joint" type="fixed">
-        <parent link="j2s7s300_ee_link" />
-        <child link="j2s7s300_spatula" />
-        <origin xyz="0.1 0.0 0" rpy="0 0 1.5707" />
-    </joint>
+<!--
+  The position of the realsense camera as determined by hand-calibration on tablebot.
+  Originally created January 2019, may be out of date depending on if the camera
+  setup has changed.
+-->
+<launch>
+  <!-- you can use this to generate new transforms. You'll have to download the ROS 
+    package from https://github.com/Kukanani/calibration_marker first.-->
+  <!-- <node
+    pkg="calibration_marker"
+    type="calibration_marker.py"
+    name="calibration_marker"
+    output="screen"
+  >
+    <param name="parent_frame" value="j2s7s300_link_base" />
+    <param name="child_frame" value="camera_link" />
+  </node> -->
 
-    <link name="j2s7s300_spatula">
-        <visual>
-            <geometry>
-                <mesh filename="package://poli2_description/meshes/objects/spatula.stl" />
-            </geometry>
-            <material name="White">
-                <color rgba="1.0 1.0 1.0 1.0"/>
-            </material>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://poli2_description/meshes/objects/spatula.stl" />
-            </geometry>
-        </collision>
-        <inertial>
-            <mass value="0.001" />
-            <origin xyz="0 0 0" />
-            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
-        </inertial>
-    </link>
-</robot>
+  <!-- top-down camera mounted directly over the table on t-slot frame-->
+  <node
+    pkg="tf"
+    type="static_transform_publisher"
+    name="camera_link_static_transform_publisher"
+    args="-0.0351709537208 -0.521871447563 0.686433672905 0.742757848055 1.52754909792 -0.84 j2s7s300_link_base camera_link 100"
+  />
+  <!-- camera at the edge of the table looking down and back at the arm-->
+  <!-- <node
+     pkg="tf"
+     type="static_transform_publisher"
+     name="camera_link_static_transform_publisher"
+     args="-0.03 -1.10815286636 0.65 1.57395472088 0.426216309179 0.0881404617368 j2s7s300_link_base camera_link 100"
+  /> -->
+
+
+</launch>
