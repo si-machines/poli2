@@ -4,7 +4,7 @@ moveit_setup_assistant_config:
     relative_path: robots/moe.urdf.xacro
     xacro_args: ""
   SRDF:
-    relative_path: config/poli2_segway.srdf
+    relative_path: config/moe.urdf
   CONFIG:
     author_name: Max Svetlik
     author_email: maxsvetlik@utexas.edu
