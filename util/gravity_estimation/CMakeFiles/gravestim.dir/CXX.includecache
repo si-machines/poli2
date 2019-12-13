@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/siml/gravity_estimation/main.cpp
+iostream
+-
+dlfcn.h
+-
+KinovaTypes.h
+-
+Kinova.API.CommLayerUbuntu.h
+-
+Kinova.API.UsbCommandLayerUbuntu.h
+-
+unistd.h
+-
+
+/opt/JACO2SDK/API/Kinova.API.CommLayerUbuntu.h
+vector
+-
+
+/opt/JACO2SDK/API/Kinova.API.UsbCommandLayerUbuntu.h
+vector
+-
+KinovaTypes.h
+/opt/JACO2SDK/API/KinovaTypes.h
+Kinova.API.CommLayerUbuntu.h
+/opt/JACO2SDK/API/Kinova.API.CommLayerUbuntu.h
+stdio.h
+-
+
+/opt/JACO2SDK/API/KinovaTypes.h
+
