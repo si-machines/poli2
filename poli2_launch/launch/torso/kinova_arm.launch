@@ -43,7 +43,6 @@
         </node>
     </group>
 
-    <!-- gripper is started in arm.launch in our fork of kinova_ros -->
     <node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen">
         <param name="num_grippers" value="1" />
         <param name="comport" value="$(arg gripper_comport)" />
