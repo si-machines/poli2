@@ -70,16 +70,16 @@ if __name__ == "__main__":
     
     
     eye_shape = raw_input("New eye shape (ENTER if no change):")
-    while eye_shape not in eye_mapping.keys():
+    while eye_shape not in eye_mapping.keys() and eye_shape != "":
         eye_shape = raw_input("Unknown key, please choose another:")
     eye_color = raw_input("New eye color (ENTER if no change):")
-    while eye_color not in color_mapping.keys():
+    while eye_color not in color_mapping.keys() and eye_color != "":
         eye_color = raw_input("Unknown key, please choose another:")
     mouth_shape = raw_input("New mouth shape (ENTER if no change):")
-    while mouth_shape not in mouth_mapping.keys():
+    while mouth_shape not in mouth_mapping.keys() and mouth_shape != "":
         mouth_shape = raw_input("Unknown key, please choose another:")
     mouth_color = raw_input("New mouth color (ENTER if no change):")
-    while mouth_color not in color_mapping.keys():
+    while mouth_color not in color_mapping.keys() and mouth_color != "":
         mouth_color = raw_input("Unknown key, please choose another:")
     pan_angle = raw_input("New pan angle in degrees, -90 to 90, positive is turning to the right (ENTER if no change):")
     tilt_angle = raw_input("New tilt angle, 0 to 1, 1 is up, 0 is down (ENTER if no change):")
