@@ -47,7 +47,7 @@ if __name__=="__main__":
     
     p.add_box("base", "base_link", size=(.9,.6,.5), position=(0.,0.,.25), color=(0,0,1.,0.3))
     p.add_box("torso", "base_link", size=(.23,.3,.5), position=(0.,0.,.5+.25), color=(0,0,1.,0.3))
-    p.add_sphere("head", "base_link", size=(.22,.2,.2), position=(0.,0.,1+.1), color=(0,0,1.,0.3))
+    p.add_sphere("head", "base_link", size=(.22,.2,.2), position=(0.,0.,1+.15), color=(0,0,1.,0.3))
     
     # p.add_box("table", "base_link", size=(1.5,1.5,.58), position=(1.,0.,.3), color=(0,0,1.,1.))
 
