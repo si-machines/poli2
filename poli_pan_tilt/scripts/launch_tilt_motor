@@ -24,8 +24,9 @@ Author Maxwell Svetlik
 import rospy
 import roslaunch
 import rospkg
-from std_msgs.msg import Int16
+from std_msgs.msg import Int16, Float64
 from sensor_msgs.msg import JointState
+import time
 
 TOLERANCE = 0.005
 init_param = "/tilt_motor/encoders_initialized"
@@ -52,6 +53,7 @@ class LaunchTiltMotor(object):
         rospy.init_node('launch_tilt_motor', anonymous=True)
         rospy.Subscriber("/pillar/limit_switch", Int16, self.cb_limit_switch)
         rospy.Subscriber("/tilt_motor/joint_states", JointState, self.cb_joint_states)
+        self.tilt_pub   = rospy.Publisher('/tilt_motor/position_controller/command', Float64, queue_size=1)
 
         rospack = rospkg.RosPack()
         
@@ -74,6 +76,16 @@ class LaunchTiltMotor(object):
                 else:
                     rospy.logwarn_throttle(5, "Waiting for tilt motor joint state to be initialized...")
         
+        t_end = time.time() + 3 # Cut out auto initialization after 3 seconds
+        while time.time() < t_end:
+            if (self.joint_states.position[0] <= TOLERANCE and self.joint_states.position[0] >= -TOLERANCE and self.switch_pressed):
+                tilt_encoder = self.joint_states.position[0]
+                break
+            
+            msg = Float64()
+            msg.data = self.joint_states.position[0] + 0.03
+            self.tilt_pub.publish(msg)
+
         if rospy.is_shutdown():
             return
 
