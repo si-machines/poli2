@@ -31,7 +31,7 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <arg name="robot_name" default="moe"/>
+  <arg name="robot_name" default="beep"/>
   <arg name="start_manipulation" default ="false"/>
   <arg name="start_navigation" default="false"/>
   <arg name="start_perception" default="false"/>
@@ -53,25 +53,36 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
   
-  <group if="$(eval robot_name=='barton' or robot_name=='lupe' or robot_name=='moe')">
-    <!-- Bring up pan tilt motors -->
+  <!-- Bring up pan tilt motors -->
+  <group if="$(eval robot_name=='beep' or robot_name=='boop' or robot_name=='barton' or robot_name=='lupe' or robot_name=='moe')">
     <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
     </include>
+  </group>
   
+   <group unless="$(eval robot_name=='beep' or robot_name=='boop')">
     <!-- Start LED driver and pan/tilt zero switch manager-->
-    <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
+    <include file="$(find poli2_launch)/launch/torso/led_controller.launch">
+      <arg name="robot_name" value="$(arg robot_name)" />
+    </include>
+  </group>
+  
+   <group if="$(eval robot_name=='beep' or robot_name=='boop')">
+    <!-- Start LED driver and pan/tilt zero switch manager-->
+    <include file="$(find poli2_launch)/launch/torso/led_controller.launch">
+      <arg name="robot_name" value="$(arg robot_name)" />
+    </include>
   </group>
 
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
     </include>
-    <node
+    <!-- <node
       name="collision_scene"
       pkg="poli2_launch"
       type="setup_$(arg robot_name)_collision_scene.py"
-    />
+    /> -->
   </group>
 
   <group if="$(arg start_perception)">

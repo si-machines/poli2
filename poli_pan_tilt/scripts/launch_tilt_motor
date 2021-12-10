@@ -27,7 +27,7 @@ import rospkg
 from std_msgs.msg import Int16
 from sensor_msgs.msg import JointState
 
-TOLERANCE = 0.005
+TOLERANCE = 0.01 #0.007
 init_param = "/tilt_motor/encoders_initialized"
 
 class LaunchTiltMotor(object):
@@ -77,6 +77,11 @@ class LaunchTiltMotor(object):
         if rospy.is_shutdown():
             return
 
+        rospy.sleep(2.0)
+
+        rospy.loginfo("Tilt encoder: {}; Limit switch state: {}".format(tilt_encoder, self.switch_pressed))
+        
+        rospy.loginfo("initialized: {}; tilt_encoder: {}; switch_pressed: {};".format(has_been_initialized, tilt_encoder, self.switch_pressed))
         if has_been_initialized and (tilt_encoder <= TOLERANCE and tilt_encoder >= -TOLERANCE and self.switch_pressed):
             #life is good
             rospy.set_param(init_param, "true")
@@ -93,7 +98,7 @@ class LaunchTiltMotor(object):
                 rospy.spin()
         else:
             #tilt motor not within spec
-            rospy.logerr("Tilt motor does not have correctly initialized encoders.")
+            rospy.logerr("Tilt motor does not have correctly initialized encoders. Encoder at {}".format(tilt_encoder))
             rospy.logerr("Please tilt the head down, disconnect tilt motor power and reconnect.")
             launch.shutdown()
             if rospy.has_param(init_param):

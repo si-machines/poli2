@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Warning: if you set use_hlpr_traj false, you cannot execute a trajectory through moveit -->
+    <arg name="driver_launch" default="false" />
+    <arg name="use_hlpr_traj_exec" default="true" />
+    <arg name="sim" default="false" />
+    <arg name="load_robot_description" default="true" />
+    <arg name="robot_name" />
+    <arg name="srdf_file" />
+
+    <include file="$(find poli2_full_moveit)/launch/planning_context.launch">
+        <arg name="load_robot_description" value="$(arg load_robot_description)"/>
+        <arg name="robot_name" value="$(arg robot_name)"/>
+    </include>
+
+    <!-- Run the main MoveIt executable with trajectory execution -->
+    <include file="$(find poli2_full_moveit)/launch/move_group.launch">
+        <arg name="allow_trajectory_execution" value="$(arg use_hlpr_traj_exec)"/>
+        <arg name="fake_execution" value="false"/>
+        <arg name="info" value="true"/>
+        <arg name="debug" value="false"/>
+        <arg name="robot_name" value="$(arg robot_name)"/>
+    </include>
+</launch>

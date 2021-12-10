@@ -31,7 +31,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <launch>
-  <arg name="robot_name" default="moe" />
+  <arg name="robot_name" default="beep" />
 
   <rosparam command="load" param="/orp/segmentation" file="$(find poli2_launch)/config/segmentation_params.yaml" />
   <rosparam command="load" param="/camera" file="$(find poli2_launch)/config/camera_params.yaml" />
@@ -59,7 +59,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <include file="$(find poli2_launch)/launch/tablebot_camera_position.launch.xml"/>
   </group>
 
-  <group if="$(eval robot_name=='moe' or robot_name=='barton' or robot_name=='lupe')">
+  <group if="$(eval robot_name=='moe' or robot_name=='beep' or robot_name=='barton' or robot_name=='lupe')">
     <node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
       args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />
   </group>

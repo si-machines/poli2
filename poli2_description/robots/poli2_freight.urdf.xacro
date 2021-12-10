@@ -99,12 +99,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
         <!-- Poli Sensors -->
 
-
+<!-- JSS REPLACED TILT LINK WITH d435 and then made them the same position and orientation -->
         <link name="camera_placement_link"/>
         <joint name="camera_placement_joint" type="fixed">
-            <parent link="tilt_link"/>
+            <!-- <parent link="tilt_link"/> -->
+            <parent link="d435_mount"/>
             <child link="camera_placement_link"/>
-            <origin xyz="-0.195 0.0835 0" rpy="0 0 ${HALF_PI+1.0472}"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!-- <origin xyz="-0.195 0.0835 0" rpy="0 0 ${HALF_PI+1.0472}"/> -->
         </joint>
 <!--         <xacro:sensor_astra parent="tilt_link">
 	    

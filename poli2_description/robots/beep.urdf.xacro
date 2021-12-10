@@ -29,17 +29,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<launch>
-  <arg name="robot_name" default="moe"/>
-  
-  <!-- Bring up Jaco arm-->
-  <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
-    <arg name="robot_id" value="$(arg robot_name)"/>    
-    <arg name="gripper_comport" value="/dev/tty_gripper" if="$(eval robot_name=='beep' or robot_name=='boop')"/>
-  </include>
-  
-  <include file="$(find poli2_full_moveit)/launch/moveit.launch">
-    <arg name="load_robot_description" value="true"/>
-    <arg name="robot_name" value="$(arg robot_name)"/>
-  </include>
-</launch>
+<robot name="beep" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find poli2_description)/robots/poli2_freight.urdf.xacro" />
+  <xacro:poli2_freight />
+</robot>

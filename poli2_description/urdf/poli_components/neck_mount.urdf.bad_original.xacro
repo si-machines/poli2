@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+Copyright (c) 2017, University of Texas Austin
+Author Maxwell Svetlik
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Stanley Innovation, Inc. nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="neck_mount">
+
+    <xacro:macro name="neck_mount" params="parent *origin">
+
+   <link
+    name="pan_link">
+    <inertial>
+      <origin
+        xyz="-0.00034561 -0.0064887 0.077201"
+        rpy="0 0 0" />
+      <mass
+        value="0.28209" />
+      <inertia
+        ixx="0.00045437"
+        ixy="-3.8199E-06"
+        ixz="2.945E-06"
+        iyy="0.00019445"
+        iyz="3.612E-05"
+        izz="0.00032985" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/pan_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/pan_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="pan_joint"
+    type="revolute">
+    <xacro:insert_block name="origin" />
+    <parent link="${parent}" />
+    <limit lower="-1.54" upper="1.54" velocity="10" effort="10"/>
+    <child
+      link="pan_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="tilt_link">
+    <inertial>
+      <origin
+        xyz="-0.0449449011423384 0 -0.0582731595130051"
+        rpy="0 1.5708 0" />
+      <mass
+        value="0.282648823094398" />
+      <inertia
+        ixx="0.000800089809159035"
+        ixy="0.000149569968914255"
+        ixz="4.25601989889811E-05"
+        iyy="0.00166070452096634"
+        iyz="-5.10288056116621E-05"
+        izz="0.00151354802293456" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.5708 0.5236" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/tilt_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 1.5708 0.5236" />
+      <geometry>
+        <mesh
+          filename="package://poli2_description/meshes/components/neck/tilt_link_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="tilt_joint"
+    type="revolute">
+    <limit upper="0.0" lower="-1.0471975512" velocity="1.0" effort="10.0"/>
+    <origin
+      xyz="0 0 0.095"
+      rpy="1.5708 0 0" />
+    <parent
+      link="pan_link" />
+    <child
+      link="tilt_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+
+  <transmission name="tilt_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="tilt_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="tilt_joint_actuator">
+	 <mechanicalReduction>70000</mechanicalReduction>
+	 <!-- <mechanicalReduction>29768</mechanicalReduction> -->
+    </actuator>
+  </transmission>
+
+  <transmission name="pan_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="pan_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="pan_joint_actuator">
+	 <!--mechanicalReduction>29768</mechanicalReduction-->
+	 <mechanicalReduction>160</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  </xacro:macro>
+</robot>

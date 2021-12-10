@@ -46,4 +46,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <include file="$(find poli2_launch)/launch/perception.launch">
     </include>
   </group>
+
+  <group if="$(eval robot_name=='beep' or robot_name=='boop')">
+    <!-- Start LED driver and pan/tilt zero switch manager-->
+    <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
+  </group>
+  
 </launch>
