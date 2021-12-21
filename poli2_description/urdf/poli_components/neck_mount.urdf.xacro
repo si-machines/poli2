@@ -106,7 +106,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </material>
     </visual>
     <collision>
-      <origin
+      <origin   
+
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
@@ -168,8 +169,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
-      <geometry>
-        <mesh
+
           filename="package://moxi_description/meshes/components/collision_tilt_link.STL"/>
       </geometry>
     </collision-->
@@ -228,8 +228,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
+
         <mesh
-          filename="package://moxi_description/meshes/components/head_shell_link.STL" />
+          filename="package://poli2_description/meshes/components/Moxi_Tufts_Head.stl" />
       </geometry>
       <material
         name="">

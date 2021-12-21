@@ -47,7 +47,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="realsense_4xx"     value="true"/>
     <arg name="hue"               value="true"/>
     <arg name="autostart"         value="true"/>
-    <arg name="recognition_frame" value="j2s7s300_link_base"/>
+    <arg name="recognition_frame" value="j2s7s300_link_base"/> <!-- JS and IS check this out -->
   </include>
 
 
@@ -61,7 +61,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <group if="$(eval robot_name=='moe' or robot_name=='beep' or robot_name=='barton' or robot_name=='lupe')">
     <node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
-      args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />
+      args="0.05 0.02 -0.09 0 0.45 0 camera_placement_link camera_link 100" /> 
   </group>
+  <!-- JSS rough from sensor data (bad and should be better)-->
+      <!-- args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />  -->
 
 </launch>
