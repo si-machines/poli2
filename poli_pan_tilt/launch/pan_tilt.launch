@@ -2,7 +2,10 @@
   <arg name="robot_name" />
 
   <!-- TILT -->
-  <node name="tilt_driver_launcher" pkg="poli_pan_tilt" type="launch_tilt_motor" output="screen"/>
+  <node name="tilt_driver_launcher" pkg="poli_pan_tilt" type="launch_tilt_motor.py" output="screen"/>
+  <!-- <include file="$(find poli_pan_tilt)/launch/tilt_control.launch"> -->
+  	<!-- <arg name="robot_name" value="$(arg robot_name)"/> -->
+  <!-- </include> -->
 
   <!-- PAN -->
   <include file="$(find poli_pan_tilt)/launch/pan_control.launch">
