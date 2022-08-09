@@ -32,9 +32,13 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
   <arg name="robot_name" default="beep"/>
+  <arg name="sim" default="false" />
+
+  <arg name="start_led_controller" default="false" />
   <arg name="start_manipulation" default ="false"/>
   <arg name="start_navigation" default="false"/>
-  <arg name="start_perception" default="false"/>
+  <arg name="start_pan_tilt" default="false"/>
+  <arg name="start_perception" default="false" />
   <arg name="start_rviz" default="false"/>
 
   <!-- TODO(Kukanani): this flag is ONLY used for the kinesthetic teaching node, to distinguish between
@@ -54,20 +58,13 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </include>
   
   <!-- Bring up pan tilt motors -->
-  <group if="$(eval robot_name=='beep' or robot_name=='boop' or robot_name=='barton' or robot_name=='lupe' or robot_name=='moe')">
+  <group if="$(arg start_pan_tilt)">
     <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
     </include>
   </group>
   
-   <group unless="$(eval robot_name=='beep' or robot_name=='boop')">
-    <!-- Start LED driver and pan/tilt zero switch manager-->
-    <include file="$(find poli2_launch)/launch/torso/led_controller.launch">
-      <arg name="robot_name" value="$(arg robot_name)" />
-    </include>
-  </group>
-  
-   <group if="$(eval robot_name=='beep' or robot_name=='boop')">
+   <group if="$(arg start_led_controller)">
     <!-- Start LED driver and pan/tilt zero switch manager-->
     <include file="$(find poli2_launch)/launch/torso/led_controller.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
@@ -77,6 +74,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
+      <arg name="sim" value="$(arg sim)" />
     </include>
     <!-- <node
       name="collision_scene"

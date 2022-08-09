@@ -17,7 +17,7 @@
     <!-- Run the main MoveIt executable with trajectory execution -->
     <include file="$(find poli2_full_moveit)/launch/move_group.launch">
         <arg name="allow_trajectory_execution" value="$(arg use_hlpr_traj_exec)"/>
-        <arg name="fake_execution" value="false"/>
+        <arg name="fake_execution" value="$(arg sim)"/>
         <arg name="info" value="true"/>
         <arg name="debug" value="false"/>
         <arg name="robot_name" value="$(arg robot_name)"/>

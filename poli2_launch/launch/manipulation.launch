@@ -31,9 +31,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
   <arg name="robot_name" default="moe"/>
+  <arg name="sim" default="false" />
   
   <!-- Bring up Jaco arm-->
-  <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch">
+  <include file="$(find poli2_launch)/launch/torso/kinova_arm.launch" unless="$(arg sim)">
     <arg name="robot_id" value="$(arg robot_name)"/>    
     <arg name="gripper_comport" value="/dev/tty_gripper" if="$(eval robot_name=='beep' or robot_name=='boop')"/>
   </include>
@@ -41,5 +42,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <include file="$(find poli2_full_moveit)/launch/moveit.launch">
     <arg name="load_robot_description" value="true"/>
     <arg name="robot_name" value="$(arg robot_name)"/>
+    <arg name="sim" value="$(arg sim)" />
   </include>
 </launch>
