@@ -33,15 +33,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <arg name="use_segway" default="true"/>
   <arg name="robot_description_file"/>
   <arg name="urdf_file" value="$(arg robot_description_file)" />
+  <arg name="sim" default="false" />
 
-  <group if="$(arg use_segway)">
-    <arg name="robot_name" value="RMP_110"/>
-    <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg urdf_file)'" />
-  </group>
-
-  <!-- TODO: this block is now identical to the previous one. Delete this group and remove the group/if on the previous block -->
-  <group unless="$(arg use_segway)">
+  <group>
     <arg name="robot_name" value="RMP_110"/>
     <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg urdf_file)'" />
