@@ -1,5 +1,7 @@
+rate: 10
 controller_list:
   - name: fake_arm_controller
+    type: interpolate
     joints:
       - j2s7s300_joint_1
       - j2s7s300_joint_2
