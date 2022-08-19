@@ -27,11 +27,11 @@
         <param name="robot_name" value="$(arg kinova_model)" />   
         <param name="robot_type" value="$(arg kinova_model)" />   
         <param name="use_jaco_v1_fingers" value="false" />
-        <remap from="/$(arg kinova_model)" to="/arm" />
     </node>r
 
     <!-- Custom HLPR trajectory server (interfaces with either real robot or gazebo backend, not moveit sim) -->
     <node if="$(eval not sim or sim_backend=='gazebo')" pkg="hlpr_jaco_trajectory_action_server" type="hlpr_jaco_trajectory_action_server_node" name="hlpr_jaco_trajectory_action_server" output="screen"  respawn="true" args="$(arg kinova_model)">
+        <remap from="joint_states" to="/j2s7s300_driver/out/joint_state" />
         <param name="sim" value="$(arg sim)"/>
     </node>
 

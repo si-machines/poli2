@@ -56,7 +56,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!--this will need to change-->
   <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
     <rosparam param="rate">100</rosparam>
-    <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/arm/out/joint_state", "/gripper/joint_states"]</rosparam>
+    <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_state", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
   </node>
 
 </launch>
