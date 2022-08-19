@@ -33,6 +33,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
   <arg name="robot_name" default="beep"/>
   <arg name="sim" default="false" />
+  <arg name="sim_backend" default="moveit" />
 
   <arg name="start_led_controller" default="false" />
   <arg name="start_manipulation" default ="false"/>
@@ -74,6 +75,8 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <include file="$(find poli2_launch)/launch/manipulation.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
       <arg name="sim" value="$(arg sim)" />
+      <arg name="standalone" value="false" />
+      <arg name="sim_backend" value="$(arg sim_backend)" />
     </include>
     <!-- <node
       name="collision_scene"

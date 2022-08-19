@@ -5,6 +5,9 @@
     <!-- If true, we're running in Gazebo. Don't run the low-level arm driver.
          If false, we're running on hardware. Start the low-level arm driver. -->
     <arg name="sim" default="false" />
+    <!-- if we're using moveit fake_controller or gazebo as the backend -->
+    <arg name="sim_backend" default="moveit" />
+  
     <!-- If true, the launch file will start the robot and joint state
          publishers needed for moveit to execute trajectories correctly.
          Keep this as false if you're including this launch file from a 
@@ -18,47 +21,34 @@
     <arg name="gripper_baud" default="115200"/>
     
     <!-- Start the low-level driver -->
-    <node name="$(arg kinova_model)_driver" pkg="kinova_driver" type="kinova_arm_driver" output="screen" cwd="node" args="$(arg kinova_model)">
+    <node name="$(arg kinova_model)_driver" pkg="kinova_driver" type="kinova_arm_driver" output="screen" cwd="node" args="$(arg kinova_model)" unless="$(arg sim)">
         <rosparam file="$(find poli2_launch)/config/arm_parameters.yaml" command="load" />
         <param name="serial_number" value="not_set" />   
         <param name="robot_name" value="$(arg kinova_model)" />   
         <param name="robot_type" value="$(arg kinova_model)" />   
-        <param name="use_jaco_v1_fingers" value="false" />   
+        <param name="use_jaco_v1_fingers" value="false" />
+        <remap from="/$(arg kinova_model)" to="/arm" />
     </node>r
 
-    <!-- Custom HLPR trajectory server -->
-    <node pkg="hlpr_jaco_trajectory_action_server" type="hlpr_jaco_trajectory_action_server_node" name="hlpr_jaco_trajectory_action_server" output="screen"  respawn="true" args="$(arg kinova_model)">
+    <!-- Custom HLPR trajectory server (interfaces with either real robot or gazebo backend, not moveit sim) -->
+    <node if="$(eval not sim or sim_backend=='gazebo')" pkg="hlpr_jaco_trajectory_action_server" type="hlpr_jaco_trajectory_action_server_node" name="hlpr_jaco_trajectory_action_server" output="screen"  respawn="true" args="$(arg kinova_model)">
         <param name="sim" value="$(arg sim)"/>
     </node>
 
     <!-- start other things if we're standalone -->
     <group if="$(arg standalone)">
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find poli2_description)/robots/$(arg robot_name).urdf.xacro'" />
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+            <remap from="joint_state" to="out/joint_state" />
             <param name="publish_frequency" type="double" value="100.0" />
             <param name="tf_prefix" value=""/>
         </node>
-        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-            <rosparam param="source_list">[j2s7s300_driver/out/joint_state]</rosparam>
-            <rosparam param="rate">100</rosparam>
-        </node>
     </group>
 
-    <node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen">
+    <node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen" unless="$(arg sim)">
         <param name="num_grippers" value="1" />
         <param name="comport" value="$(arg gripper_comport)" />
         <param name="baud" value="$(arg gripper_baud)" />
     </node>
-
-    <!-- runs the arm in standalone form -->
-    <group if="$(arg use_arm_urdf)">
-        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find poli2_description)/robots/jaco2_custom_wrapper.xacro'" />
-      
-        <!--node name="gripper_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"></node-->
-
-        <node name="arm_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-            <remap from="joint_states" to="/j2s7s300_driver/out/joint_state"/>
-        </node>
-
-    </group>
 
 </launch>
