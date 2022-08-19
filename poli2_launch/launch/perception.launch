@@ -55,14 +55,9 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        It may be necessary to define one or more TF static_transform_publisher
        nodes to define the transformations between the camera and the world.-->
 
-  <group if="$(eval robot_name=='tablebot')">
-    <include file="$(find poli2_launch)/launch/tablebot_camera_position.launch.xml"/>
-  </group>
-
-  <group if="$(eval robot_name=='moe' or robot_name=='beep' or robot_name=='barton' or robot_name=='lupe')">
     <node pkg="tf" type="static_transform_publisher" name="camera_connection_tf"
       args="0.05 0.02 -0.09 0 0.4 0 camera_placement_link camera_link 100" /> 
-  </group>
+
   <!-- JSS rough from sensor data (bad and should be better)-->
       <!-- args="0 0 0 1.57 0 1.57 camera_placement_link camera_link 100" />  -->
 

@@ -53,7 +53,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
 
   <include file="$(find poli2_launch)/launch/robot_state_publishers.launch.xml">
-    <arg name="use_segway" value="$(eval robot_name=='moe')"/>
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
   
@@ -90,10 +89,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <group if="$(arg start_navigation)">
-    <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
-    <!-- Bring up base drivers -->
-      <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
-    </group>
     <include file="$(find poli2_launch)/launch/navigation.launch"/>
   </group>
 
