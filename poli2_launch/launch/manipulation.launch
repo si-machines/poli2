@@ -41,7 +41,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <arg name="gripper_comport" value="/dev/tty_gripper"/>
     <arg name="standalone" value="$(arg standalone)"/>
     <arg name="sim" value="$(arg sim)" />
-    <arg name="sim_backend" value="$(arg sim_backend)"
+    <arg name="sim_backend" value="$(arg sim_backend)" />
   </include>
   
   <include file="$(find poli2_full_moveit)/launch/moveit.launch">
