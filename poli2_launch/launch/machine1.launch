@@ -59,8 +59,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   
   <!-- Bring up pan tilt motors -->
   <group if="$(arg start_pan_tilt)">
-    <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
+    <include file="$(find pan_tilt)/launch/pan_tilt.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
+      <arg name="sim" value="$(arg sim)" />
+      <arg name="standalone" value="false" />
     </include>
   </group>
   
