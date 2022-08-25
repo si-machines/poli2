@@ -47,11 +47,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        by using the already-existing robot_name parameter. -->
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
 
-  <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe will not have the same URDF presumably -->
   <arg name="robot_description_file" value="$(find poli2_description)/robots/$(arg robot_name).urdf.xacro"/>
-
-  <!-- Start vacuum pump driver -->
-  <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
 
   <include file="$(find poli2_launch)/launch/robot_state_publishers.launch.xml">
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>

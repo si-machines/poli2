@@ -15,7 +15,6 @@ find_package(catkin REQUIRED COMPONENTS actionlib_msgs)
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
-  GripperPump.srv
   LedEye.srv
   LedEar.srv
 )
