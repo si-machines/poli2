@@ -64,9 +64,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   
    <group if="$(arg start_led_controller)">
     <!-- Start LED driver and pan/tilt zero switch manager-->
-    <include file="$(find poli2_launch)/launch/torso/led_controller.launch">
-      <arg name="robot_name" value="$(arg robot_name)" />
-    </include>
+    <include file="$(find face)/launch/led_controller.launch" />
   </group>
 
   <group if="$(arg start_manipulation)">
