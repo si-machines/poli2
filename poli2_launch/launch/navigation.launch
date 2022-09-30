@@ -29,26 +29,29 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
+
+<!-- DEPRECATED - navigation is primarily handled by the fetch (probably) -->
 <launch>
+<!--
   <arg name="map_file" default="lab"/>
 
-  <!-- Run the map server -->
+   Run the map server 
   <node name="map_server" pkg="map_server" type="map_server" args="$(find poli_navigation_apps)/maps/$(arg map_file).yaml" />
 
   <include file="$(find poli2_launch)/launch/segway_base/move_base.launch"/>
 
-  <!--- Run amcl -->
+   Run amcl 
   <node pkg="amcl" type="amcl" name="amcl" output="screen" clear_params="true">
     <rosparam command="load" file="$(find poli2_launch)/config/amcl.yaml"/>
     <remap from="scan" to="/scan_merged" />
   </node>
 
-  <!-- velocity command multiplexer -->
+   velocity command multiplexer 
   <group ns="poli2">
     <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager"/>
     <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet nodelet_manager">
       <param name="yaml_cfg_file" value="$(find poli2_launch)/config/cmd_vel_mux.yaml"/>
     </node>
   </group>
-
+-->
 </launch>
