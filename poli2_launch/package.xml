@@ -20,13 +20,12 @@
   <run_depend>ros_controllers</run_depend>
   <run_depend>ros_control</run_depend>
   <run_depend>robot_upstart</run_depend>
-  <run_depend>yocs_cmd_vel_mux</run_depend>
-  <run_depend>range_sensor_layer</run_depend>
 
   <run_depend>moveit_core</run_depend>
   <run_depend>moveit_fake_controller_manager</run_depend>
   <run_depend>moveit_ros_planning_interface</run_depend>
   <run_depend>moveit_ros_perception</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
   <build_depend>moveit_commander</build_depend>
 
   <export>

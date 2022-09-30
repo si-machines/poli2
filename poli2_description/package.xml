@@ -15,6 +15,7 @@
   <run_depend>rospy</run_depend>
   <run_depend>kinova_description</run_depend>
   <run_depend>robotiq_85_description</run_depend>
+  <run_depend>xacro</run_depend>
 
   <export>
   </export>

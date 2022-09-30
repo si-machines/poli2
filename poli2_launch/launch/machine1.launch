@@ -49,7 +49,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <arg name="robot_description_file" value="$(find poli2_description)/robots/$(arg robot_name).urdf.xacro"/>
 
-  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch.xml">
+  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch">
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
   
