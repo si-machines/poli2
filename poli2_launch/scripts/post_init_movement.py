@@ -23,6 +23,7 @@ init_param = "/post_initialization_start/has_initialized"
 
 class PostInitializationStartup:
     def __init__(self):
+        # NOTE: WTF This is unused. If it IS used later, the pillar topic names (at least) are wrong.
         self.pillar_pub = rospy.Publisher('/pillar/command', Float32, queue_size=1)
         self.tilt_pub   = rospy.Publisher('/tilt_motor/position_controller/command', Float64, queue_size=1)
         self.pan_pub    = rospy.Publisher('/pan_motor/position_controller/command', Float64, queue_size=1)
