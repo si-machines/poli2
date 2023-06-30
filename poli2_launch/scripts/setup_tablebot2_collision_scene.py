@@ -44,32 +44,19 @@ if __name__=="__main__":
 
     p.remove("table")
     p.remove("back")
-    p.remove("shelves_top")
-    p.remove("shelves_middle")
-    p.remove("shelves_bottom")
-    p.remove("shelves_right_foot")
-    p.remove("shelves_left_foot")
+    p.remove("camera_right_tower")
+    p.remove("camera_left_tower")
+    p.remove("camera_top_bar")
+    p.remove("roof")
 
     table_z = -0.04
     table_thickness = 0.2
-    shelf_thickness = 0.02
     height = m(27.75)
     post_xsize = m(3)
     post_ysize = m(3)
     foot_ysize = m(15)
     foot_xsize = m(3)
     foot_zsize = m(3)
-
-    table_shelf_top_height=0.618
-    table_shelf_middle_height=0.437
-    table_shelf_bottom_height=0.222
-
-    table_center_coord = -0.461
-
-    table_height = 0.7
-
-    table_width = m(10)
-    table_length = m(27)
     # make it much taller than strictly necessary just so we never pass in front of and above the crossbar
     top_bar_thickness = 0.3
     bar_pos = m(-22)
@@ -78,11 +65,11 @@ if __name__=="__main__":
 
     p.add_box("back", "world", size=(2, 0.1, 2), position=(0, 0.35, 0), color=(0,0,1.,0.4))
     p.add_box("table", "world", size=(2, 2, table_thickness), position=(0, 0, table_z - table_thickness/2), color=(0,0,1.,0.4))
+    p.add_box("roof", "world", size=(2, 2, table_thickness), position=(0, 0, 0.85 + table_thickness/2), color=(0, 0, 0, 0.4))
 
-    p.add_box("shelves_top", "world", size=(table_length, table_width, shelf_thickness), position=(0.493, table_center_coord, table_shelf_top_height), color=(0.5,0,1.,0.4))
-    p.add_box("shelves_middle", "world", size=(table_length, table_width, shelf_thickness), position=(0.493, table_center_coord, table_shelf_middle_height), color=(0.5,0,1.,0.4))
-    p.add_box("shelves_bottom", "world", size=(table_length, table_width, shelf_thickness), position=(0.493, table_center_coord, table_shelf_bottom_height), color=(0.5,0,1.,0.4))
+    p.add_box("camera_right_foot", "world", position=(m(27.5/2), bar_pos, table_z + foot_zsize/2), size=(foot_xsize, foot_ysize, foot_zsize), color=(1,1,0,0.4))
+    p.add_box("camera_left_foot", "world", position=(-m(27.5/2), bar_pos, table_z + foot_zsize/2), size=(foot_xsize, foot_ysize, foot_zsize), color=(1,1,0,0.4))
 
-    p.add_box("shelves_right_foot", "world", size=(0.02, table_width, table_height), position=(0.154, table_center_coord, 0.385), color=(0.5,0,1.,0.4))
-    p.add_box("shelves_left_foot", "world", size=(0.02, table_width, table_height), position=(0.154+table_length, table_center_coord, 0.385), color=(0.5,0,1.,0.4))
-   
+    p.add_box("camera_right_tower", "world", position=(m(27.5/2), bar_pos, table_z + height/2), size=(post_xsize, post_ysize + 0.01, height), color=(1,1,0,0.4))
+    p.add_box("camera_left_tower", "world", position=(-m(27.5/2), bar_pos, table_z + height/2), size=(post_xsize, post_ysize + 0.01, height), color=(1,1,0,0.4))
+    p.add_box("camera_top_bar", "world", position=(0, bar_pos, table_z + height + top_bar_thickness/2 - safety_buffer), size=(m(36), m(4), top_bar_thickness), color=(1, 1, 0, 0.4))

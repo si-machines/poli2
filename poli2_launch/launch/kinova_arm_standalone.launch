@@ -7,6 +7,12 @@
     <arg name="sim" default="false" />
     <!-- if we're using moveit fake_controller or gazebo as the backend -->
     <arg name="sim_backend" default="moveit" />
+  
+    <!-- If true, the launch file will start the robot and joint state
+         publishers needed for moveit to execute trajectories correctly.
+         Keep this as false if you're including this launch file from a 
+         different launch file. -->
+    <arg name="standalone" default="false" />
 
     <arg name="kinova_model" default="j2s7s300" />
     
@@ -15,7 +21,7 @@
     <arg name="gripper_baud" default="115200"/>
     
     <!-- Start the low-level driver -->
-    <node name="$(arg kinova_model)_driver" pkg="kinova_driver" type="kinova_arm_driver" output="screen" cwd="node" args="$(arg kinova_model)" unless="$(arg sim)">
+    <node name="$(arg kinova_model)_driver" pkg="kinova_driver" type="kinova_arm_driver" respawn="true" output="screen" cwd="node" args="$(arg kinova_model)" unless="$(arg sim)">
         <rosparam file="$(find poli2_launch)/config/arm_parameters.yaml" command="load" />
         <param name="serial_number" value="not_set" />   
         <param name="robot_name" value="$(arg kinova_model)" />   
@@ -28,6 +34,30 @@
         <remap from="joint_states" to="/j2s7s300_driver/out/joint_state" />
         <param name="sim" value="$(arg sim)"/>
     </node>
+
+ 
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find poli2_description)/robots/$(arg robot_name).urdf.xacro'" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+        <remap from="joint_state" to="out/joint_state" />
+        <param name="publish_frequency" type="double" value="100.0" />
+        <param name="tf_prefix" value=""/>
+    </node>
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
+        <rosparam param="rate">100</rosparam>
+        <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_states", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
+    </node>
+
+    <include file="$(find poli2_full_moveit)/launch/moveit.launch">
+        <arg name="load_robot_description" value="true"/>
+        <arg name="robot_name" value="$(arg robot_name)"/>
+        <arg name="sim" value="$(eval sim and sim_backend=='moveit')" />
+    </include>
+
+    <!-- <node
+        name="collision_scene"
+        pkg="poli2_launch"
+        type="setup_$(arg robot_name)_collision_scene.py"
+    /> -->
 
 
     <node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen" unless="$(arg sim)">
