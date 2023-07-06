@@ -45,6 +45,9 @@
     <!-- Set the display variable, in case OpenGL code is used internally -->
     <env name="DISPLAY" value="$(optenv DISPLAY :0)" />
 
+    <!-- if we're using the fake controller, make it output to the correct topic -->
+    <remap from="/move_group/fake_controller_joint_states" to="/j2s7s300_driver/out/joint_state" />
+
     <param name="allow_trajectory_execution" value="$(arg allow_trajectory_execution)"/>
     <param name="max_safe_path_cost" value="$(arg max_safe_path_cost)"/>
     <param name="jiggle_fraction" value="$(arg jiggle_fraction)" />

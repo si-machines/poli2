@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <launch>
 
+    <arg name="robot_name" default="beep" />
+
 	<!-- Include the Poli2 Description -->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find poli2_description)/robots/poli_wrapper.urdf.xacro'"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find poli2_description)/robots/$(arg robot_name).urdf.xacro'"/>
 
     <!-- Push robot_description to factory and spawn robot in gazebo -->
     <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model poli2" respawn="false" output="screen" />

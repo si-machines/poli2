@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-read -p "Pillar is about to lower to zero position! Hit <enter> to confirm you've checked the arm."
-rostopic pub /pillar/command std_msgs/Float32 "data: -1.0" -1

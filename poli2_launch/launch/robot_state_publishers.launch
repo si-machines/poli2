@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-Copyright (c) 2017, Adam Allevato
+Copyright (c) 2018, The University of Texas at Austin
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -29,40 +29,34 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-
-
-<!--
-  The position of the realsense camera as determined by hand-calibration on tablebot.
-  Originally created January 2019, may be out of date depending on if the camera
-  setup has changed.
--->
 <launch>
-  <!-- you can use this to generate new transforms. You'll have to download the ROS 
-    package from https://github.com/Kukanani/calibration_marker first.-->
-  <!-- <node
-    pkg="calibration_marker"
-    type="calibration_marker.py"
-    name="calibration_marker"
-    output="screen"
-  >
-    <param name="parent_frame" value="j2s7s300_link_base" />
-    <param name="child_frame" value="camera_link" />
-  </node> -->
+  <arg name="robot_description_file"/>
+  <arg name="urdf_file" value="$(arg robot_description_file)" />
+  <arg name="sim" default="false" />
 
-  <!-- top-down camera mounted directly over the table on t-slot frame-->
-  <node
-    pkg="tf"
-    type="static_transform_publisher"
-    name="camera_link_static_transform_publisher"
-    args="-0.0351709537208 -0.521871447563 0.686433672905 0.742757848055 1.52754909792 -0.84 j2s7s300_link_base camera_link 100"
-  />
-  <!-- camera at the edge of the table looking down and back at the arm-->
-  <!-- <node
-     pkg="tf"
-     type="static_transform_publisher"
-     name="camera_link_static_transform_publisher"
-     args="-0.03 -1.10815286636 0.65 1.57395472088 0.426216309179 0.0881404617368 j2s7s300_link_base camera_link 100"
-  /> -->
+  <group>
+    <arg name="robot_name" value="RMP_110"/>
+    <!-- launch the appropriate urdf description, as well as the corresponding tf tree -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg urdf_file)'" />
+  </group>
 
+  <!-- launch the tf tree for base -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="100.0" />
+    <param name="use_tf_static" value="false"/>
+    <param name="use_gui" value="false" />
+  </node>
+
+  <!-- tf tree for pillar actuator -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="pillar_state_publisher">
+    <param name="publish_frequency" type="double" value="100.0" />
+    <remap from="joint_states" to="pillar/joint_state"/>
+  </node>
+
+  <!--this will need to change-->
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
+    <rosparam param="rate">100</rosparam>
+    <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_states", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
+  </node>
 
 </launch>

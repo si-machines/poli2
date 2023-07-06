@@ -2,6 +2,7 @@
 <launch>
 
 	<!-- Basic Startup Parameters -->
+	<arg name="robot_name" default="beep" />
     <arg name="paused" default="false"/>
     <arg name="gui" default="true"/>
     <arg name="world" default="worlds/empty.world" />
@@ -27,7 +28,9 @@
 	<include file="$(arg room)"/>
 
 	<!-- Include the actual Robot!/-->
-    <include file="$(find poli2_gazebo)/launch/$(arg robot)_upload.launch"/>
-	<!--include file="$(arg robot_description)"/-->
+    <include file="$(find poli2_gazebo)/launch/$(arg robot)_upload.launch">
+		<arg name="robot_name" value="$(arg robot_name)" />
+	</include>
+		<!--include file="$(arg robot_description)"/-->
 
 </launch>

@@ -40,30 +40,4 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:j2s7s300 base_parent="world" trans="0.0 0.0 0.0" rot="0.0 0.0 0.0" />
 
 
-    <joint name="j2s7s300_ee_spatula_joint" type="fixed">
-        <parent link="j2s7s300_ee_link" />
-        <child link="j2s7s300_spatula" />
-        <origin xyz="0.1 0.0 0" rpy="0 0 1.5707" />
-    </joint>
-
-    <link name="j2s7s300_spatula">
-        <visual>
-            <geometry>
-                <mesh filename="package://poli2_description/meshes/objects/spatula.stl" />
-            </geometry>
-            <material name="White">
-                <color rgba="1.0 1.0 1.0 1.0"/>
-            </material>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://poli2_description/meshes/objects/spatula.stl" />
-            </geometry>
-        </collision>
-        <inertial>
-            <mass value="0.001" />
-            <origin xyz="0 0 0" />
-            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
-        </inertial>
-    </link>
 </robot>

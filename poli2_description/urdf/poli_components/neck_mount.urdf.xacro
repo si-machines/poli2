@@ -23,24 +23,73 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="neck_mount">
+    <xacro:property name="M_PI" value="3.1415926535897932"/>
 
     <xacro:macro name="neck_mount" params="parent *origin">
+    <!-- mount to the parent -->
+    <joint name="neck_base_joint" type="fixed">
+        <xacro:insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="neck_base_link"/>
+    </joint>
 
-   <link
+    <!-- the rest of the neck and head -->
+  <link
+    name="neck_base_link">
+    <inertial>
+      <origin
+        xyz="0.00074145 2.9937E-06 0.047766"
+        rpy="0 0 0" />
+      <mass
+        value="0.47885" />
+      <inertia
+        ixx="0.00028968"
+        ixy="8.7657E-10"
+        ixz="2.6732E-06"
+        iyy="0.00029064"
+        iyz="-2.2933E-09"
+        izz="9.574E-07" />
+    </inertial>
+    <!-- <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://moxi_description/meshes/components/neck_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual> -->
+    <!-- <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://moxi_description/meshes/components/neck_base_link.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+
+  <link
     name="pan_link">
     <inertial>
       <origin
-        xyz="-0.00034561 -0.0064887 0.077201"
+        xyz="0 0.0017004 0.027288"
         rpy="0 0 0" />
       <mass
-        value="0.28209" />
+        value="0.219" />
       <inertia
-        ixx="0.00045437"
-        ixy="-3.8199E-06"
-        ixz="2.945E-06"
-        iyy="0.00019445"
-        iyz="3.612E-05"
-        izz="0.00032985" />
+        ixx="0.0003828"
+        ixy="4.8392E-07"
+        ixz="-2.3818E-07"
+        iyy="6.6647E-05"
+        iyz="-8.5768E-06"
+        izz="0.00031616" />
     </inertial>
     <visual>
       <origin
@@ -57,7 +106,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </material>
     </visual>
     <collision>
-      <origin
+      <origin   
+
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
@@ -70,34 +120,41 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <joint
     name="pan_joint"
     type="revolute">
-    <xacro:insert_block name="origin" />
-    <parent link="${parent}" />
-    <limit lower="-1.54" upper="1.54" velocity="10" effort="10"/>
+    <origin
+      xyz="0 0 0.106"
+      rpy="0 0 0" />
+    <parent
+      link="neck_base_link" />
     <child
       link="pan_link" />
     <axis
       xyz="0 0 1" />
+    <limit
+      lower="${-M_PI * 0.5}"
+      upper="${M_PI * 0.5}"
+      effort="10"
+      velocity="10" />
   </joint>
   <link
     name="tilt_link">
     <inertial>
       <origin
-        xyz="-0.0449449011423384 0 -0.0582731595130051"
-        rpy="0 1.5708 0" />
+        xyz="0.015956 0 0.049652"
+        rpy="0 0 0" />
       <mass
-        value="0.282648823094398" />
+        value="0.34992" />
       <inertia
-        ixx="0.000800089809159035"
-        ixy="0.000149569968914255"
-        ixz="4.25601989889811E-05"
-        iyy="0.00166070452096634"
-        iyz="-5.10288056116621E-05"
-        izz="0.00151354802293456" />
+        ixx="0.00080192"
+        ixy="-6.0062E-08"
+        ixz="-0.00013898"
+        iyy="0.00033013"
+        iyz="-1.25E-07"
+        izz="0.00070451" />
     </inertial>
     <visual>
       <origin
         xyz="0 0 0"
-        rpy="0 1.5708 0.5236" />
+        rpy="0 0 0" />
       <geometry>
         <mesh
           filename="package://poli2_description/meshes/components/neck/tilt_link.STL" />
@@ -105,42 +162,115 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <material
         name="">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="0.89804 0.91765 0.92941 1" />
       </material>
     </visual>
-    <collision>
+    <!--collision>
       <origin
         xyz="0 0 0"
-        rpy="0 1.5708 0.5236" />
-      <geometry>
-        <mesh
-          filename="package://poli2_description/meshes/components/neck/tilt_link_collision.STL" />
+        rpy="0 0 0" />
+
+          filename="package://moxi_description/meshes/components/collision_tilt_link.STL"/>
       </geometry>
-    </collision>
+    </collision-->
   </link>
   <joint
     name="tilt_joint"
     type="revolute">
-    <limit upper="0.0" lower="-1.0471975512" velocity="1.0" effort="10.0"/>
     <origin
-      xyz="0 0 0.095"
-      rpy="1.5708 0 0" />
+      xyz="0 0 0.05"
+      rpy="0 0 0" />
     <parent
       link="pan_link" />
     <child
       link="tilt_link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 1 0" />
+    <limit
+      lower="${-20.0 * M_PI / 180.0}"
+      upper="${20.0 * M_PI / 180.0}"
+      effort="10"
+      velocity="10" />
+  </joint>
+  <link
+    name="d435_mount" />
+  <joint
+    name="d435_mount"
+    type="fixed">
+    <origin
+      xyz="0.10116 0 0.088973"
+      rpy="0 0.34907 0" />
+    <parent
+      link="tilt_link" />
+    <child
+      link="d435_mount" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="head_shell_link">
+    <inertial>
+      <origin
+        xyz="0.026066 0.00010633 0.029107"
+        rpy="0 0 0" />
+      <mass
+        value="0.78879" />
+      <inertia
+        ixx="0.00052471"
+        ixy="1.6674E-06"
+        ixz="0.00011944"
+        iyy="0.0017472"
+        iyz="1.4665E-07"
+        izz="0.0012225" />
+    </inertial>
+    <!-- <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+
+        <mesh
+          filename="package://poli2_description/meshes/components/Moxi_Tufts_Head.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual> -->
+    <!-- <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://moxi_description/meshes/components/head_shell_link.STL" scale="1.3 1.3 1.3"/>
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="head_shell_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="tilt_link" />
+    <child
+      link="head_shell_link" />
+    <axis
+      xyz="0 0 0" />
   </joint>
 
 
   <transmission name="tilt_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="tilt_joint">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="tilt_joint_actuator">
-	 <mechanicalReduction>29768</mechanicalReduction>
+      <mechanicalReduction>${4096 * 50 * 4 / (2 * M_PI)}</mechanicalReduction>
     </actuator>
   </transmission>
 
@@ -148,10 +278,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="pan_joint">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <!-- <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface> -->
     </joint>
     <actuator name="pan_joint_actuator">
-	 <!--mechanicalReduction>29768</mechanicalReduction-->
-	 <mechanicalReduction>160</mechanicalReduction>
+      <mechanicalReduction>160</mechanicalReduction>
     </actuator>
   </transmission>
 

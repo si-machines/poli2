@@ -29,7 +29,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<robot name="lupe" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="beep" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find poli2_description)/robots/poli2_freight.urdf.xacro" />
   <xacro:poli2_freight />
 </robot>

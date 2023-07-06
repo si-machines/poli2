@@ -31,10 +31,15 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-  <arg name="robot_name" default="moe"/>
+  <arg name="robot_name" default="beep"/>
+  <arg name="sim" default="false" />
+  <arg name="sim_backend" default="moveit" />
+
+  <arg name="start_led_controller" default="false" />
   <arg name="start_manipulation" default ="false"/>
   <arg name="start_navigation" default="false"/>
-  <arg name="start_perception" default="false"/>
+  <arg name="start_pan_tilt" default="false"/>
+  <arg name="start_perception" default="false" />
   <arg name="start_rviz" default="false"/>
 
   <!-- TODO(Kukanani): this flag is ONLY used for the kinesthetic teaching node, to distinguish between
@@ -42,36 +47,38 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        by using the already-existing robot_name parameter. -->
   <rosparam param="ROBOT_NAME">"poli2"</rosparam>
 
-  <!-- TODO: maybe make this be conditional on "moe" or not "moe", because Barton and Lupe will not have the same URDF presumably -->
   <arg name="robot_description_file" value="$(find poli2_description)/robots/$(arg robot_name).urdf.xacro"/>
 
-  <!-- Start vacuum pump driver -->
-  <!-- <include file="$(find poli2_launch)/launch/torso/gripper_pump.launch"/> -->
-
-  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch.xml">
-    <arg name="use_segway" value="$(eval robot_name=='moe')"/>
+  <include file="$(find poli2_launch)/launch/robot_state_publishers.launch">
     <arg name="robot_description_file" value="$(arg robot_description_file)"/>
   </include>
   
-  <group if="$(eval robot_name=='barton' or robot_name=='lupe' or robot_name=='moe')">
-    <!-- Bring up pan tilt motors -->
-    <include file="$(find poli_pan_tilt)/launch/pan_tilt.launch">
+  <!-- Bring up pan tilt motors -->
+  <group if="$(arg start_pan_tilt)">
+    <include file="$(find pan_tilt)/launch/pan_tilt.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
+      <arg name="sim" value="$(arg sim)" />
+      <arg name="standalone" value="false" />
     </include>
+  </group>
   
+   <group if="$(arg start_led_controller)">
     <!-- Start LED driver and pan/tilt zero switch manager-->
-    <include file="$(find poli2_launch)/launch/torso/led_controller.launch"/>
+    <include file="$(find face)/launch/led_controller.launch" />
   </group>
 
   <group if="$(arg start_manipulation)">
     <include file="$(find poli2_launch)/launch/manipulation.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
+      <arg name="sim" value="$(arg sim)" />
+      <arg name="standalone" value="false" />
+      <arg name="sim_backend" value="$(arg sim_backend)" />
     </include>
-    <node
+    <!-- <node
       name="collision_scene"
       pkg="poli2_launch"
       type="setup_$(arg robot_name)_collision_scene.py"
-    />
+    /> -->
   </group>
 
   <group if="$(arg start_perception)">
@@ -81,10 +88,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <group if="$(arg start_navigation)">
-    <group if="$(eval robot_name=='moe')"> <!-- stuff only working on moe right now-->
-    <!-- Bring up base drivers -->
-      <include file="$(find poli2_launch)/launch/segway_base/base_bringup.launch"/>
-    </group>
     <include file="$(find poli2_launch)/launch/navigation.launch"/>
   </group>
 
