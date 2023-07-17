@@ -43,19 +43,20 @@
             <param name="publish_frequency" type="double" value="100.0" />
             <param name="tf_prefix" value=""/>
         </node>
+
+        <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
+            <rosparam param="rate">100</rosparam>
+            <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_states", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
+        </node>
+
+        <include file="$(find poli2_full_moveit)/launch/moveit.launch">
+            <arg name="load_robot_description" value="true"/>
+            <arg name="robot_name" value="$(arg robot_name)"/>
+            <arg name="sim" value="$(eval sim and sim_backend=='moveit')" />
+        </include>
     </group>
 
-    <node pkg="joint_state_publisher" type="joint_state_publisher" name="combined_joint_state_publisher">
-        <rosparam param="rate">100</rosparam>
-        <rosparam param="source_list">["/pillar/joint_states", "/pan_motor/joint_states", "/tilt_motor/joint_states", "/j2s7s300_driver/out/joint_state", "/gripper/joint_states"]</rosparam>
-    </node>
-
-    <include file="$(find poli2_full_moveit)/launch/moveit.launch">
-        <arg name="load_robot_description" value="true"/>
-        <arg name="robot_name" value="$(arg robot_name)"/>
-        <arg name="sim" value="$(eval sim and sim_backend=='moveit')" />
-    </include>
-
+    
     <node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen" unless="$(arg sim)">
         <param name="num_grippers" value="1" />
         <param name="comport" value="$(arg gripper_comport)" />
